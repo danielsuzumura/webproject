@@ -1,0 +1,61 @@
+/* HEADER */
+#main-header{
+    margin: 0px;
+    width: 100%;
+    /* display: flex;
+    justify-content: space-between; */
+}
+#bar-header a{
+    color:white;
+}
+#bar-header{
+    position: fixed;
+    left: 0px;
+    width: 100%;
+    background-color: #BF8CFF;
+}
+#bar-header .list-inline{
+    text-align: center;
+    position: relative;
+    /* Gambiarra pra centralizar */
+    left: calc(50% - 300px);
+}
+#bar-header li{
+    margin-right: 50px;
+}
+/* Lists */
+.list-inline{
+    list-style-type: none;
+    display: inline-flex;
+}
+.list-inline li{
+    padding: 10px;
+}
+/* Select */
+select{
+    border:0px;
+    outline:0px;
+}
+/* Links */
+a{
+    color:black;
+    text-decoration: none;
+}
+/* FOOTER */
+#footer{
+    position: fixed;
+    left: 0px;
+    bottom:0px;
+    width: 100%;
+    height: 15%;
+    background-color: #BF8CFF;
+}
+.fa-github{
+    margin-top:30px;
+    font-size:48px;
+    text-align: center;
+    display: block;
+}
+#footer p{
+    text-align: center;
+}
