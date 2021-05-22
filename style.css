@@ -3,7 +3,7 @@ body{
     margin: 0px;
 }
 :hover{
-    transition: all 0.25s ease-out;
+    transition: background-color 0.25s ease-out;
 }
 /* HEADER */
 #header{
@@ -41,7 +41,12 @@ body{
     margin-right: 7px;
 }
 #search-text{
+    width: 100%;
     max-width: 25vw;
+    border: none;
+}
+#search-text:focus{
+    outline: none;
 }
 #header-name{
     flex: 1;
@@ -115,19 +120,28 @@ a{
 }
 /* FOOTER */
 #footer{
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
     position: fixed;
     left: 0px;
     bottom:0px;
     width: 100%;
-    height: 15%;
+    height: max-content;
     background-color: #BF8CFF;
 }
+#footer-info{
+    max-height: 100%;
+}
 .fa-github{
-    margin-top:30px;
+    max-width: max-content;
+    max-height: max-content;
+    margin: 20px auto 0px auto;
     font-size:48px;
     text-align: center;
     display: block;
 }
 #footer p{
     text-align: center;
+    margin-top: 0px;
 }
