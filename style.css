@@ -2,6 +2,9 @@
 body{
     margin: 0px;
 }
+:hover{
+    transition: all 0.25s ease-out;
+}
 /* HEADER */
 #header{
     width: 100%;
@@ -13,24 +16,32 @@ body{
     height: 60px;
     box-sizing: border-box;
     margin: 0px;
-    padding: 10px;
+    padding: 0px;
     position: sticky;
+    font-size: 1em;
     /* display: flex;
     justify-content: space-between; */
 }
 #main-header .list-inline{
+    box-sizing: border-box;
     width: 100%;
     height: 100%;
-    padding: 0px;
     margin: 0px;
+}
+#main-header .list-inline li{
+    padding: 20px min(20px, 1vw);
 }
 #header-search{
     flex: 1;
     display: flex;
     justify-content: flex-start;
+    max-width: 50vw;
 }
 #header-search i{
     margin-right: 7px;
+}
+#search-text{
+    max-width: 25vw;
 }
 #header-name{
     flex: 1;
@@ -45,6 +56,12 @@ body{
     padding: 0px;
     margin: 0px;
 }
+#header-account li{
+    height: 100%;
+}
+#header-account li:hover{
+    background-color: rgb(180, 180, 180);
+}
 #bar-header a{
     color:white;
 }
@@ -57,12 +74,20 @@ body{
 }
 #bar-header .list-inline{
     text-align: center;
+    vertical-align: middle;
     width: 100%;
     height: 100%;
     justify-content: center;
 }
 #bar-header li{
-    margin-right: 50px;
+    box-sizing: border-box;
+    padding-left: min(35px, 5vw);
+    padding-right: min(35px, 5vw);
+    height: 100%;
+    white-space: nowrap;
+}
+#bar-header li:hover{
+    background-color: #9971ca;
 }
 /* Lists */
 .list-inline{
@@ -70,9 +95,13 @@ body{
     display: inline-flex;
     padding: 0px;
     margin: 0px;
+    box-sizing: border-box;
+    overflow: hidden;
 }
 .list-inline li{
     padding: 10px;
+    box-sizing: border-box;
+    overflow: hidden;
 }
 /* Select */
 select{
