@@ -18,72 +18,86 @@
 
     border-style:solid;
 }
-
+/* Start of the Image block in the left float*/
 #product-image {
-    /*position:fixed;*/
     float:left;
     width:40%;
-    margin:0px 0px 0px 0px;    
+    margin:auto;    
 
     border-style:solid;
 }
+/* End of Image in the left float*/
 
-#product-entry-description {
-    /*position:fixed;*/
+/* Start of the Entry Description in the center float*/
+#product-entry-description {    
     float:left;
-    border-style:solid;
-    /*margin:-20px auto 0 37vw;*/
-    text-align:center;
-    /*left:520px;*/
-    width:40vw;
+    width:35vw;
     height:49vh;
+    border-style:solid;
+    text-align:center;
+
+}
+#review-average{
+    border-style:ridge;
+    border-radius:5px;
+    margin-left:7.5vw;
+    border-width:1px;
+    width:20vw;
+    height:2vh;
 }
 
+#img-review-average {
+    width:1vw;
+}
+
+/* End of the Entry Description in the center float*/
+
+/* Start of the Price block in the right float*/
 #product-price {
-    /*position:fixed;*/
-    /*left:750px;*/
     float:right;
-    width:200px;
-    height:220px;
-    margin:auto 10px auto auto;   
-    padding:10px 10px 10px 10px;
+    width:12.5vw;
+    height:30vh;
+
+    margin:auto 20px auto auto;   
     text-align:center;
     
     border-style:solid;
     border-width:1px;
     border-radius:50px;
-}/*
-div.box {
-	display: inline-block;
-}*/
+}
 
 #price {
     font-size:30px;
 }
 
 #button-addCart {
-    width:200px;
-    height:50px;
+    width:10vw;
+    height:5vh;
     background-color:#c54556;
     color:white;
     border-radius:10px;
 }
+/* End of the Price block in the right float*/
 /* End of Image/Tecnical-description/Buy-options block */
 
 
 /* Start of Description block */
 #product-description {
-    width:600px;    
+    width:75vw;    
     margin:0px auto;
     border-style:solid;
 
     font-size:150%;
 }
+
+#description {
+    color:rgba(57, 56, 58, 0.822);
+}
 /* End of Description block */
 
 /* Start of Review block */
 #product-review {
-    width:600px;
+    width:75vw;
     margin:0 auto 200px auto;
     border-style:solid;
 }
@@ -95,6 +109,14 @@ div.box {
 
     border-style:ridge;
     border-radius:15px;
+}
+
+.review.name {
+    text-align:left;
+    font-weight:bold;
+    font-size:100%;
+
+    
 }
 
 .img-review {
