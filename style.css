@@ -18,7 +18,9 @@ body{
     margin: 0px;
     top: 0%;
     z-index: 10;
+    box-shadow: rgba(0, 0, 0, 0.267) 0px 10px 10px;
 }
+/* Main header */
 #main-header{
     width: 100%;
     height: 60px;
@@ -38,6 +40,7 @@ body{
 #main-header .list-inline li{
     padding: 20px min(20px, 1vw);
 }
+/* Header search */
 #main-header .list-inline #header-search{
     padding: 10px min(20px, 1vw);
     flex: 1;
@@ -61,11 +64,13 @@ body{
     border: solid transparent;
     border-radius: 10px;
 }
+/* Header name */
 #header-name{
     flex: 1;
     display: flex;
     justify-content: center;
 }
+/* Header account */
 #header-account{
     flex: 1;
     display: flex;
@@ -80,6 +85,7 @@ body{
 #header-account li:hover{
     background-color: rgb(180, 180, 180);
 }
+/* Bar Header */
 #bar-header a{
     color:white;
 }
@@ -97,7 +103,7 @@ body{
     width: max-content;
     height: max-content;
     justify-content: center;
-    z-index: 1;
+    z-index: 2;
 }
 .bar-header-button{
     box-sizing: border-box;
@@ -109,15 +115,29 @@ body{
 .bar-header-button:hover{
     background-color: #9971ca;
 }
+.bar-header-button-selected{
+    box-sizing: border-box;
+    display: inline-block;
+    padding: 10px min(35px, 5vw);
+    height: 40px;
+    white-space: nowrap;
+    background-color: #9971ca;
+}
+/* Bar header dropdown */
 #bar-header .list-dropdown a{
     box-sizing: border-box;
     padding: 10px min(35px, 5vw);
     height: 40px;
     white-space: nowrap;
 }
-#bar-header .list-dropdown:hover .dropdown-elem{
+#bar-header .list-dropdown:hover .dropdown-elem .bar-header-button{
     background-color: #BF8CFF;
+    box-shadow: rgba(0, 0, 0, 0.267) 0px 10px 10px;
 }
+#bar-header .list-dropdown:hover .dropdown-elem .bar-header-button:hover{
+    background-color: #9971ca;
+}
+/* Bar header base */
 #bar-header .bar-header-base{
     position: absolute;
     z-index: 0;
@@ -179,6 +199,7 @@ a{
     width: 100%;
     height: max-content;
     background-color: #BF8CFF;
+    box-shadow: rgba(0, 0, 0, 0.267) 0px 0px 10px 0px;
 }
 #footer-info{
     max-height: 100%;
