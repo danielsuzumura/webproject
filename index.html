@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
+        <div id="header-base"></div>
         <div id="header">
             <div id="main-header">
                 <ul class="list-inline">
@@ -19,33 +20,26 @@
                     </li>
                     <li id="header-name">SUPERMARKET</li>
                     <ul id="header-account">
-                        <a href="login.html">
-                            <li>LOGIN</li>
-                        </a>
-                        <a href="register.html">
-                            <li>REGISTER</li>
-                        </a>
+                        <a href="#"><li>LOGIN</li></a>
+                        <a href="#"><li>REGISTER</li></a>
                     </ul>
                 </ul>
             </div>
             <div id="bar-header">
+                <div class="bar-header-base"></div>
                 <ul class="list-inline">
-                    <a href="index.html">
-                        <li id="home">HOME</li>
-                    </a>
-                    <li id="products">
-                        <select>
-                            <option>Vetegables</option>
-                            <option>Fruits</option>
-                            <option>Meats</option>
-                        </select>
-                    </li>
-                    <a href="about.html">
-                        <li>ABOUT US</li>
-                    </a>
-                    <a href="contact.html">
-                        <li>CONTACT</li>
-                    </a>
+                    <a href="index.html" class="bar-header-button">HOME</a>
+                    <div class="list-dropdown">
+                        <a class="bar-header-button">PRODUCTS</a>
+                        <div class="dropdown-elem">
+                            <a class="bar-header-button cursor-default">PRODUCTS</a>
+                            <a class="bar-header-button" href="#">Vegetables</a>
+                            <a class="bar-header-button" href="#">Fruits</a>
+                            <a class="bar-header-button" href="#">Meat</a>
+                        </div>
+                    </div>
+                    <a href="#" class="bar-header-button">ABOUT US</a>
+                    <a href="#" class="bar-header-button">CONTACT</a>
                 </ul>
             </div>
         </div>
