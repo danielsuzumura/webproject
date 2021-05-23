@@ -1,6 +1,7 @@
 /* BODY */
 body{
     margin: 0px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 :hover{
     transition: background-color 0.25s ease-out;
