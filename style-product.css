@@ -10,37 +10,46 @@
 #container {
     box-sizing:border-box;
 }
-/* Start of Image/Tecnical-description/Buy-options block */
+    /* Start of Image/Tecnical-description/Buy-options block */
 #product-entry {    
     width: 95vw;
     height:60vh;
-    margin:100px auto;
+    margin:3vh auto;
 
-    border-style:solid;
+    background-color:rgb(189, 152, 224);
+
+    border-style:solid;    
+    border-color:rgb(139, 0, 132);
+    border-width:2px;
+    border-radius:10px;
 }
-/* Start of the Image block in the left float*/
+    /* Start of the Image block in the left float*/
 #product-image {
     float:left;
     width:40%;
-    margin:auto;    
+    margin:3vh 2vw auto 2vw;    
 
     border-style:solid;
+    border-color:rgb(139, 0, 132);
 }
-/* End of Image in the left float*/
+    /* End of Image in the left float*/
 
-/* Start of the Entry Description in the center float*/
+    /* Start of the Entry Description in the center float*/
 #product-entry-description {    
     float:left;
-    width:35vw;
+    width:30vw;
     height:49vh;
-    border-style:solid;
+    margin:1vh auto;
+    border-style:ridge;
     text-align:center;
 
+    background-color:rgb(200, 175, 223);
+    
 }
 #review-average{
     border-style:ridge;
     border-radius:5px;
-    margin-left:7.5vw;
+    margin-left:4.8vw;
     border-width:1px;
     width:20vw;
     height:2vh;
@@ -49,19 +58,20 @@
 #img-review-average {
     width:1vw;
 }
+    /* End of the Entry Description in the center float*/
 
-/* End of the Entry Description in the center float*/
-
-/* Start of the Price block in the right float*/
+    /* Start of the Price block in the right float*/
 #product-price {
     float:right;
     width:12.5vw;
-    height:30vh;
+    height:55vh;
 
-    margin:auto 20px auto auto;   
+    background-color:rgb(236, 217, 243);
+    margin:auto 5vw auto auto;   
     text-align:center;
     
     border-style:solid;
+    border-color:rgb(139, 0, 132);
     border-width:1px;
     border-radius:50px;
 }
@@ -73,19 +83,27 @@
 #button-addCart {
     width:10vw;
     height:5vh;
+    margin:32vh auto;
     background-color:#c54556;
     color:white;
     border-radius:10px;
 }
-/* End of the Price block in the right float*/
+    /* End of the Price block in the right float*/
 /* End of Image/Tecnical-description/Buy-options block */
 
 
 /* Start of Description block */
 #product-description {
     width:75vw;    
-    margin:0px auto;
+    margin:0 auto 10vh auto;
+    padding:1vh 1vw 1vh 1vw;
+
+    background-color:rgb(236, 217, 243);
+
     border-style:solid;
+    border-radius:10px;
+    border-color:rgb(139, 0, 132);
+
 
     font-size:150%;
 }
@@ -99,7 +117,12 @@
 #product-review {
     width:75vw;
     margin:0 auto 200px auto;
+    padding:1vh 1vw 1vh 1vw;
+    background-color:rgb(236, 217, 243);
+
     border-style:solid;
+    border-radius:10px;
+    border-color:rgb(139, 0, 132);
 }
 
 .review {
