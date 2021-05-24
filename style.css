@@ -18,7 +18,6 @@ body{
     margin: 0px;
     top: 0%;
     z-index: 10;
-    box-shadow: rgba(0, 0, 0, 0.267) 0px 10px 10px;
 }
 /* Main header */
 #main-header{
@@ -144,6 +143,7 @@ body{
     width: 100%;
     height: 40px;
     background-color: #BF8CFF;
+    box-shadow: rgba(0, 0, 0, 0.267) 0px 10px 10px;
 }
 /* Lists */
 .list-inline{
