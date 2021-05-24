@@ -31,5 +31,5 @@
 ## Build Procedures
 
 ## Problems
-
+   *In the product site, the formatting of the three boxes in the entry of the page has been complicated to ajust, since the float in css was not covered in his plenitude at the time of the Milestone 1 deadline.   
 ## Comments
