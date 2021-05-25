@@ -39,6 +39,10 @@
 ## Test Results
 
 ## Build Procedures
+  * Using a browser and having internet connection, open the website https://github.com/danielsuzumura/webproject 
+  * From the top of the page, in the bottom-right corner of the page, click in "github-pages", below the Environments topic.
+  * Find the most recent release of the site and click "View deployment"
+  * Finally, enjoy the website
 
 ## Problems
    * In the product site, the formatting of the three boxes in the entry of the page has been complicated to ajust, since the float in css was not covered in his plenitude at the time of the Milestone 1 deadline.   
