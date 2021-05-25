@@ -8,6 +8,7 @@
         <!-- GITHUB icon -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="style-product-display.css">
     </head>
     <body>
         <div id="header-base"></div>
@@ -33,12 +34,13 @@
                         <a class="bar-header-button">PRODUCTS</a>
                         <div class="dropdown-elem">
                             <a class="bar-header-button-selected cursor-default">PRODUCTS</a>
-                            <a class="bar-header-button" href="product-display.html">Candy</a>
-                            <a class="bar-header-button" href="product-display.html">Fruits</a>
-                            <a class="bar-header-button" href="product-display.html">Breakfast</a>
-                            <a class="bar-header-button" href="product-display.html">Dairy</a>
-                            <a class="bar-header-button" href="product-display.html">Beverage</a>
-                            <a class="bar-header-button" href="product-display.html">Snacks</a>
+                            <a class="bar-header-button" href="#">Candy</a>
+                            <!-- Place that the fruit list should be placed, but for now its the apple page--> 
+                            <a class="bar-header-button" href="product-apple.html">Fruits</a>
+                            <a class="bar-header-button" href="#">Breakfast</a>
+                            <a class="bar-header-button" href="#">Dairy</a>
+                            <a class="bar-header-button" href="#">Beverage</a>
+                            <a class="bar-header-button" href="#">Snacks</a>
                         </div>
                     </div>
                     <a href="#" class="bar-header-button">ABOUT US</a>
@@ -47,7 +49,29 @@
             </div>
         </div>
         <div id="container">
-            <p></p>
+            <div class="products">
+                <h2>Products</h2>
+                <div class="product-container">
+                    <div class="box-product">
+                        <figure>
+                            <img src="otherImages/apple.jpg">
+                            <figcaption><a href="product-apple.html">Apple</a></figcaption>
+                        </figure>
+                    </div>
+                    <div class="box-product">
+                        <figure>
+                            <img src="otherImages/bread.jpg">
+                            <figcaption><a href="#">Bread</a></figcaption>
+                        </figure>
+                    </div>
+                    <div class="box-product">
+                        <figure>
+                            <img src="otherImages/tea.jpg">
+                            <figcaption><a href="#">Tea</a></figcaption>
+                        </figure>
+                    </div>
+                </div>
+            </div>
         </div>
         <div id="footer">
             <div id="footer-info">
