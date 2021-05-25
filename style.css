@@ -124,7 +124,6 @@ body{
 }
 /* Bar header dropdown */
 #bar-header .list-dropdown a{
-    box-sizing: border-box;
     padding: 10px min(35px, 4vw);
     height: 40px;
     white-space: nowrap;
@@ -175,6 +174,7 @@ body{
 }
 .dropdown-elem a{
     display: block;
+    box-sizing: border-box;
 }
 .list-dropdown:hover .dropdown-elem{
     visibility: visible;

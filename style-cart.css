@@ -1,0 +1,38 @@
+#container{
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    justify-content: center;
+}
+#cart-box{
+    margin: auto;
+    padding: 5vw 20vh;
+    border: none;
+    background-color: #BF8CFF;
+    text-align: center;
+    box-shadow: black 10px 10px;
+}
+#cart-box th{
+    border-bottom: black solid 1px;
+}
+#cart-box td{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-align: center;
+}
+#cart-box .item{
+    width: 20vw;
+}
+#cart-box .total{
+    width: 5vw;
+}
+#cart-box button{
+    background-color:#c54556;
+    color:white;
+    border-radius:10px;
+    padding: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: clip;
+}
