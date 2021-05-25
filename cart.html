@@ -8,7 +8,7 @@
         <!-- GITHUB icon -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="style.css">
-        <link rel="stylesheet" href="style-login.css">
+        <link rel="stylesheet" href="style-cart.css">
     </head>
     <body>
         <div id="header-base"></div>
@@ -21,8 +21,13 @@
                     </li>
                     <li id="header-name">SUPERMARKET</li>
                     <ul id="header-account">
-                        <a href="login.html"><li>LOGIN</li></a>
-                        <a href="register.html"><li>REGISTER</li></a>
+                        <li>User</li>
+                        <a href="cart.html">
+                            <li>
+                                <i class="fa fa-shopping-cart"></i>
+                                CART
+                            </li>
+                        </a>
                     </ul>
                 </ul>
             </div>
@@ -36,7 +41,7 @@
                             <a class="bar-header-button-selected cursor-default">PRODUCTS</a>
                             <a class="bar-header-button" href="#">Candy</a>
                             <!-- Place that the fruit list should be placed, but for now its the apple page--> 
-                            <a class="bar-header-button" href="product-apple.html">Fruits</a>
+                            <a class="bar-header-button" href="product-apple-logged.html">Fruits</a>
                             <a class="bar-header-button" href="#">Breakfast</a>
                             <a class="bar-header-button" href="#">Dairy</a>
                             <a class="bar-header-button" href="#">Beverage</a>
@@ -49,17 +54,34 @@
             </div>
         </div>
         <div id="container">
-            <div id="login-box">
-                <form action="index-logged.html" method="POST">
-                    <h1>LOGIN</h1>
-                    <h2>Email</h2>
-                    <input type="email" name="email" required autofocus>
-                    <br><br>
-                    <h2>Password</h2>
-                    <input type="password" name="password" required>
-                    <br><br>
-                    <input type="submit" name="submit" value="Login">
-                </form>
+            <div id="cart-box">
+                <table>
+                    <caption>CART</caption>
+                    <colgroup>
+                        <col class="item">
+                        <col class="amount">
+                        <col class="total">
+                    </colgroup>
+                    <thead>
+                        <th>Item</th>
+                        <th>Amount</th>
+                        <th>Total</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Apple</td>
+                            <td>3</td>
+                            <td>59.97</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="3">Total: 59.97</td>
+                        </tr>
+                    </tfoot>
+                </table>
+                <br><br>
+                <button>Finish purchase</button>
             </div>
         </div>
         <div id="footer">
