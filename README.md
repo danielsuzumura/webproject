@@ -33,7 +33,7 @@
 
 
 ## Comments About the Code
-  * At the time of the Milestone 1, only the product apple was implemented. The css and html used in the apple page will mostly be reused in the pages of the other products.
+  * At the time of the Milestone 1, only the product apple was implemented (can be accessed in PRODUCT -> Fruits). The css and html used in the apple page will mostly be reused in the pages of the other products.
 ## Test Plan
 
 ## Test Results
