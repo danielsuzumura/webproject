@@ -22,9 +22,12 @@
 
 ## Project Description
   * The project consists in a website of one supermarket of small products.
-  * The navigational diagram below helps to how navigate in the website and will work until the final release:
+  * The navigation diagram below helps to how navigate in the website and will work until the final release:
   
   ![image](https://user-images.githubusercontent.com/47069208/119419429-a442e900-bcd0-11eb-8fa7-5ed478d544fe.png)
+  
+  * For the mockup, we have this navigation diagram:
+  ![image](https://user-images.githubusercontent.com/55724611/119735230-64a40a80-be52-11eb-9852-4a6cab64c054.png)
   
   * At the end, the website will be launched as a Single-Page Aplication Style, using templates for visualization in the main page:
   
