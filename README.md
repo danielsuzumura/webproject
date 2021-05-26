@@ -32,7 +32,11 @@
   * At the end, the website will be launched as a Single-Page Aplication Style, using templates for visualization in the main page:
   
   ![image](https://user-images.githubusercontent.com/47069208/119419951-ad808580-bcd1-11eb-8870-8207ec50250c.png)
-
+  
+  * Mockups made with HTML5 and CSS3: https://danielsuzumura.github.io/webproject/
+  * Mockups made in FIGMA for the remaining major screen:   
+    * Admin page:  
+    ![image](https://user-images.githubusercontent.com/51420150/119738730-85bb2a00-be57-11eb-9ff5-541c26d71ea5.png)
 
 
 ## Comments About the Code
