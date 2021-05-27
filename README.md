@@ -20,9 +20,11 @@
   * Your functionality: Create a functionality that is specific to your application. It does not have to be something complicated. For instance, if you are selling cars, you may allow users to use an accelerator to hear how each car engine roars up and down.   
   * The system must provide accessibility requirements and provide good usability. The system must be responsive.
   * The customer should be able to select individual items for products like fruits, in which the quality of the individual item is important.
+  * The system must provide a linear graph showing the sales data for the admin account, allowing the admin to visualize the number of sales made during the week, month, or year.
+  * The customer should be able to search for individual items using a search bar.
 
 ## Project Description
-  * The project consists in a website of one supermarket of small products.
+  * The project consists of a website for an online grocery store.
   * The navigation diagram below helps to how navigate in the website and will work until the final release:
   
   ![image](https://user-images.githubusercontent.com/47069208/119419429-a442e900-bcd0-11eb-8fa7-5ed478d544fe.png)
@@ -39,7 +41,7 @@
     * Admin page:  
     ![image](https://user-images.githubusercontent.com/51420150/119738730-85bb2a00-be57-11eb-9ff5-541c26d71ea5.png)
     
-  * For our specific functionality, we'll allow customers to select individual items of products like fruits, whose quality of each individual item is important. I'll be done by showing the picture of the available items and allowing to select them when the customer chooses to add any amount of the product to the cart.
+  * For our specific functionality, we'll allow customers to select individual items of products like fruits, whose quality of each individual item is important. It'll be done by showing the picture of the available items and allowing to select them when the customer chooses to add any amount of the product to the cart.
 
 
 ## Comments About the Code
