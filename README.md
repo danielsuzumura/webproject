@@ -19,6 +19,7 @@
   * Product/Service Management: Administrators can create/update/read/delete (crud) new products and services. For example, they can change the stock quantity.
   * Your functionality: Create a functionality that is specific to your application. It does not have to be something complicated. For instance, if you are selling cars, you may allow users to use an accelerator to hear how each car engine roars up and down.   
   * The system must provide accessibility requirements and provide good usability. The system must be responsive.
+  * The customer should be able to select individual items for products like fruits, in which the quality of the individual item is important.
 
 ## Project Description
   * The project consists in a website of one supermarket of small products.
@@ -37,6 +38,8 @@
   * Mockups made in FIGMA for the remaining major screen:   
     * Admin page:  
     ![image](https://user-images.githubusercontent.com/51420150/119738730-85bb2a00-be57-11eb-9ff5-541c26d71ea5.png)
+    
+  * For our specific functionality, we'll allow customers to select individual items of products like fruits, whose quality of each individual item is important. I'll be done by showing the picture of the available items and allowing to select them when the customer chooses to add any amount of the product to the cart.
 
 
 ## Comments About the Code
