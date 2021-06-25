@@ -8,7 +8,9 @@
 /* Image category display */
 #feature-category{
     margin: 2% auto;
-    max-width: 60%;
+    /* max-width: 60%; */
+    width: 60%;
+    height: 30%;
     text-align: center;
     position: relative;
     display: flex;
@@ -33,7 +35,7 @@
     background-color: rgb(231, 231, 231);
     width: 80%;
     height: 50%;
-    text-align: justify;
+    text-align: center;
     padding: 5%;
 }
 #slogan-text h2{

@@ -16,7 +16,7 @@
         <div id="bar-header">
             <div class="bar-header-base"></div>
             <ul class="list-inline">
-                <a href="index.html" class="bar-header-button">HOME</a>
+                <router-link class="bar-header-button" to="/">HOME</router-link>
                 <div class="list-dropdown">
                     <a class="bar-header-button">PRODUCTS</a>
                     <div class="dropdown-elem">

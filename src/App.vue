@@ -9,7 +9,8 @@
 <script>
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-console.log(Header.data());
+import Home from '@/components/Home';
+console.log(Home.data());
 export default {
     name: 'App',
     data () {

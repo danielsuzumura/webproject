@@ -3,57 +3,26 @@
             <div id="feature-category">
                 <div class="slogan">
                     <div id="slogan-text">
-                        <h2>Juicy Meat</h2>
-                        <p>These juicy patties are melt-in-your-mouth masterpieces.
-                            Made from Angus beef raised without antibiotics in the Mid-Atlantic region.<br></p>
+                        <h2>{{highlightCategory}}</h2>
+                        <p>{{highlightText}}<br></p>
                             <!-- <a href="product-display.html">Shop now</a> -->
                             <button>Shop now</button>
                         </div>
                 </div>
                 <div class="feature-img">
-                    <img src="../assets/img/meat.jpg" alt="meat">
+                    <img :src="getImgUrl(pic)" :alt="pic">
                 </div>
-                <button id="right-button" class="btn-change-page"><i class="fa fa-angle-right"></i></button>
-                <button id="left-button" class="btn-change-page"><i class="fa fa-angle-left"></i></button>
+                <button id="right-button" class="btn-change-page" @click.prevent.stop = "changeCategory($event)"><i class="fa fa-angle-right"></i></button>
+                <button id="left-button" class="btn-change-page" @click = "changeCategory($event)"><i class="fa fa-angle-left"></i></button>
             </div>
             <div class="break"></div>
             <div class="categories">
                 <h2>Categories</h2>
                 <div class="product-container">
-                    <div class="box-product">
+                    <div v-for="category in Categories" :key="category.name" class="box-product">
                         <figure>
-                            <img src="../assets/img/candy.jpg">
-                            <figcaption><a href="product-display.html">Candy</a></figcaption>
-                        </figure>
-                    </div>
-                    <div class="box-product">
-                        <figure>
-                            <img src="../assets/img/apple.jpg">
-                            <figcaption><a href="product-display.html">Fruits</a></figcaption>
-                        </figure>
-                    </div>
-                    <div class="box-product">
-                        <figure>
-                            <img src="../assets/img/bread.jpg">
-                            <figcaption><a href="product-display.html">Breakfast</a></figcaption>
-                        </figure>
-                    </div>
-                    <div class="box-product">
-                        <figure>
-                            <img src="../assets/img/dairy-products.jpg">
-                            <figcaption><a href="product-display.html">Dairy</a></figcaption>
-                        </figure>
-                    </div>
-                    <div class="box-product">
-                        <figure>
-                            <img src="../assets/img/tea.jpg">
-                            <figcaption><a href="product-display.html">Beverage</a></figcaption>
-                        </figure>
-                    </div>
-                    <div class="box-product">
-                        <figure>
-                            <img src="../assets/img/apple.jpg">
-                            <figcaption><a href="product-display.html">Snacks</a></figcaption>
+                            <img :src="getImgUrl(category.image)">
+                            <figcaption><a href="product-display.html">{{category.name}}</a></figcaption>
                         </figure>
                     </div>
                 </div>
@@ -62,14 +31,43 @@
 </template>
 
 <script>
+import {CategoryInfo} from '../dataSet/Category';
 export default {
     name: 'Home',
     data () {
         return {
-
+            Categories: CategoryInfo,
+            picIndex: 0,
+            pic: CategoryInfo[0].image,
+            highlightText: CategoryInfo[0].slogan,
+            highlightCategory: CategoryInfo[0].name
         };
+    },
+    methods: {
+        getImgUrl (pic) {
+            return require('../assets/img/' + pic);
+        },
+        /**
+         * Change the highlighted category
+         * @param {Event}
+         */
+        changeCategory (event) {
+            if (event.currentTarget.id === 'right-button') {
+                this.picIndex += 1;
+            } else {
+                this.picIndex -= 1;
+                if (this.picIndex < 0) {
+                    this.picIndex = CategoryInfo.length - 1;
+                }
+            }
+            this.picIndex = this.picIndex % CategoryInfo.length;
+            this.pic = CategoryInfo[this.picIndex].image;
+            this.highlightText = CategoryInfo[this.picIndex].slogan;
+            this.highlightCategory = CategoryInfo[this.picIndex].name;
+        }
     }
 };
+
 </script>
 
 <style>
