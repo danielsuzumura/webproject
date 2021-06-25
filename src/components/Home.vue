@@ -5,8 +5,7 @@
                     <div id="slogan-text">
                         <h2>{{highlightCategory}}</h2>
                         <p>{{highlightText}}<br></p>
-                            <!-- <a href="product-display.html">Shop now</a> -->
-                            <button>Shop now</button>
+                            <button><router-link :to=highlightCategory>Shop Now</router-link></button>
                         </div>
                 </div>
                 <div class="feature-img">
@@ -22,7 +21,7 @@
                     <div v-for="category in Categories" :key="category.name" class="box-product">
                         <figure>
                             <img :src="getImgUrl(category.image)">
-                            <figcaption><a href="product-display.html">{{category.name}}</a></figcaption>
+                            <figcaption><router-link :to=category.name>{{category.name}}</router-link></figcaption>
                         </figure>
                     </div>
                 </div>
