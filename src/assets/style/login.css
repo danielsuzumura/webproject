@@ -1,0 +1,29 @@
+#container{
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    justify-content: center;
+}
+#login-box{
+    margin: auto;
+    padding: 5vw 20vh;
+    border: none;
+    background-color: #BF8CFF;
+    text-align: center;
+    box-shadow: black 10px 10px;
+}
+
+#login-box h1{
+    font-size: 1.5em;
+}
+
+#login-box h2{
+    text-align: left;
+    margin: 3px;
+    font-size: 1em;
+    font-weight: normal;
+}
+
+#login-box input{
+    border: solid transparent;
+}
