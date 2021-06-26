@@ -6,7 +6,7 @@
 }
 #register-box{
     margin: auto;
-    padding: 5vw 20vh;
+    padding: 2vw 20vh;
     border: none;
     background-color: #FFC8C8;
     text-align: center;
@@ -26,4 +26,15 @@
 
 #register-box input{
     border: solid transparent;
+}
+.input-container{
+    margin-bottom: 3vh;
+}
+p{
+    margin:0;
+    text-align: left;
+}
+.error{
+    visibility: hidden;
+    color: red;
 }
