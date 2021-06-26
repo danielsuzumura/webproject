@@ -2,6 +2,9 @@
 
 > A Vue.js project
 
+# Issue
+* When return to home from product-display, stylesheet doesn't match home
+
 ## Build Setup
 
 ``` bash
