@@ -8,9 +8,9 @@
                 </li>
                 <li id="header-name">SUPERMARKET</li>
                 <ul id="header-account">
-                    <li v-if="isLogged"><router-link to="/Login">USER</router-link></li>
+                    <li v-if="isLogged"><router-link to="/User">USER</router-link></li>
                     <li v-else><router-link to="/Login">LOGIN</router-link></li>
-                    <li v-if="isLogged"><router-link to="/Register"><i class="fa fa-shopping-cart"></i>CART</router-link></li>
+                    <li v-if="isLogged"><router-link to="/Cart"><i class="fa fa-shopping-cart"></i>CART</router-link></li>
                     <li v-else><router-link to="/Register">REGISTER</router-link></li>
                 </ul>
             </ul>
@@ -54,11 +54,10 @@ export default {
                 this.isLogged = false;
             }
         });
-        console.log('rodei');
     }
 };
 </script>
 
-<style>
+<style scoped>
     @import '../assets/style/style';
 </style>

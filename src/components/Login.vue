@@ -47,6 +47,6 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
     @import '../assets/style/login';
 </style>

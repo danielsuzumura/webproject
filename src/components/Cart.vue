@@ -38,6 +38,6 @@ export default {
 };
 </script>
 
-<style>
-    /* @import '../assets/style/cart'; */
+<style scoped>
+    @import '../assets/style/cart';
 </style>
