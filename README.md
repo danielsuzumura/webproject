@@ -4,6 +4,7 @@
 
 # Issue
 * When return to home from product-display, stylesheet doesn't match home
+  * Fix: add scoped to <style> tag -> <style scoped>
 
 ## Build Setup
 
