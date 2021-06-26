@@ -1,7 +1,7 @@
 <template>
     <div id="container">
         <div id="register-box">
-            <form @submit.prevent.stop="sendForm(event)" method="POST">
+            <form @submit.prevent.stop="sendForm" method="POST">
                 <h1>REGISTER</h1>
                 <h2>Name</h2>
                 <div class="input-container">
@@ -66,7 +66,7 @@ export default {
             }
             return error;
         },
-        async sendForm (event) {
+        async sendForm () {
             if (!this.verifyInput()) {
                 let user = new Person(this.name, this.email, this.password, this.confirm_password, this.address, this.phone);
                 await DB.insertUser(user);
