@@ -8,8 +8,10 @@
                 </li>
                 <li id="header-name">SUPERMARKET</li>
                 <ul id="header-account">
-                    <li><router-link to="/Login">LOGIN</router-link></li>
-                    <li><router-link to="/Register">REGISTER</router-link></li>
+                    <li v-if="isLogged"><router-link to="/Login">USER</router-link></li>
+                    <li v-else><router-link to="/Login">LOGIN</router-link></li>
+                    <li v-if="isLogged"><router-link to="/Register"><i class="fa fa-shopping-cart"></i>CART</router-link></li>
+                    <li v-else><router-link to="/Register">REGISTER</router-link></li>
                 </ul>
             </ul>
         </div>
@@ -38,7 +40,22 @@
 
 <script>
 export default {
-    name: 'Header'
+    name: 'Header',
+    data () {
+        return {
+            isLogged: false
+        };
+    },
+    mounted: function () {
+        this.$root.$on('login', () => {
+            if (window.localStorage.getItem('currentUser') !== '') {
+                this.isLogged = true;
+            } else {
+                this.isLogged = false;
+            }
+        });
+        console.log('rodei');
+    }
 };
 </script>
 

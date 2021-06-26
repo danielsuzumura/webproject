@@ -73,6 +73,7 @@ export default {
                 try {
                     await DB.insertUser(user);
                     await DB.loginUser(this.email, this.password);
+                    this.$root.$emit('login');
                     this.$router.push('/');
                 } catch (err) {
                     this.errorMessage = err.message;

@@ -35,6 +35,7 @@ export default {
                 if (user instanceof Error) {
                     throw Error(user.message);
                 }
+                this.$root.$emit('login');
                 // go to home page
                 this.$router.push('/');
             } catch (err) {

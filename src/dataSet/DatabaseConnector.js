@@ -18,6 +18,7 @@ export async function loginUser (email, password) {
         }
         // Make user instanceof Person class ?
         if (password === user._password) {
+            window.localStorage.setItem('currentUser', user.email);
             return user;
         } else {
             throw Error('Invalid email or password');
