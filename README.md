@@ -29,5 +29,5 @@ npm test
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
 
-#Issue
-* When return to home from another page, stylesheet doesn't match home
+# Issue
+* When return to home from product-display, stylesheet doesn't match home
