@@ -11,7 +11,7 @@
                 <h2>Email</h2>
                 <div class="input-container">
                     <input type="email" name="email" required v-model="email">
-                    <p class="error" name="email">{{errorMessage}}</p>
+                    <p class="error" name="email">Invalid email</p>
                 </div>
                 <h2>Password</h2>
                 <div class="input-container">
@@ -52,8 +52,7 @@ export default {
             password: '',
             confirm_password: '',
             address: '',
-            phone: '',
-            errorMessage: 'Email'
+            phone: ''
         };
     },
     methods: {
@@ -73,11 +72,9 @@ export default {
                 try {
                     await DB.insertUser(user);
                     await DB.loginUser(this.email, this.password);
-                    this.$root.$emit('login');
                     this.$router.push('/');
                 } catch (err) {
-                    this.errorMessage = err.message;
-                    errorTag[1].style.visibility = 'visible';
+                    console.log(err.message);
                 }
             }
         }
@@ -85,6 +82,6 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
     @import '../assets/style/register';
 </style>

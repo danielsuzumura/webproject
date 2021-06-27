@@ -1,7 +1,7 @@
 #container{
     display: flex;
     width: 100%;
-    min-height: 100vh;
+    min-height: calc(100vh - 102px);
     justify-content: center;
 }
 #login-box{
@@ -26,11 +26,4 @@
 
 #login-box input{
     border: solid transparent;
-}
-
-.error{
-    visibility: hidden;
-    margin-top:0;
-    margin-bottom:10%;
-    color:red;
 }
