@@ -8,7 +8,7 @@
                     <br><br>
                     <h2>Password</h2>
                     <input type="password" name="password" required v-model="password">
-                    <br><br>
+                    <p class="error">{{errorMessage}}</p>
                     <input type="submit" name="submitForm" value="Login">
                 </form>
             </div>
@@ -23,24 +23,30 @@ export default {
     data () {
         return {
             email: '',
-            password: ''
+            password: '',
+            errorMessage: 'Erro'
         };
     },
     methods: {
         async sendForm () {
             try {
                 // request login to database
-                await DB.loginUser(this.email, this.password);
+                let user = await DB.loginUser(this.email, this.password);
+                if (user instanceof Error) {
+                    throw Error(user.message);
+                }
+                this.$root.$emit('login');
                 // go to home page
                 this.$router.push('/');
             } catch (err) {
-                console.log(err.message);
+                this.errorMessage = err.message;
+                document.getElementsByClassName('error')[0].style.visibility = 'visible';
             }
         }
     }
 };
 </script>
 
-<style>
+<style scoped>
     @import '../assets/style/login';
 </style>

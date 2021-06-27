@@ -10,6 +10,8 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
+window.localStorage.setItem('currentUser', '');
+
 export default {
     name: 'App',
     data () {

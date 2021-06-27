@@ -7,7 +7,7 @@
             <div id="product-entry-description" class="box">
                 <h1 id="entry-title">APPLE</h1>
                 <p id="review-average">
-                    <img src="../../icons/three-stars.png" alt="three stars icon" id="img-review-average">
+                    <img src="icons/three-stars.png" alt="three stars icon" id="img-review-average">
                     2 reviews
                 </p>
             </div>
@@ -43,14 +43,14 @@
             <h2>Rating and Reviews:</h2>
             <div class="review">
                 <p class="review name">
-                    <img src="../../icons/five-stars.png" alt="five stars icon" class="img-review" >
+                    <img src="icons/five-stars.png" alt="five stars icon" class="img-review" >
                     Carlos Silva Santos
                     </p>
                 <p>Delicious Apples.</p>
             </div> <br>
             <div class="review">
                 <p class="review name">
-                    <img src="../../icons/one-stars.png" alt="one star icon" class="img-review" >
+                    <img src="icons/one-stars.png" alt="one star icon" class="img-review" >
                     Seijougahara, Hitagi
                 </p>
                 <p>Bad.<br>
@@ -66,6 +66,6 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
     @import '../assets/style/product';
 </style>
