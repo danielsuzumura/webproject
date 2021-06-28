@@ -8,6 +8,7 @@ import ProductDisplay from '@/components/ProductDisplay';
 import ListItems from '@/components/ListItems';
 import AboutUs from '@/components/AboutUs';
 import Contact from '@/components/Contact';
+import Admin from '@/components/Admin';
 
 Vue.use(Router);
 
@@ -21,6 +22,7 @@ export default new Router({
         { path: '/ListItems', component: ListItems },
         { path: '/ListItems/:category', component: ListItems },
         { path: '/AboutUs', component: AboutUs },
-        { path: '/Contact', component: Contact }
+        { path: '/Contact', component: Contact },
+        { path: '/Admin', component: Admin }
     ]
 });
