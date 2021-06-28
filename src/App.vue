@@ -1,0 +1,30 @@
+<template>
+    <div id="app">
+      <Header></Header>
+      <router-view :key="$route.path"></router-view>
+      <Footer></Footer>
+    </div>
+</template>
+
+<script>
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+
+window.localStorage.setItem('currentUser', '');
+
+export default {
+    name: 'App',
+    data () {
+        return {
+            currentPage: 'Home'
+        };
+    },
+    components: {
+        Header, Footer
+    }
+};
+</script>
+
+<style>
+
+</style>

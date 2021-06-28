@@ -1,0 +1,169 @@
+/* Start of Product page stylization */
+
+#container::before, #container::after {
+    display:table;
+}
+#container::after {
+    clear: both;
+}
+
+#container {
+    box-sizing:border-box;
+    margin: 15vh auto;
+}
+    /* Start of Image/Tecnical-description/Buy-options block */
+#product-entry {    
+    width: 95vw;
+    height:420px;
+    margin:3vh auto;
+
+    background-color:rgb(189, 152, 224);
+
+    border-style:solid;    
+    border-color:rgb(139, 0, 132);
+    border-width:2px;
+    border-radius:10px;
+}
+    /* Start of the Image block in the left float*/
+#product-image {
+    float:left;
+    max-width: 40vw;
+    height: 370px;
+    margin:20px 2vw auto 2vw;    
+
+    border-style:solid;
+    border-color:rgb(139, 0, 132);
+    object-fit: cover;
+}
+    /* End of Image in the left float*/
+
+    /* Start of the Entry Description in the center float*/
+#product-entry-description {    
+    float:left;
+    width:30vw;
+    height:360px;
+    margin:1vh auto;
+    border-style:ridge;
+    text-align:center;
+
+    background-color:rgb(200, 175, 223);
+    
+}
+#review-average{
+    border-style:ridge;
+    border-radius:5px;
+    margin-left:4.8vw;
+    border-width:1px;
+    width:20vw;
+    height:max-content;
+}
+
+#img-review-average {
+    width:1vw;
+}
+    /* End of the Entry Description in the center float*/
+
+    /* Start of the Price block in the right float*/
+#product-price-block {
+    float:right;
+    width:12.5vw;
+    height:382px;
+
+    background-color:rgb(236, 217, 243);
+    margin:auto 5vw auto auto;   
+    text-align:center;
+    overflow: hidden;
+    white-space: nowrap;
+    
+    border-style:solid;
+    border-color:rgb(139, 0, 132);
+    border-width:1px;
+    border-radius:3.5vw;
+}
+
+#price {
+    font-size:max(1.5vw, 2vw);
+    text-align:center;
+    
+    padding-top: 20px;
+}
+
+#amount, #sold{
+    font-size: max(1vw, 1vw);
+    text-align:center;
+}
+
+#sold{
+    color: navy;
+}
+#button-addCart {
+    width:10vw;
+    height:5vh;
+    margin:60px auto;
+    background-color:#c54556;
+    color:white;
+    border-radius:10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: clip;
+}
+    /* End of the Price block in the right float*/
+/* End of Image/Tecnical-description/Buy-options block */
+
+
+/* Start of Description block */
+#product-description {
+    width:75vw;    
+    margin:0 auto 10vh auto;
+    padding:1vh 1vw 1vh 1vw;
+
+    background-color:rgb(236, 217, 243);
+
+    border-style:solid;
+    border-radius:10px;
+    border-color:rgb(139, 0, 132);
+
+
+    font-size:150%;
+}
+
+#description {
+    color:rgba(57, 56, 58, 0.822);
+}
+/* End of Description block */
+
+/* Start of Review block */
+#product-review {
+    width:75vw;
+    margin:0 auto 200px auto;
+    padding:1vh 1vw 1vh 1vw;
+    background-color:rgb(236, 217, 243);
+
+    border-style:solid;
+    border-radius:10px;
+    border-color:rgb(139, 0, 132);
+}
+
+.review {
+    background-color:rgb(202, 202, 190);
+    margin-bottom:5px;
+    font-size:150%;
+
+    border-style:ridge;
+    border-radius:15px;
+}
+
+.review.name {
+    text-align:left;
+    font-weight:bold;
+    font-size:100%;
+
+    
+}
+
+.img-review {
+    width:5%;
+}
+/* End of Review block */
+
+/* End of Product page stylization */
