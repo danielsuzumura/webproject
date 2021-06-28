@@ -21,7 +21,7 @@
                     <div v-for="category in Categories" :key="category.name" class="box-product">
                         <figure>
                             <img :src="getImgUrl(category.image)">
-                            <figcaption><router-link :to=category.name>{{category.name}}</router-link></figcaption>
+                            <figcaption><router-link :to="'/ListItems/'+category.name">{{category.name}}</router-link></figcaption>
                         </figure>
                     </div>
                 </div>

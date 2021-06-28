@@ -27,7 +27,7 @@ export class Product {
         return this._quantitySold;
     }
     get category () {
-        return this.category;
+        return this._category;
     }
     set name (name) {
         this._name = name;
