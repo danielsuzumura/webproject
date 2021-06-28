@@ -1,0 +1,51 @@
+#container-admin {
+    margin: 150px auto;
+    width: 100%;
+    height: min-content;
+    display: block;
+}
+
+#statistics {
+    width: 60vw;
+    height: 500px;
+    display: block;
+    margin: 50px auto;
+}
+
+.stat-box {
+    background-color: #BF8CFF;
+    width: 22vw;
+    height: 20vh;
+    text-align: center;
+    font-size: max(1em, 1.5vw);
+    font-weight: bold;
+    border: none;
+    margin: 5%;
+}
+
+.stat-box:active {
+    background-color: #9971ca;
+    transition: background-color linear 0s;
+}
+
+#user-count {
+    float: left;
+}
+
+#product-count {
+    float: right;
+}
+
+#admin-count {
+    float: left;
+}
+
+#sale-count {
+    float: right;
+}
+
+#list-display {
+    margin: 50px auto;
+    width: 60vw;
+    height: min-content;
+}
