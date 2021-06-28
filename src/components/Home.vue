@@ -5,7 +5,7 @@
                     <div id="slogan-text">
                         <h2>{{highlightCategory}}</h2>
                         <p>{{highlightText}}<br></p>
-                            <button><router-link :to=highlightCategory>Shop Now</router-link></button>
+                            <button><router-link :to="'ListItems/'+highlightCategory">Shop Now</router-link></button>
                         </div>
                 </div>
                 <div class="feature-img">
