@@ -64,7 +64,7 @@
     /* End of the Entry Description in the center float*/
 
     /* Start of the Price block in the right float*/
-#product-price-block {
+#product-price {
     float:right;
     width:12.5vw;
     height:382px;
@@ -83,14 +83,10 @@
 
 #price {
     font-size:max(1.5vw, 2vw);
-    text-align:center;
-    
-    padding-top: 20px;
 }
 
 #amount, #sold{
     font-size: max(1vw, 1vw);
-    text-align:center;
 }
 
 #sold{

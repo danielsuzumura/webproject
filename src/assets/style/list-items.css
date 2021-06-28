@@ -26,11 +26,9 @@
     color:rgb(0, 0, 112);
     text-decoration: underline;
 }
-
 p{
     margin: 1vh;
 }
-
 .query-display{
     text-align: left;
 }

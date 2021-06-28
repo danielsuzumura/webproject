@@ -22,6 +22,7 @@ export default new Router({
         { path: '/Register', component: Register },
         { path: '/ProductDisplay', component: ProductDisplay },
         { path: '/ListItems', component: ListItems },
+        { path: '/ListItems/:category', component: ListItems },
         { path: '/AboutUs', component: AboutUs },
         { path: '/Contact', component: Contact },
         { path: '/Admin', component: Admin },

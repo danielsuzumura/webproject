@@ -26,12 +26,6 @@
                         <div v-for="category in categories" :key="category.name">
                             <router-link class="bar-header-button" :to="'/ListItems/'+category.name">{{category.name}}</router-link>
                         </div>
-                        <router-link class="bar-header-button" to="/ListItems">Candy</router-link>
-                        <router-link class="bar-header-button" to="/ListItems">Fruits</router-link>
-                        <router-link class="bar-header-button" to="/ListItems">Breakfast</router-link>
-                        <router-link class="bar-header-button" to="/ListItems">Dairy</router-link>
-                        <router-link class="bar-header-button" to="/ListItems">Beverage</router-link>
-                        <router-link class="bar-header-button" to="/ListItems">Snacks</router-link>
                     </div>
                 </div>
                 <!--

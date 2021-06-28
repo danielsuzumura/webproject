@@ -79,10 +79,11 @@ export default {
         verifyInput () {
             let error = false;
             if (this.new_password !== this.confirm_password) {
-                errorTag[6].style.visibility = 'visible';
+                /*
+                errorTag[6].style.visibility = 'visible'; */
                 error = true;
             } else {
-                errorTag[6].style.visibility = 'hidden';
+                /* errorTag[6].style.visibility = 'hidden'; */
             }
             return error;
         }
