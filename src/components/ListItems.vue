@@ -27,6 +27,8 @@
 </template>
 
 <script>
+import {ProductsInfo} from '../dataSet/Product';
+console.log(ProductsInfo);
 export default {
     name: 'ListItems'
 };
