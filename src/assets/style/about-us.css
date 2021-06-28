@@ -1,5 +1,5 @@
 #container-aboutus {    
-    width: 75vw;
+    width: 60vw;
     height: 650px;
     position:relative;
     margin: 15vh auto;
@@ -14,7 +14,7 @@
 
 .description {
     width: 50vw;
-    margin: 20px auto;
+    margin: 30px auto;
     padding: 0 auto;
     text-align: center;
 

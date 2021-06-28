@@ -1,3 +1,7 @@
+<style scoped>
+    @import '../assets/style/contact';
+</style>
+
 <template>
     <div id="container-contact">
         <div id="form-block">
@@ -7,9 +11,9 @@
                 <input type="text" name="user-name"><br><br>
                 <label id="form-email"> Your Email: </label><br>
                 <input type="email" name="user-email"><br><br>
-                <label id="form-text"> Your Message: </label><br>
+                <label for="form-text"> Your Message: </label><br>
                 <!--<input type="submit" name="btn-submit" value="Submit">-->
-                <textarea id="subject" name="subject" placeholder="Your kind words here"></textarea><br>
+                <textarea id="form-text" name="form-text" placeholder="Your kind words here"></textarea><br>
                 <input type="submit" name="btn-submit" value="Submit">
             </form>
         </div>
@@ -21,7 +25,3 @@ export default {
     name: 'Contact'
 };
 </script>
-
-<style scoped>
-    @import '../assets/style/contact';
-</style>

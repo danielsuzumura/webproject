@@ -25,6 +25,6 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
     @import '../assets/style/about-us';
 </style>
