@@ -4,7 +4,7 @@
             <ul class="list-inline">
                 <li id="header-search">
                     <i class="fa fa-search"></i>
-                    <input type="text" id="search-text" placeholder="search..">
+                    <input type="text" id="search-text" placeholder="search.." @keyup.enter="searchItem" v-model="searchInput">
                 </li>
                 <li id="header-name">SUPERMARKET</li>
                 <ul id="header-account">
@@ -23,6 +23,9 @@
                     <a class="bar-header-button">PRODUCTS</a>
                     <div class="dropdown-elem">
                         <a class="bar-header-button-selected cursor-default">PRODUCTS</a>
+                        <div v-for="category in categories" :key="category.name">
+                            <router-link class="bar-header-button" :to="'/ListItems/'+category.name">{{category.name}}</router-link>
+                        </div>
                         <router-link class="bar-header-button" to="/ListItems">Candy</router-link>
                         <router-link class="bar-header-button" to="/ListItems">Fruits</router-link>
                         <router-link class="bar-header-button" to="/ListItems">Breakfast</router-link>
@@ -45,11 +48,14 @@
 </template>
 
 <script>
+import {CategoryInfo} from '../dataSet/Category';
 export default {
     name: 'Header',
     data () {
         return {
-            isLogged: false
+            categories: CategoryInfo,
+            isLogged: false,
+            searchInput: ''
         };
     },
     mounted: function () {
@@ -60,6 +66,13 @@ export default {
                 this.isLogged = false;
             }
         });
+    },
+    methods: {
+        searchItem () {
+            if (this.searchInput !== '') {
+                this.$router.push('/ListItems?query=' + this.searchInput);
+            }
+        }
     }
 };
 </script>

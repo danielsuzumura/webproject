@@ -9,6 +9,8 @@ import ListItems from '@/components/ListItems';
 import AboutUs from '@/components/AboutUs';
 import Contact from '@/components/Contact';
 import ProductForm from '@/components/ProductForm';
+import Admin from '@/components/Admin';
+import User from '@/components/User';
 
 Vue.use(Router);
 
@@ -22,6 +24,8 @@ export default new Router({
         { path: '/ListItems', component: ListItems },
         { path: '/AboutUs', component: AboutUs },
         { path: '/Contact', component: Contact },
+        { path: '/Admin', component: Admin },
+        { path: '/User', component: User },
         { path: '/ProductForm', component: ProductForm }
     ]
 });
