@@ -1,0 +1,68 @@
+#container-contact {    
+    width: 75vw;
+    height: 600px;
+    position:relative;
+    margin: 15vh auto;
+    padding: 115vh auto;
+    background-color:rgb(248, 153, 248);
+
+    border-style:solid;    
+    border-color:rgb(139, 0, 132);
+    border-width:2px;
+    border-radius:10px;
+}
+
+h1 {
+    color:rgb(12, 2, 56);
+    margin: 0 auto;
+}
+
+#form-block {
+    position: relative;
+    width: 35vw;
+    height: 400px;
+    padding: 10px 2vw 0 2vw;
+    margin: 0vh auto;
+    top: 10vh;
+    background-color:rgb(231, 231, 231);
+
+    border-style:solid;    
+    border-color:rgb(139, 0, 132);
+    border-width:2px;
+    border-radius:10px;
+}
+
+input {
+    width: 35vw;
+    height: 20px;
+}
+
+
+input[name="btn-submit"] {
+    width: 5vw;
+    height: 20px;
+    color:rgb(12, 2, 56);
+
+    border-style:solid;    
+    border-color:rgb(139, 0, 132);
+    border-width:2px;
+    border-radius:10px;
+}
+
+textarea {
+    width: 35vw;
+    height: 100px;
+    
+    border-style:ridge;   
+    border-color:rgb(124, 118, 124);
+    border-width:2px;
+    border-radius:10px;
+}
+
+
+label {
+    width: 35vw;
+    margin: 0.5vh auto;
+    color:rgb(12, 2, 56);
+    font-size: 20px;
+}

@@ -31,8 +31,13 @@
                         <router-link class="bar-header-button" to="/ListItems">Snacks</router-link>
                     </div>
                 </div>
-                <a href="#" class="bar-header-button">ABOUT US</a>
-                <a href="#" class="bar-header-button">CONTACT</a>
+                <!--
+                <a href="#" class="bar-header-button">
+                    <router-link to="/AboutUs">ABOUT US</router-link>
+                </a>
+                -->
+                <router-link class="bar-header-button" to="/AboutUs">ABOUT US</router-link>
+                <router-link class="bar-header-button" to="/Contact"> CONTACT </router-link>
             </ul>
         </div>
     </div>
