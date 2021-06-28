@@ -8,10 +8,8 @@
                 </li>
                 <li id="header-name">SUPERMARKET</li>
                 <ul id="header-account">
-                    <li v-if="isLogged"><router-link to="/User">USER</router-link></li>
-                    <li v-else><router-link to="/Login">LOGIN</router-link></li>
-                    <li v-if="isLogged"><router-link to="/Cart"><i class="fa fa-shopping-cart"></i>CART</router-link></li>
-                    <li v-else><router-link to="/Register">REGISTER</router-link></li>
+                    <li><router-link to="/Login">LOGIN</router-link></li>
+                    <li><router-link to="/Register">REGISTER</router-link></li>
                 </ul>
             </ul>
         </div>
@@ -31,8 +29,13 @@
                         <router-link class="bar-header-button" to="/ListItems">Snacks</router-link>
                     </div>
                 </div>
-                <a href="#" class="bar-header-button">ABOUT US</a>
-                <a href="#" class="bar-header-button">CONTACT</a>
+                <!--
+                <a href="#" class="bar-header-button">
+                    <router-link to="/AboutUs">ABOUT US</router-link>
+                </a>
+                -->
+                <router-link class="bar-header-button" to="/AboutUs">ABOUT US</router-link>
+                <router-link class="bar-header-button" to="/Contact"> CONTACT </router-link>
             </ul>
         </div>
     </div>
@@ -40,21 +43,7 @@
 
 <script>
 export default {
-    name: 'Header',
-    data () {
-        return {
-            isLogged: false
-        };
-    },
-    mounted: function () {
-        this.$root.$on('login', () => {
-            if (window.localStorage.getItem('currentUser') !== '') {
-                this.isLogged = true;
-            } else {
-                this.isLogged = false;
-            }
-        });
-    }
+    name: 'Header'
 };
 </script>
 

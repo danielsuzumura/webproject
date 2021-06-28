@@ -6,6 +6,8 @@ import Login from '@/components/Login';
 import Register from '@/components/Register';
 import ProductDisplay from '@/components/ProductDisplay';
 import ListItems from '@/components/ListItems';
+import AboutUs from '@/components/AboutUs';
+import Contact from '@/components/Contact';
 
 Vue.use(Router);
 
@@ -16,6 +18,8 @@ export default new Router({
         { path: '/Login', component: Login },
         { path: '/Register', component: Register },
         { path: '/ProductDisplay', component: ProductDisplay },
-        { path: '/ListItems', component: ListItems }
+        { path: '/ListItems', component: ListItems },
+        { path: '/AboutUs', component: AboutUs },
+        { path: '/Contact', component: Contact }
     ]
 });
