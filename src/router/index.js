@@ -18,9 +18,9 @@ export default new Router({
         { path: '/Cart', component: Cart },
         { path: '/Login', component: Login },
         { path: '/Register', component: Register },
-        { path: '/ProductDisplay', component: ProductDisplay },
         { path: '/ListItems', component: ListItems },
         { path: '/ListItems/:category', component: ListItems },
+        { path: '/ProductDisplay', component: ProductDisplay },
         { path: '/AboutUs', component: AboutUs },
         { path: '/Contact', component: Contact },
         { path: '/Admin', component: Admin }

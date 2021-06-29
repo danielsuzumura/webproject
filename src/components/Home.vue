@@ -9,7 +9,7 @@
                         </div>
                 </div>
                 <div class="feature-img">
-                    <img :src="getImgUrl(pic)" :alt="pic">
+                    <img v-if="pic !== ''" :src="getImgUrl(pic)" :alt="pic">
                 </div>
                 <button id="right-button" class="btn-change-page" @click.prevent.stop = "changeCategory($event)"><i class="fa fa-angle-right"></i></button>
                 <button id="left-button" class="btn-change-page" @click = "changeCategory($event)"><i class="fa fa-angle-left"></i></button>
@@ -30,22 +30,27 @@
 </template>
 
 <script>
-import {CategoryInfo} from '../dataSet/Category';
+import * as DB from '../dataSet/DatabaseConnector';
+import {ImportImage} from './shared';
 export default {
     name: 'Home',
+    mixins: [ImportImage],
+    mounted: async function () {
+        this.Categories = await DB.getCategories();
+        this.pic = this.Categories[0].image;
+        this.highlightText = this.Categories[0].slogan;
+        this.highlightCategory = this.Categories[0].name;
+    },
     data () {
         return {
-            Categories: CategoryInfo,
+            Categories: {},
             picIndex: 0,
-            pic: CategoryInfo[0].image,
-            highlightText: CategoryInfo[0].slogan,
-            highlightCategory: CategoryInfo[0].name
+            pic: '',
+            highlightText: '',
+            highlightCategory: ''
         };
     },
     methods: {
-        getImgUrl (pic) {
-            return require('../assets/img/' + pic);
-        },
         /**
          * Change the highlighted category
          * @param {Event}
@@ -56,13 +61,13 @@ export default {
             } else {
                 this.picIndex -= 1;
                 if (this.picIndex < 0) {
-                    this.picIndex = CategoryInfo.length - 1;
+                    this.picIndex = this.Categories.length - 1;
                 }
             }
-            this.picIndex = this.picIndex % CategoryInfo.length;
-            this.pic = CategoryInfo[this.picIndex].image;
-            this.highlightText = CategoryInfo[this.picIndex].slogan;
-            this.highlightCategory = CategoryInfo[this.picIndex].name;
+            this.picIndex = this.picIndex % this.Categories.length;
+            this.pic = this.Categories[this.picIndex].image;
+            this.highlightText = this.Categories[this.picIndex].slogan;
+            this.highlightCategory = this.Categories[this.picIndex].name;
         }
     }
 };

@@ -9,15 +9,12 @@
 <script>
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-
-window.localStorage.setItem('currentUser', '');
+import {loadDatabase} from '@/dataSet/DatabaseConnector';
 
 export default {
     name: 'App',
-    data () {
-        return {
-            currentPage: 'Home'
-        };
+    created: async function () {
+        await loadDatabase();
     },
     components: {
         Header, Footer

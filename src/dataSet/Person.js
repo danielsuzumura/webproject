@@ -5,6 +5,7 @@ export class Person {
         this._password = password;
         this._address = address;
         this._phone = phone;
+        this._cart = {};
     }
     get name () {
         return this._name;
@@ -20,5 +21,14 @@ export class Person {
     }
     get phone () {
         return this._phone;
+    }
+    get cart () {
+        return this._cart;
+    }
+    addProductCart (idProduct, amount) {
+        this._cart.idProduct = amount;
+    }
+    deleteProductCart (idProduct) {
+        delete this._cart.idProduct;
     }
 }

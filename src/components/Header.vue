@@ -10,8 +10,8 @@
                 <ul id="header-account">
                     <li v-if="isLogged"><router-link to="/User">USER</router-link></li>
                     <li v-else><router-link to="/Login">LOGIN</router-link></li>
-                    <li v-if="isLogged"><router-link to="/Cart"><i class="fa fa-shopping-cart"></i>CART</router-link></li>
-                    <li v-else><router-link to="/Register">REGISTER</router-link></li>
+                    <li v-if="!isLogged"><router-link to="/Register">REGISTER</router-link></li>
+                    <li><router-link to="/Cart"><i class="fa fa-shopping-cart"></i>CART</router-link></li>
                 </ul>
             </ul>
         </div>
@@ -41,24 +41,26 @@
 </template>
 
 <script>
-import {CategoryInfo} from '../dataSet/Category';
+import * as DB from '../dataSet/DatabaseConnector';
 export default {
     name: 'Header',
-    data () {
-        return {
-            categories: CategoryInfo,
-            isLogged: false,
-            searchInput: ''
-        };
-    },
-    mounted: function () {
-        this.$root.$on('login', () => {
+    mounted: async function () {
+        this.$root.$on('login', (email) => {
             if (window.localStorage.getItem('currentUser') !== '') {
+                window.localStorage.setItem('currentUser', email);
                 this.isLogged = true;
             } else {
                 this.isLogged = false;
             }
         });
+        this.categories = await DB.getCategories();
+    },
+    data () {
+        return {
+            categories: {},
+            isLogged: false,
+            searchInput: ''
+        };
     },
     methods: {
         searchItem () {

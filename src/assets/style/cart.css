@@ -2,6 +2,8 @@
     display: flex;
     width: 100%;
     min-height: 100vh;
+    margin-top: 10%;
+    margin-bottom: 5%;
     justify-content: center;
 }
 #cart-box{
@@ -35,4 +37,8 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: clip;
+}
+img{
+    border: 1px solid black;
+    width: 85%;
 }
