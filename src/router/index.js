@@ -11,6 +11,7 @@ import Contact from '@/components/Contact';
 import ProductForm from '@/components/ProductForm';
 import Admin from '@/components/Admin';
 import User from '@/components/User';
+import Payment from '@/components/Payment';
 
 Vue.use(Router);
 
@@ -27,6 +28,7 @@ export default new Router({
         { path: '/Contact', component: Contact },
         { path: '/Admin', component: Admin },
         { path: '/User', component: User },
-        { path: '/ProductForm', component: ProductForm }
+        { path: '/ProductForm', component: ProductForm },
+        { path: '/Payment', component: Payment }
     ]
 });
