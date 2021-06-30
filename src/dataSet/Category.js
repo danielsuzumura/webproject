@@ -1,3 +1,6 @@
+/**
+ * Category class
+ */
 export class Category {
     constructor (name, image, alt, slogan) {
         this._name = name;

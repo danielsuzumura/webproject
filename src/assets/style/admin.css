@@ -1,10 +1,13 @@
-#container-admin {
+.container-admin {
     margin: 10% auto;
     width: 100%;
     height: min-content;
     display: block;
 }
-
+.denied {
+    text-align: center;
+    color:red;
+}
 #statistics {
     width: 60vw;
     height: 500px;
@@ -32,7 +35,7 @@
     float: left;
 }
 
-#product-count {
+#product-coadminunt {
     float: right;
 }
 

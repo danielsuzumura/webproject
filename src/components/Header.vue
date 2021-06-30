@@ -28,13 +28,9 @@
                         </div>
                     </div>
                 </div>
-                <!--
-                <a href="#" class="bar-header-button">
-                    <router-link to="/AboutUs">ABOUT US</router-link>
-                </a>
-                -->
                 <router-link class="bar-header-button" to="/AboutUs">ABOUT US</router-link>
                 <router-link class="bar-header-button" to="/Contact"> CONTACT </router-link>
+                <router-link v-if="isAdmin" class="bar-header-button" to="/Admin"> ADMIN </router-link>
             </ul>
         </div>
     </div>
@@ -45,10 +41,13 @@ import * as DB from '../dataSet/DatabaseConnector';
 export default {
     name: 'Header',
     mounted: async function () {
-        this.$root.$on('login', (email) => {
+        this.$root.$on('login', async (email) => {
             if (window.localStorage.getItem('currentUser') !== '') {
                 window.localStorage.setItem('currentUser', email);
                 this.isLogged = true;
+                if (await DB.isAdmin()) {
+                    this.isAdmin = true;
+                }
             } else {
                 this.isLogged = false;
             }
@@ -59,10 +58,15 @@ export default {
         return {
             categories: {},
             isLogged: false,
-            searchInput: ''
+            searchInput: '',
+            isAdmin: false
         };
     },
     methods: {
+
+        /**
+         * Search item inputed using query in link
+         */
         searchItem () {
             if (this.searchInput !== '') {
                 this.$router.push('/ListItems?query=' + this.searchInput);

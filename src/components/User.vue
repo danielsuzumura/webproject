@@ -86,10 +86,16 @@ export default {
                 return true;
             }
         },
-        verifyInputData () {
+        async verifyInputData () {
             if (this.checkEmail()) {
-                DB.updateUser(this.user, this.old_email);
-                this.sucessMessageData = true;
+                try {
+                    await DB.updateUser(this.user, this.old_email);
+                    this.sucessMessageData = true;
+                    this.invalidInputEmail = false;
+                } catch (err) {
+                    this.errorMessageEmail = err.message;
+                    this.invalidInputEmail = true;
+                }
             }
         },
         async verifyInputPassword () {

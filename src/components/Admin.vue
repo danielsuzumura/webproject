@@ -1,44 +1,49 @@
 <template>
-    <div id="container-admin" v-if="isLoaded">
-        <div id="statistics">
-            <button id="users" class="stat-box" @click=seeInfo($event)>
-                {{users.length}}
-                <br>
-                USERS
-            </button>
-            <button id="products" class="stat-box" @click=seeInfo($event)>
-                {{products.length}}
-                <br>
-                PRODUCTS
-            </button>
-            <button id="admins" class="stat-box" @click=seeInfo($event)>
-                {{admins.length}}
-                <br>
-                ADMINS
-            </button>
-            <button id="sales" class="stat-box" @click=seeInfo($event)>
-                {{sales.length}}
-                <br>
-                SALES
-            </button>
+    <div>
+        <div id="container-admin" v-if="isLoaded && isAdmin">
+            <div id="statistics">
+                <button id="users" class="stat-box" @click=seeInfo($event)>
+                    {{users.length}}
+                    <br>
+                    USERS
+                </button>
+                <button id="products" class="stat-box" @click=seeInfo($event)>
+                    {{products.length}}
+                    <br>
+                    PRODUCTS
+                </button>
+                <button id="admins" class="stat-box" @click=seeInfo($event)>
+                    {{admins.length}}
+                    <br>
+                    ADMINS
+                </button>
+                <button id="sales" class="stat-box" @click=seeInfo($event)>
+                    {{sales.length}}
+                    <br>
+                    SALES
+                </button>
+            </div>
+            <div id="list-display" v-if="displayed !== null">
+                <h2>{{displayedName}}</h2>
+                <i v-if="displayedKeys !== null" class="fa fa-plus" aria-hidden="true" style="font-size:46px;color:green"></i>
+                <table v-if="displayedKeys !== null">
+                    <thead>
+                        <th v-for="key in displayedKeys" :key="key">
+                            {{key}}
+                        </th>
+                        <th></th>
+                        <th></th>
+                    </thead>
+                    <tr v-for="item in displayed" :key="item._id">
+                        <td v-for="attribute in item" :key="attribute.id">{{attribute}}</td>
+                        <td><i class="fa fa-pencil-square-o" style="font-size:24px;"></i></td>
+                        <td><i class="fa fa-times" style="font-size:24px;color:red"></i></td>
+                    </tr>
+                </table>
+            </div>
         </div>
-        <div id="list-display" v-if="displayed !== null">
-            <h2>{{displayedName}}</h2>
-            <i v-if="displayedKeys !== null" class="fa fa-plus" aria-hidden="true" style="font-size:46px;color:green"></i>
-            <table v-if="displayedKeys !== null">
-                <thead>
-                    <th v-for="key in displayedKeys" :key="key">
-                        {{key}}
-                    </th>
-                    <th></th>
-                    <th></th>
-                </thead>
-                <tr v-for="item in displayed" :key="item._id">
-                    <td v-for="attribute in item" :key="attribute.id">{{attribute}}</td>
-                    <td><i class="fa fa-pencil-square-o" style="font-size:24px;"></i></td>
-                    <td><i class="fa fa-times" style="font-size:24px;color:red"></i></td>
-                </tr>
-            </table>
+        <div class="container-admin denied" v-else>
+            <h1>Acess denied</h1>
         </div>
     </div>
 </template>
@@ -48,6 +53,9 @@ import * as DB from '../dataSet/DatabaseConnector';
 export default {
     name: 'Admin',
     mounted: async function () {
+        if (await DB.isAdmin()) {
+            this.isAdmin = true;
+        }
         this.users = await DB.getUsers();
         this.products = await DB.getProducts();
         this.admins = await DB.getAdmins();
@@ -56,6 +64,7 @@ export default {
     },
     data () {
         return {
+            isAdmin: false,
             isLoaded: false,
             users: null,
             products: null,
