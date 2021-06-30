@@ -1,10 +1,11 @@
 import * as FillDB from './FillDatabase';
 import {Person} from './Person';
+import {Sale} from './Sale';
+
 let Categories;
 let Products;
 let Users = [];
 let Admins = [];
-let Sales = [];
 
 function createAdmin () {
     let admin = new Person('admin', 'admin@admin', 'admin', '', '1234-5678');
@@ -53,8 +54,11 @@ export async function addProductCart (product, amount) {
 }
 export async function removeProductCart (productName) {
     let cart = JSON.parse(localStorage.getItem('Cart')) || [];
-    cart = cart.filter(item => item.product.name !== productName);
+    cart = cart.filter(item => item.product._name !== productName);
     localStorage.setItem('Cart', JSON.stringify(cart));
+}
+export async function deleteCart () {
+    window.localStorage.removeItem('Cart');
 }
 export async function getCart () {
     return JSON.parse(localStorage.getItem('Cart'));
@@ -122,7 +126,6 @@ export async function getUsers () {
 export async function getSession () {
     // Get email from current user
     let userKey = window.localStorage.getItem('currentUser');
-    console.log(userKey);
     // Get object matching current user
     if (userKey !== '') {
         let user = window.localStorage.getItem(userKey);
@@ -136,6 +139,20 @@ export async function getAdmins () {
     return Admins;
 }
 
+export async function insertSale (cart, price) {
+    // Create sale
+    let today = new Date();
+    let date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+    let time = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
+    let user = await getSession();
+    let sale = new Sale(cart, price, user, date, time);
+    deleteCart();
+    // get list of sales
+    let Sales = JSON.parse(window.localStorage.getItem('Sales')) || [];
+    Sales.push(sale);
+    window.localStorage.setItem('Sales', JSON.stringify(Sales));
+}
+
 export async function getSales () {
-    return Sales;
+    return JSON.parse(localStorage.getItem('Sales'));
 }

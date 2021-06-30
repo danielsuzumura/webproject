@@ -68,9 +68,16 @@ input[name="name"]{
 
 .input-container{
     width: 100%;
+    margin-right: 5%;
 }
 
 .error{
     visibility: hidden;
     color: red;
+}
+#price{
+    font-size: large;
+    margin-bottom: 5%;
+    color:#c54556;
+    font-weight: bolder;
 }

@@ -1,8 +1,9 @@
 <template>
-    <div id="container-payment">
+    <div id="container-payment" v-if="cart !== null">
         <div id="payment-box">
-            <form @submit.prevent.stop="sendForm" method="POST">
+            <form @submit.prevent.stop="finishSale" method="POST">
                 <h1>PAYMENT</h1>
+                <p id="price">Total: R${{total}}</p>
                 <div class="field-line">
                     <div id="card-container" class="input-container">
                         <h2>Credit Card</h2>
@@ -11,7 +12,7 @@
                     </div>
                     <div id="security-container" class="input-container">
                         <h2>Security Code</h2>
-                        <input type="number" name="security-code" required v-model="security_code">
+                        <input type="number" name="security-code" required v-model="security_code" min=100 max=999>
                         <p class="error" name="security-code">Invalid security code</p>
                     </div>
                 </div>
@@ -41,8 +42,30 @@
 </template>
 
 <script>
+import {calculateTotalCart} from './shared';
+import * as DB from '../dataSet/DatabaseConnector';
 export default {
-    name: 'Payment'
+    name: 'Payment',
+    mixins: [calculateTotalCart],
+    mounted: async function () {
+        this.cart = await DB.getCart();
+    },
+    data () {
+        return {
+            cart: null,
+            credit_card: '',
+            security_code: '',
+            name: '',
+            expiration_date: '',
+            zip_code: ''
+        };
+    },
+    methods: {
+        finishSale () {
+            DB.insertSale(this.cart);
+            this.$router.push('/');
+        }
+    }
 };
 </script>
 

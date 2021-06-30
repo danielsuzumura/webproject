@@ -9,3 +9,14 @@ export let ImportImage = {
         }
     }
 };
+export let calculateTotalCart = {
+    computed: {
+        total () {
+            let total = 0;
+            this.cart.forEach(item => {
+                total += item.product._price.replace(',', '.') * item.amount;
+            });
+            return total.toFixed(2);
+        }
+    }
+};
