@@ -11,7 +11,7 @@
                     <li v-if="isLogged"><router-link to="/User">USER</router-link></li>
                     <li v-else><router-link to="/Login">LOGIN</router-link></li>
                     <li v-if="!isLogged"><router-link to="/Register">REGISTER</router-link></li>
-                    <li><router-link to="/Cart"><i class="fa fa-shopping-cart"></i>CART</router-link></li>
+                    <li v-if="isLogged"><router-link to="/Cart"><i class="fa fa-shopping-cart"></i>CART</router-link></li>
                 </ul>
             </ul>
         </div>
