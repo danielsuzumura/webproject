@@ -2,6 +2,9 @@
 
 > A Vue.js project
 
+# Single-page Application 
+The project consists in a single-page application (SPA), rewriting the current page dynamically according to the user interactions.<br>
+
 # Issue
 * When return to home from product-display, stylesheet doesn't match home
   * Fix: add scoped to <style> tag -> <style scoped>
