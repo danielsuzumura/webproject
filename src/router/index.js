@@ -8,6 +8,7 @@ import ProductDisplay from '@/components/ProductDisplay';
 import ListItems from '@/components/ListItems';
 import AboutUs from '@/components/AboutUs';
 import Contact from '@/components/Contact';
+import UserForm from '@/components/UserForm';
 import ProductForm from '@/components/ProductForm';
 import Admin from '@/components/Admin';
 import User from '@/components/User';
@@ -29,6 +30,7 @@ export default new Router({
         { path: '/Admin', component: Admin },
         { path: '/User', component: User },
         { path: '/ProductForm', component: ProductForm },
+        { path: '/UserForm', component: UserForm },
         { path: '/Payment', component: Payment }
     ]
 });
