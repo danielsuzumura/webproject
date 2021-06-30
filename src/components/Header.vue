@@ -35,7 +35,6 @@
                 -->
                 <router-link class="bar-header-button" to="/AboutUs">ABOUT US</router-link>
                 <router-link class="bar-header-button" to="/Contact"> CONTACT </router-link>
-                <router-link class="bar-header-button" to="/ProductForm"> PRODUCT FORM </router-link>
             </ul>
         </div>
     </div>

@@ -71,7 +71,6 @@ export default {
             if (!this.verifyInput()) {
                 let user = new Person(this.name, this.email, this.password, this.confirm_password, this.address, this.phone);
                 try {
-                    console.log(user);
                     await DB.insertUser(user);
                     await DB.loginUser(this.email, this.password);
                     this.$root.$emit('login', this.email);

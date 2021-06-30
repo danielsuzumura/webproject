@@ -1,5 +1,5 @@
 #container-admin {
-    margin: 150px auto;
+    margin: 10% auto;
     width: 100%;
     height: min-content;
     display: block;
@@ -9,7 +9,7 @@
     width: 60vw;
     height: 500px;
     display: block;
-    margin: 50px auto;
+    margin: 10vh auto;
 }
 
 .stat-box {
@@ -48,4 +48,12 @@
     margin: 50px auto;
     width: 60vw;
     height: min-content;
+}
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    text-align: center;
+}
+th{
+    min-width: 3vw;
 }

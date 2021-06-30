@@ -1,15 +1,34 @@
 import * as FillDB from './FillDatabase';
-
+import {Person} from './Person';
 let Categories;
 let Products;
-let Users;
+let Users = [];
+let Admins = [];
+let Sales = [];
+
+function createAdmin () {
+    let admin = new Person('admin', 'admin@admin', 'admin', '', '1234-5678');
+    Admins.push(admin);
+}
+
 /**
  * Load Database
  */
 export async function loadDatabase () {
     Categories = FillDB.CategoryInfo;
     Products = FillDB.ProductsInfo;
+    Object.keys(window.localStorage).forEach((key) => {
+        try {
+            let user = JSON.parse(window.localStorage.getItem(key));
+            if (Object.keys(user).length > 5) {
+                Users.push(JSON.parse(window.localStorage.getItem(key)));
+            }
+        } catch (err) {
+
+        }
+    });
     window.localStorage.setItem('currentUser', '');
+    createAdmin();
 }
 
 export async function getCategories () {
@@ -46,6 +65,7 @@ export async function insertUser (user) {
     try {
         if (window.localStorage.getItem(user.email) === null) {
             window.localStorage.setItem(user.email, JSON.stringify(user));
+            Users.push(user);
         } else {
             throw Error('Email is already in use');
         }
@@ -85,4 +105,12 @@ export async function getSession () {
     } else {
         throw ReferenceError('No user logged in');
     }
+}
+
+export async function getAdmins () {
+    return Admins;
+}
+
+export async function getSales () {
+    return Sales;
 }
