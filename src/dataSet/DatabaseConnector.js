@@ -63,8 +63,8 @@ export async function getCart () {
 
 export async function insertUser (user) {
     try {
-        if (window.localStorage.getItem(user.email) === null) {
-            window.localStorage.setItem(user.email, JSON.stringify(user));
+        if (window.localStorage.getItem(user._email) === null) {
+            window.localStorage.setItem(user._email, JSON.stringify(user));
             Users.push(user);
         } else {
             throw Error('Email is already in use');
@@ -83,7 +83,7 @@ export async function loginUser (email, password) {
         }
         // Make user instanceof Person class ?
         if (password === user._password) {
-            window.localStorage.setItem('currentUser', user.email);
+            window.localStorage.setItem('currentUser', user._email);
             return user;
         } else {
             throw Error('Invalid email or password');
@@ -92,16 +92,41 @@ export async function loginUser (email, password) {
         throw Error(error.message);
     }
 }
+
+export async function updateUser (user, oldEmail) {
+    try {
+        await deleteUser(oldEmail);
+        window.localStorage.setItem('currentUser', user._email);
+        await insertUser(user);
+    } catch (error) {
+        throw Error(error.message);
+    }
+}
+
+export async function deleteUser (userEmail) {
+    try {
+        if (window.localStorage.getItem(userEmail) === null) {
+            throw Error('User not found');
+        } else {
+            window.localStorage.removeItem(userEmail);
+            Users = Users.filter(item => item._email !== userEmail);
+        }
+    } catch (error) {
+        throw Error(error.message);
+    }
+}
+
 export async function getUsers () {
     return Users;
 }
 export async function getSession () {
     // Get email from current user
     let userKey = window.localStorage.getItem('currentUser');
+    console.log(userKey);
     // Get object matching current user
     if (userKey !== '') {
         let user = window.localStorage.getItem(userKey);
-        return user;
+        return JSON.parse(user);
     } else {
         throw ReferenceError('No user logged in');
     }

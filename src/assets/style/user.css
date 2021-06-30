@@ -44,6 +44,7 @@
 #user-box table{
     text-align: left;
     margin: auto;
+    border-spacing:0 2vh;
 }
 
 #user-box td{
@@ -61,5 +62,15 @@ p{
 }
 .error{
     visibility: hidden;
+    margin-bottom: 5%;
     color: red;
+}
+#errorEmail{
+    margin: 0;
+    color: red;
+}
+#changes-saved{
+    margin-top: 5%;
+    color:green;
+    text-align: center;
 }
