@@ -295,7 +295,11 @@ export async function getPurchases (userEmail) {
     if (Sales.length === 0) {
         throw Error('No purchases made');
     }
-    return Sales.filter(sale => sale._user._email === userEmail);
+    Sales = Sales.filter(sale => sale._user._email === userEmail);
+    if (Sales.length === 0) {
+        throw Error('No purchases made');
+    }
+    return Sales;
 }
 
 /**

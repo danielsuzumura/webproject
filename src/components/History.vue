@@ -7,7 +7,7 @@
                 <a class="page-select" @click="logout">Logout</a>
             </div>
             <div id="history-display" >
-                <div id="messageNoPurchase" v-if="noPurchaseError === true || purchases !== null">
+                <div id="messageNoPurchase" v-if="noPurchaseError === true">
                     <p>No purchases made!</p>
                 </div>
                 <div v-else>
@@ -52,9 +52,6 @@ export default {
         try {
             this.user = await DB.getSession();
             this.purchases = await DB.getPurchases(this.user._email);
-            if (this.purchases.length === 0) {
-                throw Error('No purchases made');
-            }
         } catch (err) {
             if (err.message === 'No purchases made') {
                 this.noPurchaseError = true;
