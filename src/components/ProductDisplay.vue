@@ -32,6 +32,12 @@
             <p id="description">{{product.description}}</p>
         </div>
 
+        <div id="product-write-review">
+            <h1>Write your own review:</h1>
+            <textarea name="my-review"></textarea><br>
+            <input type="submit" name="post-review" value="Post">
+        </div>
+
         <div id="product-review" v-if="reviews !== null">
             <h2>Rating and Reviews:</h2>
             <div class="review" v-for="review in reviews" :key='review._reviewText'>
