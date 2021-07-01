@@ -69,7 +69,7 @@ export default {
          * Search item inputed using query in link
          */
         searchItem () {
-            if (this.searchInput !== '') {
+            if (this.searchInput !== '' && this.$route.query.query !== this.searchInput) {
                 this.$router.push('/ListItems?query=' + this.searchInput);
             }
         }
