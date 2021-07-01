@@ -7,7 +7,7 @@
                 <a class="page-select" @click="logout">Logout</a>
             </div>
             <div id="messageNoPurchase" v-show="noPurchaseError === true">
-                <p>No purchases made</p>
+                <p>No purchases made!</p>
             </div>
             <div id="history-display" v-if="purchases !== null">
                 <div v-for="purchase in purchases" :key="purchase.price">
