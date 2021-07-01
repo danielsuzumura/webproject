@@ -9,10 +9,10 @@
             <div id="messageNoPurchase" v-show="noPurchaseError === true">
                 <p>No purchases made!</p>
             </div>
-            <div id="history-display" v-if="purchases !== null">
+            <div id="history-display" v-if="purchases !== null && noPurchaseError === false">
                 <div v-for="purchase in purchases" :key="purchase.price">
                     <h2>Data: {{purchase._date}}, {{purchase._time}}</h2>
-                    <h2>{{purchase._price}}</h2>
+                    <h2>Price: R${{purchase._price}}</h2>
                     <table>
                         <colgroup>
                             <col class="item">
@@ -42,8 +42,10 @@
 
 <script>
 import * as DB from '../dataSet/DatabaseConnector';
+import {calculateTotalProduct} from './shared';
 export default {
     name: 'History',
+    mixins: [calculateTotalProduct],
     mounted: async function () {
         try {
             this.user = await DB.getSession();
@@ -67,9 +69,6 @@ export default {
         };
     },
     methods: {
-        calculateTotal (price, amount) {
-            return (price.replace(',', '.') * amount).toFixed(2);
-        },
         async logout () {
             await DB.logout();
             this.$root.$emit('login');

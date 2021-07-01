@@ -23,7 +23,7 @@
                     SALES
                 </button>
             </div>
-            <div id="list-display" v-if="displayed !== null">
+            <div class="list-display" v-if="displayed !== null && displayed !== sales">
                 <h2>{{displayedName}}</h2>
                 <router-link :to=redirectToAdd>
                     <i v-if="displayedKeys !== null && redirectToAdd !== ''" class="fa fa-plus" aria-hidden="true" style="font-size:46px;color:green"></i>
@@ -43,6 +43,38 @@
                     </tr>
                 </table>
             </div>
+            <div class="list-display" v-else-if="displayed === sales">
+                <h2>Sales</h2>
+                <div id="history-display" v-if="sales !== null">
+                    <div v-for="sale in sales" :key="sale.price">
+                        <p><b>User</b>: {{sale._user._email}}</p>
+                        <p><b>Data</b>: {{sale._date}}, {{sale._time}}</p>
+                        <p><b>Price:</b> R${{sale._price}}</p>
+                        <table>
+                            <colgroup>
+                                <col class="item">
+                                <col class="amount">
+                                <col class="total">
+                            </colgroup>
+                            <thead>
+                                <th>Item</th>
+                                <th>Price</th>
+                                <th>Amount</th>
+                                <th>Total</th>
+                            </thead>
+                            <tbody>
+                                <tr v-for="item in sale._cart" :key="item.product._name">
+                                    <td>{{item.product._name}}</td>
+                                    <td>{{item.product._price}}</td>
+                                    <td>{{item.amount}}</td>
+                                    <td>{{calculateTotal(item.product._price, item.amount)}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <hr>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="container-admin denied" v-else>
             <h1>Acess denied</h1>
@@ -52,6 +84,7 @@
 
 <script>
 import * as DB from '../dataSet/DatabaseConnector';
+import {calculateTotalProduct} from './shared';
 export default {
     name: 'Admin',
     mounted: async function () {
@@ -64,6 +97,7 @@ export default {
         this.sales = await DB.getSales();
         this.isLoaded = true;
     },
+    mixins: [calculateTotalProduct],
     data () {
         return {
             isAdmin: false,

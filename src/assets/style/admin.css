@@ -47,7 +47,7 @@
     float: right;
 }
 
-#list-display {
+.list-display {
     margin: 50px auto;
     width: 60vw;
     height: min-content;
@@ -59,4 +59,7 @@ table, th, td {
 }
 th{
     min-width: 3vw;
+}
+hr{
+    border: 1px solid black;
 }

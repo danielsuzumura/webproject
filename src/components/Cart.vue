@@ -21,7 +21,7 @@
                         <td>{{item.product._name}}</td>
                         <td>R${{item.product._price}}</td>
                         <td>{{item.amount}}</td>
-                        <td>R${{calculateValue(item.product._price, item.amount)}}</td>
+                        <td>R${{calculateTotal(item.product._price, item.amount)}}</td>
                         <td @click.prevent.stop=removeProduct(item.product._name)><i class="fa fa-times" style="font-size:24px;color:red"></i></td>
                     </tr>
                 </tbody>
@@ -39,11 +39,11 @@
 </template>
 
 <script>
-import {ImportImage, calculateTotalCart} from './shared';
+import {ImportImage, calculateTotalCart, calculateTotalProduct} from './shared';
 import * as DB from '../dataSet/DatabaseConnector';
 export default {
     name: 'Cart',
-    mixins: [ImportImage, calculateTotalCart],
+    mixins: [ImportImage, calculateTotalCart, calculateTotalProduct],
     mounted: async function () {
         this.cart = await DB.getCart();
     },
@@ -55,9 +55,6 @@ export default {
     methods: {
         goToPayment () {
             this.$router.push('/Payment');
-        },
-        calculateValue (price, amount) {
-            return (price.replace(',', '.') * amount).toFixed(2);
         },
         async removeProduct (productName) {
             DB.removeProductCart(productName);

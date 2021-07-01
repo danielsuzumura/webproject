@@ -62,7 +62,7 @@ export default {
     },
     methods: {
         finishSale () {
-            DB.insertSale(this.cart);
+            DB.insertSale(this.cart, this.total);
             this.$router.push('/');
         }
     }

@@ -20,3 +20,11 @@ export let calculateTotalCart = {
         }
     }
 };
+
+export let calculateTotalProduct = {
+    methods: {
+        calculateTotal (price, amount) {
+            return (price.replace(',', '.') * amount).toFixed(2);
+        }
+    }
+};
