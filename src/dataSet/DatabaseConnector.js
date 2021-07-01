@@ -79,6 +79,14 @@ export async function insertProduct (product) {
 }
 
 /**
+ * Delete product
+ * @param {Number} id Product id
+ */
+export async function deleteProduct (id) {
+    Products = Products.filter(product => product._id !== id);
+}
+
+/**
  * Cart functions
  */
 
@@ -328,6 +336,14 @@ async function createAdmin () {
  */
 export async function getAdmins () {
     return Admins;
+}
+
+/**
+ * Delete admin
+ * @param {string} id Admin email
+ */
+export async function deleteAdmin (email) {
+    Admins = Admins.filter(admin => admin._email !== email);
 }
 
 /**

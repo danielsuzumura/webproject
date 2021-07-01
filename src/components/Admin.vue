@@ -33,13 +33,15 @@
                         <th v-for="key in displayedKeys" :key="key">
                             {{key}}
                         </th>
-                        <th></th>
-                        <th></th>
+                        <th v-if="displayed === users">Admin</th>
+                        <th v-else></th>
+                        <th v-if="displayed !== admins"></th>
                     </thead>
                     <tr v-for="item in displayed" :key="item._name">
                         <td v-for="attribute in item" :key="attribute.id">{{attribute}}</td>
-                        <td><i class="fa fa-pencil-square-o" style="font-size:24px;"></i></td>
-                        <td><i class="fa fa-times" style="font-size:24px;color:red"></i></td>
+                        <td v-if="displayed === users"><i class="fa fa-unlock" style="font-size:24px;"></i></td>
+                        <td v-if="displayed === products"><i class="fa fa-pencil-square-o" style="font-size:24px;"></i></td>
+                        <td @click=remove(item)><i class="fa fa-times" style="font-size:24px;color:red"></i></td>
                     </tr>
                 </table>
             </div>
@@ -141,6 +143,22 @@ export default {
                 this.displayedKeys = null;
             }
             this.displayedName = event.target.id.toUpperCase();
+        },
+        async remove (item) {
+            console.log('oi');
+            if (this.displayed === this.users) {
+                await DB.deleteUser(item._email);
+                this.users = await DB.getUsers();
+                this.displayed = this.users;
+            } else if (this.displayed === this.products) {
+                await DB.deleteProduct(item._id);
+                this.products = await DB.getProducts();
+                this.displayed = this.products;
+            } else {
+                await DB.deleteAdmin(item._email);
+                this.admins = await DB.getAdmins();
+                this.displayed = this.admins;
+            }
         }
     }
 };
