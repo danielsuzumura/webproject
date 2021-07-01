@@ -1,10 +1,7 @@
 <template>
     <div id="rating">
-        <i class="rating-star fa fa-star"></i>
-        <i class="rating-star fa fa-star"></i>
-        <i class="rating-star fa fa-star"></i>
-        <i class="rating-star fa fa-star"></i>
-        <i class="rating-star fa fa-star"></i>
+        <i v-for="start in Number(ratingValue)" :key="start" class="rating-star fa fa-star"></i>
+        <i v-for="start in Number(5-ratingValue)" :key="start" class="rating-star fa fa-star-o"></i>
     </div>
 </template>
 
@@ -13,22 +10,22 @@ export default {
     name: 'Rating',
     props: ['ratingValue'],
     mounted: function () {
-        this.fillStar();
+        // this.fillStar();
     },
     methods: {
-        fillStar () {
-            console.log(this.ratingValue);
-            let star = document.querySelectorAll('.rating-star');
-            const starClassFill = 'rating-star fa fa-star';
-            const starClass = 'rating-star fa fa-star-o';
-            for (let i = 0; i < this.ratingValue; ++i) {
-                star[i].className = starClassFill;
-            }
-            for (let i = this.ratingValue; i < 5; ++i) {
-                star[i].className = starClass;
-            }
-            console.log(star);
-        }
+        // fillStar () {
+        //     console.log(this.ratingValue);
+        //     let star = document.querySelectorAll('.rating-star');
+        //     const starClassFill = 'rating-star fa fa-star';
+        //     const starClass = 'rating-star fa fa-star-o';
+        //     for (let i = 0; i < this.ratingValue; ++i) {
+        //         star[i].className = starClassFill;
+        //     }
+        //     for (let i = this.ratingValue; i < 5; ++i) {
+        //         star[i].className = starClass;
+        //     }
+        //     console.log(star);
+        // }
     }
 };
 </script>
