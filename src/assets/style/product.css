@@ -149,6 +149,16 @@
     margin: 10px 5%;
 }
 
+#product-write-review #my-rating {
+    text-align: left;
+    margin: 10px 5%;
+
+    background-color:rgb(202, 202, 190);
+    border-style:ridge;
+    border-radius:15px;
+    padding: 5px;
+}
+
 #product-write-review textarea {
     width: 90%;
     height: 120px;

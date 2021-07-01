@@ -34,6 +34,7 @@
 
         <div id="product-write-review">
             <h1>Write your own review:</h1>
+            <RatingInteractive id="my-rating" />
             <textarea name="my-review"></textarea><br>
             <input type="submit" name="post-review" value="Post">
         </div>
@@ -51,7 +52,6 @@
         <div v-else>
             <h2>No reviews</h2>
         </div>
-        <RatingInteractive/>
     </div>
 </template>
 
