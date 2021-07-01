@@ -1,5 +1,5 @@
-.container-admin {
-    margin: 10% auto;
+#container-admin {
+    margin: 150px auto;
     width: 100%;
     height: min-content;
     display: block;
@@ -10,7 +10,7 @@
 }
 #statistics {
     width: 60vw;
-    height: 500px;
+    height: 50vh;
     display: block;
     margin: 10vh auto;
 }
