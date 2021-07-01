@@ -35,4 +35,7 @@ export default {
         color: yellow;
         font-size: 24px;
     }
+    #rating{
+        display: inline-flex;
+    }
 </style>
