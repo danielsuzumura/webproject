@@ -29,7 +29,7 @@
             </div>
         </div>
         <div class="denied" v-else>
-            <h1>Acess denied</h1>
+            <h1>Access denied</h1>
         </div>
     </div>
 </template>
