@@ -53,6 +53,11 @@ export default {
             }
         }
     },
+    watch: {
+        $route: function (value) {
+            this.query = this.$route.query.query;
+        }
+    },
     methods: {
         getlinkToProduct (product) {
             return this.linkToProduct + product.id;
