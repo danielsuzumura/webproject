@@ -11,7 +11,7 @@
                     <p>No purchases made!</p>
                 </div>
                 <div v-else>
-                    <div v-for="purchase in purchases" :key="purchase.price">
+                    <div v-for="purchase in purchases" :key="purchase.price"  class='table-purchase'>
                         <h2>Data: {{purchase._date}}, {{purchase._time}}</h2>
                         <h2>Price: R${{purchase._price}}</h2>
                         <table>
@@ -35,6 +35,7 @@
                                 </tr>
                             </tbody>
                         </table>
+                        <hr>
                     </div>
                 </div>
             </div>

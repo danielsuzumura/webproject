@@ -46,15 +46,25 @@ export default {
     mixins: [ImportImage, calculateTotalCart, calculateTotalProduct],
     mounted: async function () {
         this.cart = await DB.getCart();
+        try {
+            this.user = await DB.getSession();
+        } catch (err) {
+            this.user = null;
+        }
     },
     data () {
         return {
-            cart: null
+            cart: null,
+            user: null
         };
     },
     methods: {
         goToPayment () {
-            this.$router.push('/Payment');
+            if (this.user === null) {
+                this.$router.push('/Login');
+            } else {
+                this.$router.push('/Payment');
+            }
         },
         async removeProduct (productName) {
             DB.removeProductCart(productName);
