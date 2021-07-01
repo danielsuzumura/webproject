@@ -34,9 +34,12 @@
 
         <div id="product-write-review">
             <h1>Write your own review:</h1>
-            <RatingInteractive id="my-rating" />
-            <textarea name="my-review"></textarea><br>
-            <input type="submit" name="post-review" value="Post">
+            <form action="POST" @submit.prevent.stop=submitReview>
+                <input type="text" placeholder="Name" v-model="reviewName" required><br>
+                <RatingInteractive id="my-rating" />
+                <textarea name="my-review" v-model="reviewText" required></textarea><br>
+                <input type="submit" name="post-review" value="Post">
+            </form>
         </div>
 
         <div id="product-review" v-if="reviews !== null">
@@ -58,6 +61,7 @@
 <script>
 import {ImportImage} from './shared';
 import * as DB from '../dataSet/DatabaseConnector';
+import {Review} from '../dataSet/Review';
 import Rating from './Rating';
 import RatingInteractive from './RatingInteractive';
 
@@ -72,6 +76,9 @@ export default {
             this.product = 'not found';
         }
         this.reviews = await DB.getReviews();
+        this.$root.$on('click', (reviewRating) => {
+            this.reviewRating = reviewRating;
+        });
     },
     data () {
         return {
@@ -80,12 +87,18 @@ export default {
             product: null,
             amount: 1,
             ratingAmount: 20,
-            reviews: null
+            reviews: null,
+            reviewName: '',
+            reviewText: ''
         };
     },
     methods: {
         addToCart () {
             DB.addProductCart(this.product, this.amount);
+        },
+        submitReview () {
+            let review = new Review(this.reviewName, this.reviewRating, this.product._id, this.reviewText);
+            DB.insertReview(review);
         }
     },
     components: {

@@ -388,6 +388,18 @@ export function isAdminEmail (email) {
  * Review
  */
 
+/**
+ * Get every review
+ * @returns {Review []} Every review
+ */
 export async function getReviews () {
     return Review;
+}
+
+/**
+ * Get every review
+ * @param {Review} review Review to be inserted
+ */
+export async function insertReview (review) {
+    Review.push(review);
 }

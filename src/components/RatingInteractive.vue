@@ -23,6 +23,7 @@ export default {
                 stars[i].classList.remove('fa-star');
                 stars[i].classList.add('fa-star-o');
             }
+            this.$root.$emit('click', rating);
         }
     }
 };
