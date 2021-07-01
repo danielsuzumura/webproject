@@ -5,13 +5,53 @@
     justify-content: center;
     margin: 120px auto;
 }
+
 #user-box{
+    display: flex;
+    box-shadow: black 10px 10px;
+}
+
+#user-sidebar{
+    position: relative;
+    display: block;
     margin: auto;
+    height: 100%;
+    width: min-content;
+    border: none;
+    text-align: center;
+    background-color: lightgray;
+}
+
+#user-sidebar .page-select{
+    display: block;
+    position: relative;
+    padding: 10px;
+    box-shadow: black 0px 5px 5px -6px;
+}
+
+#user-sidebar .page-select:hover{
+    background-color: rgb(226, 226, 226);
+    cursor: pointer;
+}
+
+#user-sidebar .active{
+    border-right: transparent solid 1px;
+    background-color: #BF8CFF;
+}
+
+#user-sidebar .active:hover{
+    cursor: default;
+    background-color: #BF8CFF;
+}
+
+#user-modification{
+    margin: auto;
+    height: 100%;
     padding: 5vh 5vw;
+    box-sizing: border-box;
     border: none;
     background-color: #BF8CFF;
     text-align: center;
-    box-shadow: black 10px 10px;
 }
 
 #user-box h1{
@@ -30,7 +70,7 @@
     width: max(200px, 15vw);
 }
 
-#user-box button{
+#user-box #user-modification button{
     width: 120px;
     height: 34px;
     background-color: #c54556;
