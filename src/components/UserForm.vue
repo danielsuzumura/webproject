@@ -1,6 +1,6 @@
 <template>
     <div id="container">
-        <div id="register-box">
+        <div id="register-box" v-if="isAdmin === true">
             <form @submit.prevent.stop="sendForm" method="POST">
                 <h1>USER REGISTER</h1>
                 <h2>Name</h2>
@@ -32,6 +32,9 @@
             </form>
             <p id="changes-saved" v-show="sucessMessage === true">User created</p>
         </div>
+        <div class="container-admin denied" v-else>
+            <h1>Acess denied</h1>
+        </div>
     </div>
 </template>
 
@@ -41,8 +44,14 @@ import * as DB from '../dataSet/DatabaseConnector';
 let errorTag = document.getElementsByClassName('error');
 export default {
     name: 'UserForm',
+    mounted: async function () {
+        if (await DB.isAdmin()) {
+            this.isAdmin = true;
+        }
+    },
     data () {
         return {
+            isAdmin: false,
             name: '',
             email: '',
             password: '',
@@ -74,5 +83,11 @@ export default {
         color:green;
         font-size: x-large;
         text-align: center;
+    }
+    .denied {
+        line-height: 100vh;
+        margin: 0 auto;
+        text-align: center;
+        color:red;
     }
 </style>
