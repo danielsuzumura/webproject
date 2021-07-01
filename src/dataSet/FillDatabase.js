@@ -61,7 +61,7 @@ const fillProducts = function () {
         {
             id: '5',
             name: 'Popcorn',
-            photo: 'apple.jpg',
+            photo: 'popcorn.png',
             description: 'Popcorn is a variety of corn kernel which expands and puffs up when heated',
             price: '2,50',
             quantityStock: '10',
@@ -126,7 +126,7 @@ const fillCategory = function () {
         },
         {
             name: 'Snacks',
-            image: 'apple.jpg',
+            image: 'snack.png',
             alt: 'snacks',
             slogan: 'The taste that you will definitely admire'
         }
