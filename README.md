@@ -6,10 +6,8 @@
 The project consists in a single-page application (SPA), rewriting the current page dynamically according to the user interactions.<br>
 
 # Issue
-* When return to home from product-display, stylesheet doesn't match home
-  * Fix: add scoped to <style> tag -> <style scoped>
+* Filter review
 # Todo
-* Create functionality specific to your application
 * Tests
   
 ## Build Setup
