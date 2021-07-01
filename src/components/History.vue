@@ -48,6 +48,9 @@ export default {
         try {
             this.user = await DB.getSession();
             this.purchases = await DB.getPurchases(this.user._email);
+            if(this.purchases.length === 0) {
+                throw Error('No purchases made');
+            }
         } catch (err) {
             if (err.message === 'No purchases made') {
                 this.noPurchaseError = true;
