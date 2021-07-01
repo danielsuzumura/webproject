@@ -1,3 +1,7 @@
+/**
+ * User class
+ */
+
 export class Person {
     constructor (name, email, password, address, phone) {
         this._name = name;

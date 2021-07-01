@@ -1,6 +1,6 @@
 <template>
-    <div id="container-user" v-if="user !== null">
-        <div id="user-box">
+    <div id="container-user">
+        <div id="user-box" v-if="user !== null">
             <div id="user-sidebar">
                 <a class="page-select active">User information</a>
                 <router-link class="page-select" to="/history">Purchase history</router-link>
@@ -65,7 +65,11 @@ import * as DB from '../dataSet/DatabaseConnector';
 export default {
     name: 'User',
     mounted: async function () {
-        await this.getUser();
+        try {
+            await this.getUser();
+        } catch (err) {
+            this.$router.push('/Login');
+        }
     },
     data () {
         return {
@@ -93,10 +97,16 @@ export default {
                 return true;
             }
         },
-        verifyInputData () {
+        async verifyInputData () {
             if (this.checkEmail()) {
-                DB.updateUser(this.user, this.old_email);
-                this.sucessMessageData = true;
+                try {
+                    await DB.updateUser(this.user, this.old_email);
+                    this.sucessMessageData = true;
+                    this.invalidInputEmail = false;
+                } catch (err) {
+                    this.errorMessageEmail = err.message;
+                    this.invalidInputEmail = true;
+                }
             }
         },
         async verifyInputPassword () {

@@ -1,3 +1,7 @@
+/**
+ * Product class
+ */
+
 export class Product {
     constructor (id, name, photo, description, price, quantityStock, quantitySold, category) {
         this._id = id;

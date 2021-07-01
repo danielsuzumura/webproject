@@ -1,3 +1,7 @@
+/**
+ * Mock Storage for localStorage
+ */
+
 var mockStorage = (function () {
     var data = {};
     return {

@@ -1,3 +1,7 @@
+/**
+ * Sale class
+ */
+
 export class Sale {
     constructor (cart, price, user, date, time) {
         this._cart = cart;
