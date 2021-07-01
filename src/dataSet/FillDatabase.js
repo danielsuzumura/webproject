@@ -67,6 +67,26 @@ const fillProducts = function () {
             quantityStock: '10',
             quantitySold: '30',
             category: 'Snacks'
+        },
+        {
+            id: '6',
+            name: 'Gummy Bear',
+            photo: 'gummyBear.jpg',
+            description: 'A sweet gummy',
+            price: '2,50',
+            quantityStock: '0',
+            quantitySold: '9999',
+            category: 'Candy'
+        },
+        {
+            id: '7',
+            name: 'Jelly Bean',
+            photo: 'jellyBean.jpg',
+            description: 'A tasty and polite jelly bean',
+            price: '8,80',
+            quantityStock: '20',
+            quantitySold: '80',
+            category: 'Candy'
         }
     ];
     return arr.map(product => new Product(product.id, product.name, product.photo, product.description, product.price, product.quantityStock, product.quantitySold, product.category));

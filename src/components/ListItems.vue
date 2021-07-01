@@ -6,9 +6,14 @@
             <div class="product-container">
                 <div class="box-product" v-for="product in filter" :key="product.name">
                     <figure >
-                        <img :src="getImgUrl(product.photo)">
+                        <img id="img-product" :src="getImgUrl(product.photo)">
                         <figcaption>
-                            <router-link :to=getlinkToProduct(product)>{{product.name}}</router-link>
+                            <div id="stock-test" v-if="product.quantityStock > 0">
+                                <router-link :to=getlinkToProduct(product)>{{product.name}}</router-link>
+                            </div>
+                            <div v-else>
+                                <p id="out-stock"> {{product.name}} (OUT OF STOCK) </p>
+                            </div>
                             <p>{{product.brand}}</p>
                             <p>R${{product.price}}</p>
                         </figcaption>
