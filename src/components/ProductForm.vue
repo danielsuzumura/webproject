@@ -12,20 +12,20 @@
                     <input type="file" name="file"> <br><br>
 
                     <label id="product-price"> Price: </label><br>
-                    <input type="number" name="price" v-model="price" step=".01"><br><br>
+                    <input type="text" name="price" v-model="price"><br><br>
 
                     <label id="product-amount"> Stock: </label><br>
-                    <input type="number" name="amount" min=0 v-model="stock"><br><br>
+                    <input type="number" name="amount" min=0 v-model.number="stock"><br><br>
 
                     <label id="product-category"> Category: </label><br>
                     <input type="text" name="category" v-model="category"><br><br>
 
                     <label for="product-description"> Product description: </label><br>
-                    <textarea id="product-description" name="product-description"></textarea><br><br>
+                    <textarea id="product-description" name="product-description" v-model="description"></textarea><br><br>
 
                     <input type="submit" name="btn-submit" value="Submit">
                 </form>
-                <p id="changes-saved" v-show="sucessMessage === true">Product created</p>
+                <p id="changes-saved" v-show="sucessMessage === true">{{sucessMessageContent}}</p>
             </div>
         </div>
         <div class="denied" v-else>
@@ -43,6 +43,22 @@ export default {
         if (await DB.isAdmin()) {
             this.isAdmin = true;
         }
+        let size = (await DB.getProducts()).length;
+        this.id = size;
+        if (this.productIdQuery !== undefined) {
+            let product = await DB.getProduct(this.productIdQuery);
+            this.name = product._name;
+            this.img = product._photo;
+            this.description = product._description;
+            this.price = product._price;
+            this.stock = product._quantityStock;
+            this.sold = product._quantitySold;
+            this.category = product._category;
+            this.id = product._id;
+            this.sucessMessageContent = 'Product updated';
+        } else {
+            this.sucessMessageContent = 'Product created';
+        }
     },
     data () {
         return {
@@ -51,14 +67,18 @@ export default {
             img: '',
             price: '',
             stock: '',
+            sold: 0,
             category: '',
             description: '',
-            sucessMessage: false
+            id: 0,
+            sucessMessage: false,
+            sucessMessageContent: '',
+            productIdQuery: this.$route.query.query
         };
     },
     methods: {
         async sendForm () {
-            let product = new Product(0, this.name, this.photo, this.description, this.price, this.quantityStock, 0, this.category);
+            let product = new Product(this.id, this.name, this.img, this.description, this.price, this.stock, this.sold, this.category);
             try {
                 await DB.insertProduct(product);
                 this.sucessMessage = true;

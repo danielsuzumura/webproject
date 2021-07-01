@@ -40,7 +40,7 @@
                     <tr v-for="item in displayed" :key="item._name">
                         <td v-for="attribute in item" :key="attribute.id">{{attribute}}</td>
                         <td v-if="displayed === users"><i class="fa fa-unlock" style="font-size:24px;"></i></td>
-                        <td v-if="displayed === products"><i class="fa fa-pencil-square-o" style="font-size:24px;"></i></td>
+                        <td @click=editProduct(item) v-if="displayed === products"><i class="fa fa-pencil-square-o" style="font-size:24px;"></i></td>
                         <td @click=remove(item)><i class="fa fa-times" style="font-size:24px;color:red"></i></td>
                     </tr>
                 </table>
@@ -145,7 +145,6 @@ export default {
             this.displayedName = event.target.id.toUpperCase();
         },
         async remove (item) {
-            console.log('oi');
             if (this.displayed === this.users) {
                 await DB.deleteUser(item._email);
                 this.users = await DB.getUsers();
@@ -159,6 +158,9 @@ export default {
                 this.admins = await DB.getAdmins();
                 this.displayed = this.admins;
             }
+        },
+        editProduct (product) {
+            this.$router.push('/ProductForm?query=' + product._id);
         }
     }
 };

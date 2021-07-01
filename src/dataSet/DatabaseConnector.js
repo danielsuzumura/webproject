@@ -76,6 +76,7 @@ export async function getProduct (productId) {
  */
 export async function insertProduct (product) {
     Products.push(product);
+    console.log(Products);
 }
 
 /**
