@@ -9,14 +9,15 @@ import {Sale} from './Sale';
 let Categories;
 let Products;
 let Users = [];
+let Review = [];
 let Admins = [];
-
 /**
  * Load database
  */
 export async function loadDatabase () {
     Categories = FillDB.CategoryInfo;
     Products = FillDB.ProductsInfo;
+    Review = FillDB.ReviewInfo;
     Object.keys(window.localStorage).forEach((key) => {
         try {
             if (key !== 'Cart' && key !== 'Sales') {
@@ -381,4 +382,12 @@ export function isAdminEmail (email) {
     } else {
         return false;
     }
+}
+
+/**
+ * Review
+ */
+
+export async function getReviews () {
+    return Review;
 }

@@ -6,10 +6,8 @@
             </div><br>
             <div id="product-entry-description" class="box">
                 <h1 id="entry-title">{{product.name}}</h1>
-                <p id="review-average">
-                    <img src="icons/three-stars.png" alt="three stars icon" id="img-review-average">
-                    2 reviews
-                </p>
+                <Rating rating-value=2 />
+                <span>({{ratingAmount}})</span>
             </div>
             <div id="product-price" class="box">
                 <p id="price">R${{product.price}}</p>
@@ -23,7 +21,6 @@
                         <option>5</option>
                     </select>
                 </p>
-                <!-- <a href="login.html"><button id="button-addCart"> ADD TO CART </button></a> -->
                 <router-link to="/Cart"><button id="button-addCart" @click='addToCart'> ADD TO CART </button></router-link >
             </div>
 
@@ -35,23 +32,18 @@
             <p id="description">{{product.description}}</p>
         </div>
 
-        <div id="product-review" >
+        <div id="product-review" v-if="reviews !== null">
             <h2>Rating and Reviews:</h2>
-            <div class="review">
+            <div class="review" v-for="review in reviews" :key='review._reviewText'>
                 <p class="review name">
-                    <img src="icons/five-stars.png" alt="five stars icon" class="img-review" >
-                    Carlos Silva Santos
-                    </p>
-                <p>Delicious Apples.</p>
-            </div> <br>
-            <div class="review">
-                <p class="review name">
-                    <img src="icons/one-stars.png" alt="one star icon" class="img-review" >
-                    Seijougahara, Hitagi
+                    <Rating :rating-value=review._rating />
+                    {{review._name}}
                 </p>
-                <p>Bad.<br>
-                    Not mature and tastes horrible.</p>
+                <p>{{review._reviewText}}</p>
             </div>
+        </div>
+        <div v-else>
+            <h2>No reviews</h2>
         </div>
     </div>
 </template>
@@ -59,6 +51,7 @@
 <script>
 import {ImportImage} from './shared';
 import * as DB from '../dataSet/DatabaseConnector';
+import Rating from './Rating';
 export default {
     name: 'ProductDisplay',
     mixins: [ImportImage],
@@ -69,19 +62,25 @@ export default {
         } catch (err) {
             this.product = 'not found';
         }
+        this.reviews = await DB.getReviews();
     },
     data () {
         return {
             user: {},
             productQuery: this.$route.query.query,
             product: null,
-            amount: 1
+            amount: 1,
+            ratingAmount: 20,
+            reviews: null
         };
     },
     methods: {
         addToCart () {
             DB.addProductCart(this.product, this.amount);
         }
+    },
+    components: {
+        Rating
     }
 };
 </script>

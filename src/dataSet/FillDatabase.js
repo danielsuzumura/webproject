@@ -4,6 +4,7 @@
 
 import {Product} from './Product';
 import {Category} from './Category';
+import {Review} from './Review';
 
 const fillProducts = function () {
     let arr = [
@@ -113,3 +114,22 @@ const fillCategory = function () {
     return arr.map(category => new Category(category.name, category.image, category.alt, category.slogan));
 };
 export const CategoryInfo = fillCategory();
+
+const fillReview = function () {
+    let arr = [
+        {
+            name: 'Carlos Silva Santos',
+            rating: '4',
+            productId: '0',
+            reviewText: 'Delicious Apples.'
+        },
+        {
+            name: 'Seijougahara, Hitagi',
+            rating: '2',
+            productId: '0',
+            reviewText: 'Bad. Not mature and tastes horrible.'
+        }
+    ];
+    return arr.map(review => new Review(review.name, review.rating, review.productId, review.reviewText));
+};
+export const ReviewInfo = fillReview();
