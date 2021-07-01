@@ -13,6 +13,7 @@ import ProductForm from '@/components/ProductForm';
 import Admin from '@/components/Admin';
 import User from '@/components/User';
 import Payment from '@/components/Payment';
+import History from '@/components/History';
 
 Vue.use(Router);
 
@@ -31,6 +32,7 @@ export default new Router({
         { path: '/User', component: User },
         { path: '/ProductForm', component: ProductForm },
         { path: '/UserForm', component: UserForm },
-        { path: '/Payment', component: Payment }
+        { path: '/Payment', component: Payment },
+        { path: '/History', component: History }
     ]
 });

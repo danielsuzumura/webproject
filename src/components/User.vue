@@ -3,7 +3,7 @@
         <div id="user-box" v-if="user !== null">
             <div id="user-sidebar">
                 <a class="page-select active">User information</a>
-                <router-link class="page-select" to="/history">Purchase history</router-link>
+                <router-link class="page-select" to="/History">Purchase history</router-link>
                 <a class="page-select">Logout</a>
             </div>
             <div id="user-modification">
