@@ -6,34 +6,36 @@
                 <a class="page-select active">Purchase history</a>
                 <a class="page-select" @click="logout">Logout</a>
             </div>
-            <div id="messageNoPurchase" v-show="noPurchaseError === true">
-                <p>No purchases made!</p>
-            </div>
-            <div id="history-display" v-if="purchases !== null && noPurchaseError === false">
-                <div v-for="purchase in purchases" :key="purchase.price">
-                    <h2>Data: {{purchase._date}}, {{purchase._time}}</h2>
-                    <h2>Price: R${{purchase._price}}</h2>
-                    <table>
-                        <colgroup>
-                            <col class="item">
-                            <col class="amount">
-                            <col class="total">
-                        </colgroup>
-                        <thead>
-                            <th>Item</th>
-                            <th>Price</th>
-                            <th>Amount</th>
-                            <th>Total</th>
-                        </thead>
-                        <tbody>
-                            <tr v-for="item in purchase._cart" :key="item.product._name">
-                                <td>{{item.product._name}}</td>
-                                <td>{{item.product._price}}</td>
-                                <td>{{item.amount}}</td>
-                                <td>{{calculateTotal(item.product._price, item.amount)}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
+            <div id="history-display" >
+                <div id="messageNoPurchase" v-if="noPurchaseError === true || purchases !== null">
+                    <p>No purchases made!</p>
+                </div>
+                <div v-else>
+                    <div v-for="purchase in purchases" :key="purchase.price">
+                        <h2>Data: {{purchase._date}}, {{purchase._time}}</h2>
+                        <h2>{{purchase._price}}</h2>
+                        <table>
+                            <colgroup>
+                                <col class="item">
+                                <col class="amount">
+                                <col class="total">
+                            </colgroup>
+                            <thead>
+                                <th>Item</th>
+                                <th>Price</th>
+                                <th>Amount</th>
+                                <th>Total</th>
+                            </thead>
+                            <tbody>
+                                <tr v-for="item in purchase._cart" :key="item.product._name">
+                                    <td>{{item.product._name}}</td>
+                                    <td>{{item.product._price}}</td>
+                                    <td>{{item.amount}}</td>
+                                    <td>{{calculateTotal(item.product._price, item.amount)}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
