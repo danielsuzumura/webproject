@@ -130,3 +130,9 @@ p{
     padding: 5vh 5vw;
     background-color: #BF8CFF;
 }
+.table-purchase{
+    margin-bottom: 5%;
+}
+hr{
+    border: solid white 1px;
+}

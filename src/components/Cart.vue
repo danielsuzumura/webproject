@@ -34,6 +34,7 @@
             </table>
             <br><br>
             <button @click="goToPayment">Finish purchase</button>
+            <p v-if="noItemMessage">EMPTY CART</p>
         </div>
     </div>
 </template>
@@ -46,15 +47,32 @@ export default {
     mixins: [ImportImage, calculateTotalCart, calculateTotalProduct],
     mounted: async function () {
         this.cart = await DB.getCart();
+        try {
+            this.user = await DB.getSession();
+        } catch (err) {
+            this.user = null;
+        }
     },
     data () {
         return {
-            cart: null
+            cart: null,
+            user: null,
+            noItemMessage: false
         };
     },
     methods: {
         goToPayment () {
-            this.$router.push('/Payment');
+            if (this.cart.length < 1) {
+                this.noItemMessage = true;
+                return;
+            } else {
+                this.noItemMessage = false;
+            }
+            if (this.user === null) {
+                this.$router.push('/Login');
+            } else {
+                this.$router.push('/Payment');
+            }
         },
         async removeProduct (productName) {
             DB.removeProductCart(productName);
