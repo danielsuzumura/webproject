@@ -1,6 +1,6 @@
 <template>
-    <div id="container-user" v-if="user !== null">
-        <div id="user-box">
+    <div id="container-user">
+        <div id="user-box" v-if="user !== null">
             <h1>User information</h1>
             <table>
                 <tr>
@@ -58,7 +58,11 @@ import * as DB from '../dataSet/DatabaseConnector';
 export default {
     name: 'User',
     mounted: async function () {
-        await this.getUser();
+        try {
+            await this.getUser();
+        } catch (err) {
+            this.$router.push('/Login');
+        }
     },
     data () {
         return {
