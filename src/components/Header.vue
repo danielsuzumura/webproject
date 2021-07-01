@@ -50,6 +50,7 @@ export default {
                 }
             } else {
                 this.isLogged = false;
+                this.isAdmin = false;
             }
         });
         this.categories = await DB.getCategories();
