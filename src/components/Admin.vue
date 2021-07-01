@@ -39,7 +39,8 @@
                     </thead>
                     <tr v-for="item in displayed" :key="item._name">
                         <td v-for="attribute in item" :key="attribute.id">{{attribute}}</td>
-                        <td v-if="displayed === users"><i class="fa fa-unlock" style="font-size:24px;"></i></td>
+                        <td v-if="displayed === users && getIsAdmin(item)" @click=removeAdmin(item)><i class="fa fa-unlock" style="font-size:24px;"></i></td>
+                        <td v-else-if="displayed === users" @click=makeAdmin(item)><i class="fa fa-lock" style="font-size:24px;"></i></td>
                         <td @click=editProduct(item) v-if="displayed === products"><i class="fa fa-pencil-square-o" style="font-size:24px;"></i></td>
                         <td @click=remove(item)><i class="fa fa-times" style="font-size:24px;color:red"></i></td>
                     </tr>
@@ -161,6 +162,21 @@ export default {
         },
         editProduct (product) {
             this.$router.push('/ProductForm?query=' + product._id);
+        },
+        getIsAdmin (user) {
+            if (DB.isAdminEmail(user._email)) {
+                return true;
+            } else {
+                return false;
+            }
+        },
+        async makeAdmin (item) {
+            await DB.insertAdmin(item);
+            this.admins = await DB.getAdmins();
+        },
+        async removeAdmin (item) {
+            await DB.deleteAdmin(item._email);
+            this.admins = await DB.getAdmins();
         }
     }
 };

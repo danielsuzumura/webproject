@@ -340,6 +340,14 @@ export async function getAdmins () {
 }
 
 /**
+ * Insert admin
+ * @param {User} user User that will be admin
+ */
+export async function insertAdmin (user) {
+    Admins.push(user);
+}
+
+/**
  * Delete admin
  * @param {string} id Admin email
  */
@@ -359,4 +367,18 @@ export async function isAdmin () {
         return false;
     }
     return Admins.filter(admin => admin._email === user._email).length;
+}
+
+/**
+ * Check if user is admin
+ * @param {string} email Users email
+ * @returns {Bool} If current user is admin
+ */
+export function isAdminEmail (email) {
+    let isAdmin = Admins.filter(admin => admin._email === email).length;
+    if (isAdmin > 0) {
+        return true;
+    } else {
+        return false;
+    }
 }

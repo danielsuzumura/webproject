@@ -13,7 +13,7 @@
                 <div v-else>
                     <div v-for="purchase in purchases" :key="purchase.price">
                         <h2>Data: {{purchase._date}}, {{purchase._time}}</h2>
-                        <h2>{{purchase._price}}</h2>
+                        <h2>Price: R${{purchase._price}}</h2>
                         <table>
                             <colgroup>
                                 <col class="item">
