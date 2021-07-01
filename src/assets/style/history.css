@@ -1,7 +1,6 @@
 #container-history{
     display: flex;
     width: 100%;
-    min-height: 100vh;
     justify-content: center;
     margin: 120px auto;
 }
@@ -9,14 +8,12 @@
 #history-box{
     display: flex;
     box-shadow: black 10px 10px;
-    height: min-content;
-    background-color: #BF8CFF;
 }
 
 #history-sidebar{
     position: relative;
     display: block;
-    margin: auto;
+    margin: 0 auto;
     height: 100%;
     width: min-content;
     border: none;
@@ -127,6 +124,8 @@ p{
 }
 #messageNoPurchase{
     text-align: center;
-    color:red;
-    font-size: xx-large;
+    margin: auto;
+    color:black;
+    font-size: 2em;
+    padding: 5vh 5vw;
 }
