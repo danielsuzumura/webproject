@@ -75,7 +75,7 @@ export async function getProduct (productId) {
  * @param {Product} product Product to be inserted
  */
 export async function insertProduct (product) {
-    Categories.insert(product);
+    Products.push(product);
 }
 
 /**
@@ -245,6 +245,10 @@ export async function getSession () {
     }
 }
 
+export async function logout () {
+    window.localStorage.setItem('currentUser', '');
+}
+
 /**
  * Sales function
  */
@@ -279,6 +283,19 @@ export async function getSales () {
     } else {
         return sales;
     }
+}
+
+/**
+ * Get every purchase from user
+ * @param {string} userEmail User email
+ * @returns {Sale[]} every purchase made from user
+ */
+export async function getPurchases (userEmail) {
+    let Sales = await getSales();
+    if (Sales.length === 0) {
+        throw Error('No purchases made');
+    }
+    return Sales.filter(sale => sale._user._email === userEmail);
 }
 
 /**

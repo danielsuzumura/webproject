@@ -69,7 +69,7 @@ export default {
         },
         async sendForm () {
             if (!this.verifyInput()) {
-                let user = new Person(this.name, this.email, this.password, this.confirm_password, this.address, this.phone);
+                let user = new Person(this.name, this.email, this.password, this.address, this.phone);
                 try {
                     await DB.insertUser(user);
                     await DB.loginUser(this.email, this.password);

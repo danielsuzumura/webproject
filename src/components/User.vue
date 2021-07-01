@@ -4,7 +4,7 @@
             <div id="user-sidebar">
                 <a class="page-select active">User information</a>
                 <router-link class="page-select" to="/History">Purchase history</router-link>
-                <a class="page-select">Logout</a>
+                <a class="page-select" @click="logout">Logout</a>
             </div>
             <div id="user-modification">
                 <h1>User information</h1>
@@ -145,6 +145,11 @@ export default {
         async getUser () {
             this.user = await DB.getSession();
             this.old_email = this.user._email;
+        },
+        async logout () {
+            await DB.logout();
+            this.$root.$emit('login');
+            this.$router.push('/');
         }
     }
 };

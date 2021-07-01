@@ -25,7 +25,9 @@
             </div>
             <div id="list-display" v-if="displayed !== null">
                 <h2>{{displayedName}}</h2>
-                <i v-if="displayedKeys !== null" class="fa fa-plus" aria-hidden="true" style="font-size:46px;color:green"></i>
+                <router-link :to=redirectToAdd>
+                    <i v-if="displayedKeys !== null && redirectToAdd !== ''" class="fa fa-plus" aria-hidden="true" style="font-size:46px;color:green"></i>
+                </router-link>
                 <table v-if="displayedKeys !== null">
                     <thead>
                         <th v-for="key in displayedKeys" :key="key">
@@ -34,7 +36,7 @@
                         <th></th>
                         <th></th>
                     </thead>
-                    <tr v-for="item in displayed" :key="item._id">
+                    <tr v-for="item in displayed" :key="item._name">
                         <td v-for="attribute in item" :key="attribute.id">{{attribute}}</td>
                         <td><i class="fa fa-pencil-square-o" style="font-size:24px;"></i></td>
                         <td><i class="fa fa-times" style="font-size:24px;color:red"></i></td>
@@ -72,16 +74,32 @@ export default {
             sales: null,
             displayed: null,
             displayedKeys: null,
-            displayedName: ''
+            displayedName: '',
+            redirectToAdd: ''
         };
     },
     methods: {
         seeInfo (event) {
             switch (event.target.id) {
-            case 'users': this.displayed = this.users; break;
-            case 'products': this.displayed = this.products; break;
-            case 'admins': this.displayed = this.admins; break;
-            case 'sales': this.displayed = this.sales; break;
+            case 'users': {
+                this.displayed = this.users;
+                this.redirectToAdd = '/UserForm';
+                break;
+            }
+            case 'products': {
+                this.displayed = this.products;
+                this.redirectToAdd = '/ProductForm';
+                break;
+            }
+            case 'admins': {
+                this.displayed = this.admins;
+                this.redirectToAdd = '/ProductForm';
+                break;
+            }
+            case 'sales': {
+                this.displayed = this.sales;
+                break;
+            }
             }
             if (this.displayed.length !== 0) {
                 this.displayedKeys = Object.keys(this.displayed[0]);

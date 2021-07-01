@@ -1,7 +1,3 @@
-<style scoped>
-    @import '../assets/style/product-form';
-</style>
-
 <template>
     <div id="container">
         <div id="register-box">
@@ -9,28 +5,67 @@
                 <h1>PRODUCT REGISTER</h1>
 
                 <label id="product-name"> Product name: </label><br>
-                <input type="text" name="name"><br><br>
+                <input type="text" name="name" v-model="name"><br><br>
 
                 <label id="product-image"> Image of the product: </label><br>
                 <input type="file" name="file"> <br><br>
 
                 <label id="product-price"> Price: </label><br>
-                <input type="text" name="price"><br><br>
+                <input type="number" name="price" v-model="price" step=".01"><br><br>
 
-                <label id="product-amount"> Amount: </label><br>
-                <input type="number" name="amount"><br><br>
+                <label id="product-amount"> Stock: </label><br>
+                <input type="number" name="amount" min=0 v-model="stock"><br><br>
+
+                <label id="product-category"> Category: </label><br>
+                <input type="text" name="category" v-model="category"><br><br>
 
                 <label for="product-description"> Product description: </label><br>
-                <textarea id="product-description" name="product-description" placeholder="Your kind words here"></textarea><br><br>
+                <textarea id="product-description" name="product-description"></textarea><br><br>
 
                 <input type="submit" name="btn-submit" value="Submit">
             </form>
+            <p id="changes-saved" v-show="sucessMessage === true">Product created</p>
         </div>
     </div>
 </template>
 
 <script>
+import * as DB from '../dataSet/DatabaseConnector';
+import {Product} from '../dataSet/Product';
 export default {
-    name: 'ProductForm'
+    name: 'ProductForm',
+    data () {
+        return {
+            name: '',
+            img: '',
+            price: '',
+            stock: '',
+            category: '',
+            description: '',
+            sucessMessage: false
+        };
+    },
+    methods: {
+        async sendForm () {
+            let product = new Product(0, this.name, this.photo, this.description, this.price, this.quantityStock, 0, this.category);
+            try {
+                await DB.insertProduct(product);
+                this.sucessMessage = true;
+            } catch (err) {
+                console.log(err.message);
+                this.errorMessage = err.message;
+            }
+        }
+    }
 };
 </script>
+
+<style scoped>
+    @import '../assets/style/product-form';
+    #changes-saved{
+        margin-top: 5%;
+        color:green;
+        font-size: x-large;
+        text-align: center;
+    }
+</style>

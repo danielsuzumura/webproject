@@ -18,13 +18,6 @@
                     <input type="password" name="password" required v-model="password">
                     <p class="error">Invalid password</p>
                 </div>
-                <!--
-                <h2>Confirm password</h2>
-                <div class="input-container">
-                    <input type="password" name="confirm-password" required v-model="confirm_password">
-                    <p class="error">Password doesn't match</p>
-                </div>
-                -->
                 <h2>Address</h2>
                 <div class="input-container">
                     <input type="text" name="address" required v-model="address">
@@ -37,6 +30,7 @@
                 </div>
                 <input type="submit" name="submitForm" value="Register">
             </form>
+            <p id="changes-saved" v-show="sucessMessage === true">User created</p>
         </div>
     </div>
 </template>
@@ -52,35 +46,21 @@ export default {
             name: '',
             email: '',
             password: '',
-            confirm_password: '',
             address: '',
             phone: '',
-            errorMessage: 'Email'
+            errorMessage: 'Email',
+            sucessMessage: false
         };
     },
     methods: {
-        verifyInput () {
-            let error = false;
-            if (this.password !== this.confirm_password) {
-                errorTag[3].style.visibility = 'visible';
-                error = true;
-            } else {
-                errorTag[3].style.visibility = 'hidden';
-            }
-            return error;
-        },
         async sendForm () {
-            if (!this.verifyInput()) {
-                let user = new Person(this.name, this.email, this.password, this.confirm_password, this.address, this.phone);
-                try {
-                    await DB.insertUser(user);
-                    await DB.loginUser(this.email, this.password);
-                    this.$root.$emit('login', this.email);
-                    this.$router.push('/');
-                } catch (err) {
-                    this.errorMessage = err.message;
-                    errorTag[1].style.visibility = 'visible';
-                }
+            let user = new Person(this.name, this.email, this.password, this.address, this.phone);
+            try {
+                await DB.insertUser(user);
+                this.sucessMessage = true;
+            } catch (err) {
+                this.errorMessage = err.message;
+                errorTag[1].style.visibility = 'visible';
             }
         }
     }
@@ -88,5 +68,11 @@ export default {
 </script>
 
 <style scoped>
-    @import '../assets/style/user-form';
+    @import '../assets/style/register';
+    #changes-saved{
+        margin-top: 5%;
+        color:green;
+        font-size: x-large;
+        text-align: center;
+    }
 </style>
