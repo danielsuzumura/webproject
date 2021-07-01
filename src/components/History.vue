@@ -14,11 +14,12 @@
                         <col class="total">
                     </colgroup>
                     <thead>
-                        <th></th>
                         <th>Item</th>
                         <th>Price</th>
                         <th>Amount</th>
                         <th>Total</th>
+                        <th>Date</th>
+                        <th>Time</th>
                     </thead>
                     <tbody>
                         <tr>
@@ -27,8 +28,10 @@
                             <td>a</td>
                             <td>a</td>
                             <td>a</td>
+                            <td>a</td>
                         </tr>
                         <tr>
+                            <td>b</td>
                             <td>b</td>
                             <td>b</td>
                             <td>b</td>
