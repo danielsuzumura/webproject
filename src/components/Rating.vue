@@ -1,7 +1,7 @@
 <template>
     <div id="rating">
-        <i v-for="start in Number(ratingValue)" :key="start" class="rating-star fa fa-star"></i>
-        <i v-for="start in Number(5-ratingValue)" :key="start" class="rating-star fa fa-star-o"></i>
+        <i v-for="(star,index) in Number(ratingValue)" :key="'startFill'+index" class="rating-star fa fa-star"></i>
+        <i v-for="(star,index)  in Number(5-ratingValue)" :key="'start'+index" class="rating-star fa fa-star-o"></i>
     </div>
 </template>
 
