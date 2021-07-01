@@ -45,6 +45,7 @@
         <div v-else>
             <h2>No reviews</h2>
         </div>
+        <RatingInteractive/>
     </div>
 </template>
 
@@ -52,6 +53,8 @@
 import {ImportImage} from './shared';
 import * as DB from '../dataSet/DatabaseConnector';
 import Rating from './Rating';
+import RatingInteractive from './RatingInteractive';
+
 export default {
     name: 'ProductDisplay',
     mixins: [ImportImage],
@@ -80,7 +83,7 @@ export default {
         }
     },
     components: {
-        Rating
+        Rating, RatingInteractive
     }
 };
 </script>
