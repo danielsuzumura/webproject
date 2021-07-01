@@ -68,6 +68,8 @@ body{
     flex: 1;
     display: flex;
     justify-content: center;
+    font-size: min(1em, 3vw);
+    margin: auto 0;
 }
 /* Header account */
 #header-account{
@@ -77,6 +79,7 @@ body{
     list-style-type: none;
     padding: 0px;
     margin: 0px;
+    white-space: nowrap;
 }
 #header-account li{
     height: 100%;
