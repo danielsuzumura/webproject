@@ -9,7 +9,6 @@ The project consists in a single-page application (SPA), rewriting the current p
 * When return to home from product-display, stylesheet doesn't match home
   * Fix: add scoped to <style> tag -> <style scoped>
 # TODO
-* Allow admin to edit product
 * Allow admin to add admin
 * Create functionality specific to your application
 * Tests
