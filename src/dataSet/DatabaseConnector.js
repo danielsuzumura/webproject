@@ -11,6 +11,7 @@ let Products;
 let Users = [];
 let Review = [];
 let Admins = [];
+let Contact = [];
 /**
  * Load database
  */
@@ -402,4 +403,8 @@ export async function getReviews () {
  */
 export async function insertReview (review) {
     Review.push(review);
+}
+
+export async function insertContactUs (name, email, text) {
+    Contact.push({name, email, text});
 }
