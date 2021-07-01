@@ -9,7 +9,6 @@ The project consists in a single-page application (SPA), rewriting the current p
 * When return to home from product-display, stylesheet doesn't match home
   * Fix: add scoped to <style> tag -> <style scoped>
 # TODO
-* Fix user page without login
 * Allow user to see his purchase history
 * Allow admin to add products/users
 * Create functionality specific to your application
