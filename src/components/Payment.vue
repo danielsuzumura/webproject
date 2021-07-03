@@ -37,6 +37,7 @@
                 </div>
                 <input type="submit" name="submitForm" value="Pay">
             </form>
+            <p v-if="displayErroMessage">{{erroMessage}}</p>
         </div>
     </div>
 </template>
@@ -48,6 +49,11 @@ export default {
     name: 'Payment',
     mixins: [calculateTotalCart],
     mounted: async function () {
+        try {
+            await DB.getSession();
+        } catch (err) {
+            this.$router.push('/Login');
+        }
         this.cart = await DB.getCart();
     },
     data () {
@@ -57,13 +63,44 @@ export default {
             security_code: '',
             name: '',
             expiration_date: '',
-            zip_code: ''
+            zip_code: '',
+            displayErroMessage: false,
+            erroMessage: ''
         };
     },
     methods: {
+        checkDate () {
+            let today = new Date();
+            this.expiration_date = this.expiration_date.split('-');
+            this.expiration_date = new Date(this.expiration_date[0], this.expiration_date[1]);
+            if (this.expiration_date.getYear() < today.getYear()) {
+                return false;
+            } else {
+                if (this.expiration_date.getMonth() - 1 < today.getMonth()) {
+                    return false;
+                }
+            }
+            return true;
+        },
+        checkForm () {
+            if (!/^\d+$/.test(this.credit_card)) {
+                this.erroMessage = 'Invalid credit card';
+                return false;
+            }
+            if (!this.checkDate()) {
+                this.erroMessage = 'Credit card expired';
+                return false;
+            }
+            return true;
+        },
         finishSale () {
-            DB.insertSale(this.cart, this.total);
-            this.$router.push('/');
+            if (this.checkForm()) {
+                this.displayErroMessage = false;
+                DB.insertSale(this.cart, this.total);
+                this.$router.push('/');
+            } else {
+                this.displayErroMessage = true;
+            }
         }
     }
 };

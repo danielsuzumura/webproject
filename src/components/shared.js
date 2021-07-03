@@ -9,7 +9,7 @@ export let ImportImage = {
                 return require('../assets/img/' + photo);
             } catch (err) {
                 return require('../assets/img/no_img.png');
-            }   
+            }
         }
     }
 };
