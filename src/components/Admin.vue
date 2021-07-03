@@ -31,7 +31,7 @@
                 <table v-if="displayedKeys !== null">
                     <thead>
                         <th v-for="key in displayedKeys" :key="key">
-                            {{key}}
+                            {{removeUnderscore(key)}}
                         </th>
                         <th v-if="displayed === users">Admin</th>
                         <th v-else></th>
@@ -116,6 +116,12 @@ export default {
         };
     },
     methods: {
+        removeUnderscore (name) {
+            if (name[0] === '_') {
+                return name.substr(1);
+            }
+            return name;
+        },
         seeInfo (event) {
             switch (event.target.id) {
             case 'users': {
