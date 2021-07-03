@@ -1,0 +1,96 @@
+#container-admin {
+    margin: 150px auto;
+    width: 100%;
+    height: min-content;
+    display: block;
+}
+.denied {
+    text-align: center;
+    color:red;
+}
+#statistics {
+    width: 60vw;
+    height: 50vh;
+    display: block;
+    margin: 10vh auto;
+}
+
+.stat-box {
+    background-color: #BF8CFF;
+    width: 22vw;
+    height: 20vh;
+    text-align: center;
+    font-size: max(1em, 1.5vw);
+    font-weight: bold;
+    border: none;
+    margin: 5%;
+}
+
+.stat-box:active {
+    background-color: #9971ca;
+    transition: background-color linear 0s;
+}
+
+#user-count {
+    float: left;
+}
+
+#product-coadminunt {
+    float: right;
+}
+
+#admin-count {
+    float: left;
+}
+
+#sale-count {
+    float: right;
+}
+
+.list-display {
+    margin: 50px auto;
+    width: min-content;
+    height: min-content;
+}
+h2 {
+    text-align: left;
+}
+i {
+    cursor: pointer;
+}
+table {
+    border-collapse: collapse;
+    text-align: center;
+    border: solid black 1px;
+    border-radius: 10px;
+}
+th {
+    min-width: 3vw;
+    background-color: #BF8CFF;
+    padding: 5px 0.5vw;
+    border-bottom: solid black 1px;
+}
+hr {
+    border: 1px solid black;
+}
+td {
+    padding: 5px 0.5vw;
+    cursor: default;
+}
+tr {
+    max-height: 20px;
+}
+tr:nth-child(odd) {
+    background-color: lightgray;
+}
+tr:nth-child(even) {
+    background-color: white;
+}
+tr:hover {
+    background-color: #BF8CFF;
+    transition: background-color 0s linear;
+}
+td:hover {
+    background-color: #9971ca;
+    border-radius: 5px;
+}

@@ -1,0 +1,138 @@
+#container-history{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin: 120px auto;
+}
+
+#history-box{
+    display: flex;
+    box-shadow: black 10px 10px;
+}
+
+#history-sidebar{
+    position: relative;
+    display: block;
+    margin: 0 auto;
+    height: 100%;
+    width: min-content;
+    border: none;
+    text-align: center;
+    background-color: lightgray;
+}
+
+#history-sidebar .page-select{
+    display: block;
+    position: relative;
+    padding: 10px;
+    box-shadow: black 0px 5px 5px -6px;
+}
+
+#history-sidebar .page-select:hover{
+    background-color: rgb(226, 226, 226);
+    cursor: pointer;
+}
+
+#history-sidebar .active{
+    border-right: transparent solid 1px;
+    background-color: #BF8CFF;
+}
+
+#history-sidebar .active:hover{
+    cursor: default;
+    background-color: #BF8CFF;
+}
+
+#history-display{
+    margin: 0 auto;
+    height: 100%;
+    padding: 5vh 5vw;
+    box-sizing: border-box;
+    border: none;
+    background-color: #BF8CFF;
+    text-align: center;
+}
+
+#history-box h1{
+    font-size: 1.5em;
+}
+
+#history-box h2{
+    text-align: left;
+    margin: 3px;
+    font-size: 1em;
+    font-weight: normal;
+}
+
+#history-box input{
+    border: solid transparent;
+    width: max(200px, 15vw);
+}
+
+#history-box #history-display button{
+    width: 120px;
+    height: 34px;
+    background-color: #c54556;
+    color: white;
+    border-radius: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: clip;
+}
+
+#history-box table{
+    text-align: left;
+    margin: auto;
+    border-spacing: 0.5vw 0;
+    text-align: center;
+}
+
+#history-box th{
+    border-bottom: black solid 1px;
+    margin: 1px;
+}
+#history-box td{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-align: center;
+}
+#history-box .item{
+    width: 20vw;
+}
+#history-box .total{
+    width: 5vw;
+}
+
+#change-password{
+    width: min-content;
+    margin: auto;
+}
+
+p{
+    margin:0;
+    text-align: left;
+}
+.error{
+    visibility: hidden;
+    margin-bottom: 5%;
+    color: red;
+}
+#errorEmail{
+    margin: 0;
+    color: red;
+}
+#messageNoPurchase{
+    text-align: center;
+    margin: auto;
+    color:black;
+    font-size: 2em;
+    padding: 5vh 5vw;
+    background-color: #BF8CFF;
+}
+.table-purchase{
+    margin-bottom: 5%;
+}
+hr{
+    border: solid white 1px;
+}

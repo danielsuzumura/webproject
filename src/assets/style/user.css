@@ -1,0 +1,116 @@
+#container-user{
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    justify-content: center;
+    margin: 120px auto;
+}
+
+#user-box{
+    display: flex;
+    box-shadow: black 10px 10px;
+}
+
+#user-sidebar{
+    position: relative;
+    display: block;
+    margin: auto;
+    height: 100%;
+    width: min-content;
+    border: none;
+    text-align: center;
+    background-color: lightgray;
+}
+
+#user-sidebar .page-select{
+    display: block;
+    position: relative;
+    padding: 10px;
+    box-shadow: black 0px 5px 5px -6px;
+}
+
+#user-sidebar .page-select:hover{
+    background-color: rgb(226, 226, 226);
+    cursor: pointer;
+}
+
+#user-sidebar .active{
+    border-right: transparent solid 1px;
+    background-color: #BF8CFF;
+}
+
+#user-sidebar .active:hover{
+    cursor: default;
+    background-color: #BF8CFF;
+}
+
+#user-modification{
+    margin: auto;
+    height: 100%;
+    padding: 5vh 5vw;
+    box-sizing: border-box;
+    border: none;
+    background-color: #BF8CFF;
+    text-align: center;
+}
+
+#user-box h1{
+    font-size: 1.5em;
+}
+
+#user-box h2{
+    text-align: left;
+    margin: 3px;
+    font-size: 1em;
+    font-weight: normal;
+}
+
+#user-box input{
+    border: solid transparent;
+    width: max(200px, 15vw);
+}
+
+#user-box #user-modification button{
+    width: 120px;
+    height: 34px;
+    background-color: #c54556;
+    color: white;
+    border-radius: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: clip;
+}
+
+#user-box table{
+    text-align: left;
+    margin: auto;
+    border-spacing:0 2vh;
+}
+
+#user-box td{
+    padding: 0px 1vw;
+}
+
+#change-password{
+    width: min-content;
+    margin: auto;
+}
+
+p{
+    margin:0;
+    text-align: left;
+}
+.error{
+    visibility: hidden;
+    margin-bottom: 5%;
+    color: red;
+}
+#errorEmail{
+    margin: 0;
+    color: red;
+}
+#changes-saved{
+    margin-top: 5%;
+    color:green;
+    text-align: center;
+}

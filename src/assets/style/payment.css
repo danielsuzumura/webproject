@@ -1,0 +1,83 @@
+#container-payment{
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    justify-content: center;
+    margin: 120px auto;
+}
+
+#payment-box{
+    margin: auto;
+    padding: 5vh 5vw;
+    border: solid black 1px;
+    background-color: white;
+    text-align: center;
+    box-shadow: black 10px 10px;
+}
+
+#payment-box h1{
+    font-size: 1.5em;
+}
+
+#payment-box h2{
+    text-align: left;
+    margin: 3px;
+    font-size: 1em;
+    font-weight: normal;
+}
+
+#payment-box input[type=submit]{
+    width: 120px;
+    height: 34px;
+    background-color: #c54556;
+    color: white;
+    border-radius: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: clip;
+}
+
+#card-container{
+    width: 100%;
+}
+
+#security-container{
+    width: 50%;
+}
+
+p{
+    margin:0;
+    text-align: left;
+}
+
+input[name="credit-card"]{
+    width: 90%;
+}
+
+input[name="security-code"]{
+    width: 80%;
+}
+
+input[name="name"]{
+    width: 93%;
+}
+
+.field-line{
+    display: flex;
+}
+
+.input-container{
+    width: 100%;
+    margin-right: 5%;
+}
+
+.error{
+    visibility: hidden;
+    color: red;
+}
+#price{
+    font-size: large;
+    margin-bottom: 5%;
+    color:#c54556;
+    font-weight: bolder;
+}
