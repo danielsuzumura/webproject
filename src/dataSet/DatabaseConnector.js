@@ -78,7 +78,15 @@ export async function getProduct (productId) {
  */
 export async function insertProduct (product) {
     Products.push(product);
-    console.log(Products);
+}
+
+/**
+ * Insert a product
+ * @param {Product} product Product to be inserted
+ */
+export async function updateProduct (product) {
+    let itemIndex = Products.findIndex(item => item._id === product._id);
+    Products[itemIndex].updateProduct(product);
 }
 
 /**
@@ -405,6 +413,12 @@ export async function insertReview (review) {
     Review.push(review);
 }
 
+/**
+ * Insert contact text
+ * @param {string} name Name
+ * @param {string} email Email
+ * @param {string} text Text
+ */
 export async function insertContactUs (name, email, text) {
     Contact.push({name, email, text});
 }

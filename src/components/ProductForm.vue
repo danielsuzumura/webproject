@@ -80,10 +80,13 @@ export default {
         async sendForm () {
             let product = new Product(this.id, this.name, this.img, this.description, this.price, this.stock, this.sold, this.category);
             try {
-                await DB.insertProduct(product);
+                if (this.productIdQuery) {
+                    await DB.updateProduct(product);
+                } else {
+                    await DB.insertProduct(product);
+                }
                 this.sucessMessage = true;
             } catch (err) {
-                console.log(err.message);
                 this.errorMessage = err.message;
             }
         }

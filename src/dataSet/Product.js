@@ -68,4 +68,13 @@ export class Product {
     addStock (n) {
         this._quantityStock += n;
     }
+    updateProduct (newProduct) {
+        this._name = newProduct._name;
+        this._photo = newProduct._photo;
+        this._description = newProduct._description;
+        this._price = newProduct._price;
+        this._quantityStock = newProduct._quantityStock;
+        this._quantitySold = newProduct._quantitySold;
+        this._category = newProduct._category;
+    }
 }
