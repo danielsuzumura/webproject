@@ -19,9 +19,8 @@
   * Product/Service Management: Administrators can create/update/read/delete (crud) new products and services. For example, they can change the stock quantity.
   * Your functionality: Create a functionality that is specific to your application. It does not have to be something complicated. For instance, if you are selling cars, you may allow users to use an accelerator to hear how each car engine roars up and down.   
   * The system must provide accessibility requirements and provide good usability. The system must be responsive.
-  * The customer should be able to select individual items for products like fruits, in which the quality of the individual item is important.
-  * The system must provide a linear graph showing the sales data for the admin account, allowing the admin to visualize the number of sales made during the week, month, or year.
   * The customer should be able to search for individual items using a search bar.
+  * The customer should be able to write reviews of the products.
 
 ## Project Description
   * The project consists of a website for an online grocery store.
