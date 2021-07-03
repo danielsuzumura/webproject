@@ -62,7 +62,7 @@ export default {
     },
     methods: {
         goToPayment () {
-            if (this.cart.length < 1) {
+            if (this.cart === null || this.cart.length < 1) {
                 this.noItemMessage = true;
                 return;
             } else {
