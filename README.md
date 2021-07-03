@@ -9,7 +9,13 @@ The project consists in a single-page application (SPA), rewriting the current p
 * Filter review
 * Fix no rating in review
 # Todo
-* Tests
+* Tests 
+
+## Tests
+* The tests made by the group was described in the folder called "tests"
+
+## Comments
+* To access the administrator page inside the application, simply click in "Login" and type "admin@admin" and "admin" in the username and password respective fields.
   
 ## Build Setup
 
