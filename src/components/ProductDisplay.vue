@@ -40,6 +40,8 @@
                 <textarea name="my-review" v-model="reviewText" required></textarea><br>
                 <input type="submit" name="post-review" value="Post">
             </form>
+            <p v-if="reviewRatingError === true">Please insert rating</p>
+            <p v-if="reviewPosted === true">Thanks for reviewing this product</p>
         </div>
 
         <div id="product-review" v-if="reviews !== null">
@@ -89,7 +91,10 @@ export default {
             ratingAmount: 20,
             reviews: null,
             reviewName: '',
-            reviewText: ''
+            reviewText: '',
+            reviewPosted: false,
+            reviewRating: null,
+            reviewRatingError: false
         };
     },
     methods: {
@@ -97,8 +102,14 @@ export default {
             DB.addProductCart(this.product, this.amount);
         },
         submitReview () {
-            let review = new Review(this.reviewName, this.reviewRating, this.product._id, this.reviewText);
-            DB.insertReview(review);
+            if (this.reviewRating === null) {
+                this.reviewRatingError = true;
+            } else {
+                this.reviewRatingError = false;
+                let review = new Review(this.reviewName, this.reviewRating, this.product._id, this.reviewText);
+                DB.insertReview(review);
+                this.reviewPosted = true;
+            }
         }
     },
     components: {

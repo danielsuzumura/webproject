@@ -14,6 +14,9 @@ export default {
     props: ['ratingValue'],
     methods: {
         fillStart (rating) {
+            if (rating === undefined) {
+                rating = 0;
+            }
             let stars = document.querySelectorAll('.rating-star-it');
             for (let i = 0; i < rating; ++i) {
                 stars[i].classList.remove('fa-star-o');
