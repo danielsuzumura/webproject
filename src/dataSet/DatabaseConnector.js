@@ -106,9 +106,32 @@ export async function deleteProduct (id) {
  * @param {Product} product Product to be added
  * @param {Number} amount Quantity added
  */
+
+/**
+ * Auxiliar function to addProductCart
+ * search if there is already a product in the cart with the same name
+ * if there is, return the index to only change the amount of the item in the database
+ * else, it returns -1
+ */
+
+function isAlreadyInCart (cart, product) {
+    for (let i in cart) {
+        if (cart[i].product._name === product.name) {
+            return i;
+        }
+    }
+    return -1;
+}
+
 export async function addProductCart (product, amount) {
     let cart = JSON.parse(window.localStorage.getItem('Cart')) || [];
-    cart.push({product, amount});
+    let isInCart = isAlreadyInCart(cart, product);
+
+    if (isInCart === -1) {
+        cart.push({product, amount});
+    } else {
+        cart[isInCart].amount = parseInt(cart[isInCart].amount) + parseInt(amount);
+    }
     window.localStorage.setItem('Cart', JSON.stringify(cart));
 }
 
