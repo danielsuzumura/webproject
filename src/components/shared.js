@@ -5,7 +5,11 @@
 export let ImportImage = {
     methods: {
         getImgUrl (photo) {
-            return require('../assets/img/' + photo);
+            try {
+                return require('../assets/img/' + photo);
+            } catch (err) {
+                return require('../assets/img/no_img.png');
+            }   
         }
     }
 };
