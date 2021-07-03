@@ -191,7 +191,7 @@ export async function loginUser (email, password) {
             window.localStorage.setItem('currentUser', user._email);
             return user;
         } else {
-            throw Error('Invalid email or password');
+            throw Error('Wrong password');
         }
     } catch (error) {
         throw Error(error.message);
