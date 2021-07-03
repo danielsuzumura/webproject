@@ -7,6 +7,7 @@ The project consists in a single-page application (SPA), rewriting the current p
 
 # Issue
 * Filter review
+* Fix no rating in review
 # Todo
 * Tests
   
