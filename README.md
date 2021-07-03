@@ -8,7 +8,7 @@
   Tyago Teoi		  | 10299660
 
 ## Obs:
-  * See the Single-page application and new updates of the website in the branch named "SPA"
+  * See the Single-page application and new updates of the website, change the view for the branch named "SPA"
 
 ## Requirements
   * The system must have 2 types of users: Clients and Administrators
