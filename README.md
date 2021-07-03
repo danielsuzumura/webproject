@@ -15,7 +15,8 @@ The project consists in a single-page application (SPA), rewriting the current p
 * The tests made by the group was described in the folder called "tests"
 
 ## Comments
-* To access the administrator page inside the application, simply click in "Login" and type "admin@admin" and "admin" in the username and password respective fields.
+* To access the administrator page inside the application, simply click in "Login" and type "admin@admin" and "admin" in the username and password respective fields.<br>
+Then, click on the button called "ADMIN" that would appear on the topper bar.
   
 ## Build Setup
 
