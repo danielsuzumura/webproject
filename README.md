@@ -7,9 +7,6 @@
   Lucas Yuiti Oda Yamamoto  | 11219025
   Tyago Teoi		  | 10299660
 
-## Obs:
-  * See the Single-page application and new updates of the website, change the view for the branch named "SPA"
-
 ## Requirements
   * The system must have 2 types of users: Clients and Administrators
       * Administrators are responsible for registering/managing administrators, customers, and products/services provided. The   application already comes with an account admin with       password admin.
