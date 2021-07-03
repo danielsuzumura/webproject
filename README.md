@@ -12,7 +12,7 @@ The project consists in a single-page application (SPA), rewriting the current p
 * Tests 
 
 ## Tests
-* The tests made by the group was described in the folder called "tests"
+* The tests made by the group was described in the folder called "test"
 
 ## Comments
 * To access the administrator page inside the application, simply click in "Login" and type "admin@admin" and "admin" in the username and password respective fields.<br>
