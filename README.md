@@ -31,9 +31,7 @@
 ## Comments About the Code
 * To access the administrator page inside the application, simply click in "Login" and type "admin@admin" and "admin" in the username and password respective fields.<br>
 Then, click on the button called "ADMIN" that would appear on the topper bar.
-* Funcionalities not working due to lack of server-side:
-  * Admin: Adding a product(doesn't accept image input)
-  * Information lost when page is reloaded: Admin permission if added, product created or edited.
+
 ## Test Plan
 Tests will be made using Manual Testing
 ## Test Results
