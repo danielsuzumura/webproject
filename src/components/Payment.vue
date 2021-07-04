@@ -72,11 +72,11 @@ export default {
         checkDate () {
             let today = new Date();
             this.expiration_date = this.expiration_date.split('-');
-            this.expiration_date = new Date(this.expiration_date[0], this.expiration_date[1]);
+            this.expiration_date = new Date(this.expiration_date[0], this.expiration_date[1] - 1);
             if (this.expiration_date.getYear() < today.getYear()) {
                 return false;
             } else {
-                if (this.expiration_date.getMonth() - 1 < today.getMonth()) {
+                if (this.expiration_date.getMonth() < today.getMonth()) {
                     return false;
                 }
             }
