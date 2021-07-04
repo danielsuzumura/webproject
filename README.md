@@ -33,9 +33,9 @@
 Then, click on the button called "ADMIN" that would appear on the topper bar.
 
 ## Test Plan
-Tests will be made using Manual Testing
+Tests will be made manually by trying to reproduce each funcionality and the results will be documented in one markdown file for each area of the website.
 ## Test Results
-* The tests made by the group was described in the folder called "test"
+* The tests made by the group were described in the folder called "test" along with each test result.
 ## Build Procedures
 
 ``` bash
