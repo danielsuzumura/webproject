@@ -1,9 +1,9 @@
 import express from 'express';
-import * as controller from '../controllers/item-controller.js';
+import * as controller from '../controllers/review-controller.js';
 
 export const router = express.Router();
 
+router.get('/', controller.getAll);
 router.get('/:id', controller.get);
-router.post('/', controller.post);
-router.put('/:id', controller.put);
+router.put('/', controller.put);
 router.delete('/:id', controller.del);

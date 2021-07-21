@@ -27,4 +27,4 @@ app.set('port', port);
 const server = http.createServer(app);
 
 server.listen(port);
-console.log('running on', port);
+console.log('running on http://localhost:', port);
