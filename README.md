@@ -1,5 +1,11 @@
 # Web Project
 
+## TODO
+* Collection: Admin, Category
+* How to store image
+* Change ConnectionDB.js to use MongoDB database
+* Input verification
+
 ## Members
   Name | NUSP
   ------------ | -------------
