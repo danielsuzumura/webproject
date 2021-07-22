@@ -1,10 +1,9 @@
 # Web Project
 
 ## TODO
-* Collection: Admin, Category
-* How to store image
-* Change ConnectionDB.js to use MongoDB database
+* Change image to store in DB
 * Input verification
+* Contact Us and Review page
 
 ## Members
   Name | NUSP
