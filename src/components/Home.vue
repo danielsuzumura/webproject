@@ -20,7 +20,7 @@
                 <div class="product-container">
                     <div v-for="category in Categories" :key="category.name" class="box-product">
                         <figure>
-                            <img :src="getImgUrl(category.image)">
+                            <img :src="getImgUrl(category.photo)">
                             <figcaption><router-link :to="'/ListItems/'+category.name">{{category.name}}</router-link></figcaption>
                         </figure>
                     </div>
@@ -37,7 +37,7 @@ export default {
     mixins: [ImportImage],
     mounted: async function () {
         this.Categories = await DB.getCategories();
-        this.pic = this.Categories[0].image;
+        this.pic = this.Categories[0].photo;
         this.highlightText = this.Categories[0].slogan;
         this.highlightCategory = this.Categories[0].name;
     },
@@ -65,7 +65,7 @@ export default {
                 }
             }
             this.picIndex = this.picIndex % this.Categories.length;
-            this.pic = this.Categories[this.picIndex].image;
+            this.pic = this.Categories[this.picIndex].photo;
             this.highlightText = this.Categories[this.picIndex].slogan;
             this.highlightCategory = this.Categories[this.picIndex].name;
         }

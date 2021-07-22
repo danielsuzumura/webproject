@@ -8,6 +8,7 @@ export let ImportImage = {
             try {
                 return require('../assets/img/' + photo);
             } catch (err) {
+                console.log(err);
                 return require('../assets/img/no_img.png');
             }
         }
