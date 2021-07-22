@@ -132,13 +132,16 @@ export async function deleteProduct (id) {
 }
 
 /**
- * Change stock
+ * Change stock of product
  * @param {Product} product Product sold
  * @param {Number} amount Amount sold
  */
 export async function changeProductStock (product, amount) {
     try {
         let stockLeft = parseInt(product.quantityStock) - parseInt(amount);
+        if (stockLeft < 0) {
+            stockLeft = 0;
+        }
         await fetch(link + 'product/stock/' + product.code, {
             method: 'PATCH',
             headers: {
@@ -153,7 +156,7 @@ export async function changeProductStock (product, amount) {
 }
 
 /**
- * Change Sold
+ * Change quantity Sold  of product
  * @param {Product} product Product sold
  * @param {Number} amount Amount sold
  */
