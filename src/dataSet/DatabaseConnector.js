@@ -556,6 +556,20 @@ export async function getReviews () {
 
 /**
  * Get every review
+ * @param {Number} code Product code
+ * @returns {Review []} Every review
+ */
+export async function getProductReviews (code) {
+    try {
+        let reviews = await getReviews();
+        return reviews.filter(review => parseInt(review.productId) === code);
+    } catch (err) {
+        throw Error(err);
+    }
+}
+
+/**
+ * Get every review
  * @param {Review} review Review to be inserted
  */
 export async function insertReview (review) {
@@ -568,6 +582,19 @@ export async function insertReview (review) {
             // Add doublequote to key in object
             body: JSON.stringify(review)
         });
+    } catch (err) {
+        throw Error(err);
+    }
+}
+
+/**
+ * Get every review
+ * @returns {Review []} Every review
+ */
+export async function getReviewId () {
+    try {
+        let reviews = await getReviews();
+        return reviews.length;
     } catch (err) {
         throw Error(err);
     }

@@ -6,7 +6,7 @@
             </div><br>
             <div id="product-entry-description" class="box">
                 <h1 id="entry-title">{{product.name}}</h1>
-                <Rating rating-value=2 />
+                <Rating :rating-value = reviewMean />
                 <span>({{ratingAmount}})</span>
             </div>
             <div id="product-price" class="box">
@@ -77,7 +77,7 @@ export default {
         } catch (err) {
             this.product = 'not found';
         }
-        this.reviews = await DB.getReviews();
+        await this.getRating();
         this.$root.$on('click', (reviewRating) => {
             this.reviewRating = reviewRating;
         });
@@ -88,8 +88,9 @@ export default {
             productQuery: this.$route.query.query,
             product: null,
             amount: 1,
-            ratingAmount: 20,
+            ratingAmount: 0,
             reviews: null,
+            reviewMean: 0,
             reviewName: '',
             reviewText: '',
             reviewPosted: false,
@@ -101,15 +102,33 @@ export default {
         addToCart () {
             DB.addProductCart(this.product, this.amount);
         },
-        submitReview () {
+        async submitReview () {
+            let reviewId = await DB.getReviewId();
             if (this.reviewRating === null) {
                 this.reviewRatingError = true;
             } else {
                 this.reviewRatingError = false;
-                let review = new Review(this.reviewName, this.reviewRating, this.product.id, this.reviewText);
-                DB.insertReview(review);
+                let review = new Review(reviewId, this.reviewName, this.reviewRating, this.product.code, this.reviewText);
+                await DB.insertReview(review);
+                /** Update reviews */
+                this.reviews = await DB.getProductReviews(this.product.code);
                 this.reviewPosted = true;
+                await this.getRating();
             }
+        },
+        productMeanRating () {
+            if (this.reviews.length !== 0) {
+                let sum = 0;
+                this.reviews.map(review => {
+                    sum += parseInt(review.rating);
+                });
+                return parseInt(sum / this.reviews.length);
+            }
+        },
+        async getRating () {
+            this.reviews = await DB.getProductReviews(this.product.code);
+            this.ratingAmount = this.reviews.length;
+            this.reviewMean = this.productMeanRating();
         }
     },
     components: {
