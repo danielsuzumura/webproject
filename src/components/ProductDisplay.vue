@@ -2,7 +2,7 @@
     <div id="container" v-if="product !== null">
         <div id="product-entry">
             <div id="product-image-div" class="box">
-                <img id="product-image" :src="getImgUrl(product.photo)" alt="Four red apples, one of them cutted in half">
+                <img id="product-image" :src="product.photo" alt="Four red apples, one of them cutted in half">
             </div><br>
             <div id="product-entry-description" class="box">
                 <h1 id="entry-title">{{product.name}}</h1>
@@ -46,12 +46,12 @@
 
         <div id="product-review" v-if="reviews !== null">
             <h2>Rating and Reviews:</h2>
-            <div class="review" v-for="review in reviews" :key='review._reviewText'>
+            <div class="review" v-for="review in reviews" :key='review.id'>
                 <p class="review name">
-                    <Rating :rating-value=review._rating />
-                    {{review._name}}
+                    <Rating :rating-value=review.rating />
+                    {{review.name}}
                 </p>
-                <p>{{review._reviewText}}</p>
+                <p>{{review.reviewText}}</p>
             </div>
         </div>
         <div v-else>
@@ -106,7 +106,7 @@ export default {
                 this.reviewRatingError = true;
             } else {
                 this.reviewRatingError = false;
-                let review = new Review(this.reviewName, this.reviewRating, this.product._id, this.reviewText);
+                let review = new Review(this.reviewName, this.reviewRating, this.product.id, this.reviewText);
                 DB.insertReview(review);
                 this.reviewPosted = true;
             }

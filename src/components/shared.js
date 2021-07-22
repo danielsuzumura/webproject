@@ -8,7 +8,6 @@ export let ImportImage = {
             try {
                 return require('../assets/img/' + photo);
             } catch (err) {
-                console.log(err);
                 return require('../assets/img/no_img.png');
             }
         }
@@ -19,7 +18,7 @@ export let calculateTotalCart = {
         total () {
             let total = 0;
             this.cart.forEach(item => {
-                total += item.product._price.replace(',', '.') * item.amount;
+                total += item.product.price * item.amount;
             });
             return total.toFixed(2);
         }
@@ -29,7 +28,7 @@ export let calculateTotalCart = {
 export let calculateTotalProduct = {
     methods: {
         calculateTotal (price, amount) {
-            return (price.replace(',', '.') * amount).toFixed(2);
+            return (price * amount).toFixed(2);
         }
     }
 };

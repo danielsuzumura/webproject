@@ -17,12 +17,12 @@
                 </thead>
                 <tbody v-if="cart !== null">
                     <tr v-for="item in cart" :key="item.key">
-                        <td><img :src="getImgUrl(item.product._photo)"></td>
-                        <td>{{item.product._name}}</td>
-                        <td>R${{item.product._price}}</td>
+                        <td><img :src=item.product.photo></td>
+                        <td>{{item.product.name}}</td>
+                        <td>R${{item.product.price}}</td>
                         <td>{{item.amount}}</td>
-                        <td>R${{calculateTotal(item.product._price, item.amount)}}</td>
-                        <td @click.prevent.stop=removeProduct(item.product._name)><i class="fa fa-times" style="font-size:24px;color:red"></i></td>
+                        <td>R${{calculateTotal(item.product.price, item.amount)}}</td>
+                        <td @click.prevent.stop=removeProduct(item.product.name)><i class="fa fa-times" style="font-size:24px;color:red"></i></td>
                     </tr>
                 </tbody>
                 <tfoot v-if="cart !== null">

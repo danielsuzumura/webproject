@@ -37,7 +37,7 @@
                         <th v-else></th>
                         <th v-if="displayed !== admins"></th>
                     </thead>
-                    <tr v-for="item in displayed" :key="item._name">
+                    <tr v-for="item in displayed" :key="item.name">
                         <td v-for="attribute in item" :key="attribute.id">{{attribute}}</td>
                         <td v-if="displayed === users && getIsAdmin(item)" @click=removeAdmin(item)><i class="fa fa-unlock" style="font-size:24px;"></i></td>
                         <td v-else-if="displayed === users" @click=makeAdmin(item)><i class="fa fa-lock" style="font-size:24px;"></i></td>
@@ -50,9 +50,9 @@
                 <h2>Sales</h2>
                 <div id="history-display" v-if="sales !== null">
                     <div v-for="sale in sales" :key="sale.price">
-                        <p><b>User</b>: {{sale._user._email}}</p>
-                        <p><b>Data</b>: {{sale._date}}, {{sale._time}}</p>
-                        <p><b>Price:</b> R${{sale._price}}</p>
+                        <p><b>User</b>: {{sale.user}}</p>
+                        <p><b>Data</b>: {{sale.date}}, {{sale.time}}</p>
+                        <p><b>Price:</b> R${{sale.price}}</p>
                         <table>
                             <colgroup>
                                 <col class="item">
@@ -66,11 +66,11 @@
                                 <th>Total</th>
                             </thead>
                             <tbody>
-                                <tr v-for="item in sale._cart" :key="item.product._name">
-                                    <td>{{item.product._name}}</td>
-                                    <td>{{item.product._price}}</td>
+                                <tr v-for="item in sale.cart" :key="item.product.name">
+                                    <td>{{item.product.name}}</td>
+                                    <td>{{item.product.price}}</td>
                                     <td>{{item.amount}}</td>
-                                    <td>{{calculateTotal(item.product._price, item.amount)}}</td>
+                                    <td>{{calculateTotal(item.product.price, item.amount)}}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -153,35 +153,36 @@ export default {
         },
         async remove (item) {
             if (this.displayed === this.users) {
-                await DB.deleteUser(item._email);
+                await DB.deleteUser(item.email);
                 this.users = await DB.getUsers();
                 this.displayed = this.users;
             } else if (this.displayed === this.products) {
-                await DB.deleteProduct(item._id);
+                await DB.deleteProduct(item.id);
                 this.products = await DB.getProducts();
                 this.displayed = this.products;
             } else {
-                await DB.deleteAdmin(item._email);
+                await DB.deleteAdmin(item.email);
                 this.admins = await DB.getAdmins();
                 this.displayed = this.admins;
             }
         },
         editProduct (product) {
-            this.$router.push('/ProductForm?query=' + product._id);
+            this.$router.push('/ProductForm?query=' + product.id);
         },
         getIsAdmin (user) {
-            if (DB.isAdminEmail(user._email)) {
+            if (this.admins.filter(admin => admin.email === user.email).length > 0) {
                 return true;
             } else {
                 return false;
             }
         },
         async makeAdmin (item) {
+            console.log('adding admin');
             await DB.insertAdmin(item);
             this.admins = await DB.getAdmins();
         },
         async removeAdmin (item) {
-            await DB.deleteAdmin(item._email);
+            await DB.deleteAdmin(item.email);
             this.admins = await DB.getAdmins();
         }
     }

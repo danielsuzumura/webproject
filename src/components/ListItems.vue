@@ -6,7 +6,7 @@
             <div class="product-container">
                 <div class="box-product" v-for="product in filter" :key="product.name">
                     <figure >
-                        <img id="img-product" :src="getImgUrl(product.photo)">
+                        <img id="img-product" :src=product.photo>
                         <figcaption>
                             <div id="stock-test" v-if="product.quantityStock > 0">
                                 <router-link :to=getlinkToProduct(product)>{{product.name}}</router-link>
@@ -60,7 +60,7 @@ export default {
     },
     methods: {
         getlinkToProduct (product) {
-            return this.linkToProduct + product.id;
+            return this.linkToProduct + product.code;
         }
     }
 };

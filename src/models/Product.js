@@ -11,7 +11,7 @@ const schema = new Schema({
         required: true
     },
     photo: {
-        type: Buffer,
+        type: String,
         required: false
     },
     description: {

@@ -334,11 +334,14 @@ export async function logout () {
  */
 export async function insertSale (cart, price) {
     // Create sale
+    let id = await getSales();
+    id = id.length;
     let today = new Date();
     let date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
     let time = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
     let user = await getSession();
-    let sale = new Sale(cart, price, user, date, time);
+    let sale = new Sale(id, cart, price, user.email, date, time);
+    console.log(sale);
     deleteCart();
     // get list of sales
     try {
@@ -379,7 +382,7 @@ export async function getPurchases (userEmail) {
     if (Sales.length === 0) {
         throw Error('No purchases made');
     }
-    Sales = Sales.filter(sale => sale.user.email === userEmail);
+    Sales = Sales.filter(sale => sale.user === userEmail);
     if (Sales.length === 0) {
         throw Error('No purchases made');
     }
@@ -460,6 +463,7 @@ export async function isAdmin () {
 export async function isAdminEmail (email) {
     let Admins = await getAdmins();
     let isAdmin = Admins.filter(admin => admin.email === email).length;
+    console.log(isAdmin > 0);
     if (isAdmin > 0) {
         return true;
     } else {
