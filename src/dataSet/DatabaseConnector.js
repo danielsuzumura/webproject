@@ -2,37 +2,15 @@
  * Database manipulation
  */
 
-import * as FillDB from './FillDatabase';
-import {Person} from './Person';
-import {Sale} from './Sale';
+import {Sale} from './Sale.js';
 
-let Categories;
-let Products;
-let Users = [];
-let Review = [];
-let Admins = [];
-let Contact = [];
+const link = 'http://localhost:3000/';
+
 /**
  * Load database
  */
 export async function loadDatabase () {
-    Categories = FillDB.CategoryInfo;
-    Products = FillDB.ProductsInfo;
-    Review = FillDB.ReviewInfo;
-    Object.keys(window.localStorage).forEach((key) => {
-        try {
-            if (key !== 'Cart' && key !== 'Sales') {
-                let user = JSON.parse(window.localStorage.getItem(key));
-                if (Object.keys(user).length > 5) {
-                    Users.push(JSON.parse(window.localStorage.getItem(key)));
-                }
-            }
-        } catch (err) {
-            // ignore error
-        }
-    });
     window.localStorage.setItem('currentUser', '');
-    await createAdmin();
 }
 
 /**
@@ -44,7 +22,13 @@ export async function loadDatabase () {
  * @returns {Category[]} Every category
  */
 export async function getCategories () {
-    return Categories;
+    try {
+        let category = await fetch(link + 'category');
+        category = await category.json();
+        return category;
+    } catch (err) {
+        throw Error(err);
+    }
 }
 
 /**
@@ -52,7 +36,18 @@ export async function getCategories () {
  * @param {Category} category
  */
 export async function insertCategory (category) {
-    Categories.insert(category);
+    try {
+        await fetch(link + 'category', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            // Add doublequote to key in object
+            body: JSON.stringify(category)
+        });
+    } catch (err) {
+        throw Error(err);
+    }
 }
 
 /**
@@ -60,7 +55,13 @@ export async function insertCategory (category) {
  * @returns {Product[]} Every product
  */
 export async function getProducts () {
-    return Products;
+    try {
+        let products = await fetch(link + 'product');
+        products = await products.json();
+        return products;
+    } catch (err) {
+        throw Error(err);
+    }
 }
 
 /**
@@ -69,7 +70,13 @@ export async function getProducts () {
  * @returns {Product}
  */
 export async function getProduct (productId) {
-    return Products.filter(product => product.id === productId)[0];
+    try {
+        let product = await fetch(link + 'product/' + productId);
+        product = await product.json();
+        return product;
+    } catch (err) {
+        throw Error(err);
+    }
 }
 
 /**
@@ -77,7 +84,18 @@ export async function getProduct (productId) {
  * @param {Product} product Product to be inserted
  */
 export async function insertProduct (product) {
-    Products.push(product);
+    try {
+        await fetch(link + 'product', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            // Add doublequote to key in object
+            body: JSON.stringify(product)
+        });
+    } catch (err) {
+        throw Error(err);
+    }
 }
 
 /**
@@ -85,8 +103,11 @@ export async function insertProduct (product) {
  * @param {Product} product Product to be inserted
  */
 export async function updateProduct (product) {
-    let itemIndex = Products.findIndex(item => item._id === product._id);
-    Products[itemIndex].updateProduct(product);
+    try {
+        await insertProduct(product);
+    } catch (err) {
+        throw Error(err);
+    }
 }
 
 /**
@@ -94,7 +115,13 @@ export async function updateProduct (product) {
  * @param {Number} id Product id
  */
 export async function deleteProduct (id) {
-    Products = Products.filter(product => product._id !== id);
+    try {
+        await fetch(link + 'product/' + id, {
+            method: 'DELETE'
+        });
+    } catch (err) {
+        throw Error(err);
+    }
 }
 
 /**
@@ -116,7 +143,7 @@ export async function deleteProduct (id) {
 
 function isAlreadyInCart (cart, product) {
     for (let i in cart) {
-        if (cart[i].product._name === product.name) {
+        if (cart[i].product.name === product.name) {
             return i;
         }
     }
@@ -141,7 +168,7 @@ export async function addProductCart (product, amount) {
  */
 export async function removeProductCart (productName) {
     let cart = JSON.parse(localStorage.getItem('Cart')) || [];
-    cart = cart.filter(item => item.product._name !== productName);
+    cart = cart.filter(item => item.product.name !== productName);
     localStorage.setItem('Cart', JSON.stringify(cart));
 }
 
@@ -170,14 +197,17 @@ export async function getCart () {
  */
 export async function insertUser (user) {
     try {
-        if (window.localStorage.getItem(user._email) === null) { // email doesn't exist
-            window.localStorage.setItem(user._email, JSON.stringify(user));
-            Users.push(user);
-        } else {
-            throw Error('Email is already in use');
-        }
-    } catch (error) {
-        throw Error(error.message);
+        console.log(JSON.stringify(user));
+        await fetch(link + 'person', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            // Add doublequote to key in object
+            body: JSON.stringify(user)
+        });
+    } catch (err) {
+        throw Error(err);
     }
 }
 
@@ -187,12 +217,26 @@ export async function insertUser (user) {
  * @returns {Person} User
  */
 export async function getUser (userEmail) {
-    // Get object matching current user
-    let user = window.localStorage.getItem(userEmail);
-    if (user !== null) {
-        return JSON.parse(user);
-    } else {
-        throw ReferenceError('User not found');
+    try {
+        let user = await fetch(link + 'person/' + userEmail);
+        user = await user.json();
+        return user;
+    } catch (err) {
+        throw Error(err);
+    }
+}
+
+/**
+ * Get every user
+ * @returns {Person[]} Every user
+ */
+export async function getUsers () {
+    try {
+        let users = await fetch(link + 'person/');
+        users = await users.json();
+        return users;
+    } catch (err) {
+        throw Error(err);
     }
 }
 
@@ -205,13 +249,12 @@ export async function getUser (userEmail) {
 export async function loginUser (email, password) {
     let user;
     try {
-        user = JSON.parse(window.localStorage.getItem(email));
+        user = await getUser(email);
         if (user === null) {
             throw Error('User doesn\'t exist');
         }
-        // Make user instanceof Person class ?
-        if (password === user._password) {
-            window.localStorage.setItem('currentUser', user._email);
+        if (password === user.password) {
+            window.localStorage.setItem('currentUser', user.email);
             return user;
         } else {
             throw Error('Wrong password');
@@ -229,11 +272,11 @@ export async function loginUser (email, password) {
 export async function updateUser (user, oldEmail) {
     try {
         await deleteUser(oldEmail);
-        window.localStorage.setItem('currentUser', user._email);
+        window.localStorage.setItem('currentUser', user.email);
         try {
             await insertUser(user);
         } catch (err) {
-            user._email = oldEmail;
+            user.email = oldEmail;
             await insertUser(user);
             throw Error('Email is already in use');
         }
@@ -248,23 +291,12 @@ export async function updateUser (user, oldEmail) {
  */
 export async function deleteUser (userEmail) {
     try {
-        if (window.localStorage.getItem(userEmail) === null) {
-            throw Error('User not found');
-        } else {
-            window.localStorage.removeItem(userEmail);
-            Users = Users.filter(item => item._email !== userEmail);
-        }
-    } catch (error) {
-        throw Error(error.message);
+        await fetch(link + 'person/' + userEmail, {
+            method: 'DELETE'
+        });
+    } catch (err) {
+        throw Error(err);
     }
-}
-
-/**
- * Get every user
- * @returns {Person[]} Every user
- */
-export async function getUsers () {
-    return Users;
 }
 
 /**
@@ -277,11 +309,11 @@ export async function getUsers () {
  */
 export async function getSession () {
     // Get email from current user
-    let userKey = window.localStorage.getItem('currentUser');
+    let userEmail = window.localStorage.getItem('currentUser');
     // Get object matching current user
-    if (userKey !== '') {
-        let user = window.localStorage.getItem(userKey);
-        return JSON.parse(user);
+    if (userEmail !== '') {
+        let user = await getUser(userEmail);
+        return user;
     } else {
         throw ReferenceError('No user logged in');
     }
@@ -309,9 +341,18 @@ export async function insertSale (cart, price) {
     let sale = new Sale(cart, price, user, date, time);
     deleteCart();
     // get list of sales
-    let Sales = JSON.parse(window.localStorage.getItem('Sales')) || [];
-    Sales.push(sale);
-    window.localStorage.setItem('Sales', JSON.stringify(Sales));
+    try {
+        await fetch(link + 'sale', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            // Add doublequote to key in object
+            body: JSON.stringify(sale)
+        });
+    } catch (err) {
+        throw Error(err);
+    }
 }
 
 /**
@@ -319,11 +360,12 @@ export async function insertSale (cart, price) {
  * @returns {Sale[]} Every sale
  */
 export async function getSales () {
-    let sales = JSON.parse(localStorage.getItem('Sales'));
-    if (sales === null) {
-        return [];
-    } else {
+    try {
+        let sales = await fetch(link + 'sale');
+        sales = await sales.json();
         return sales;
+    } catch (err) {
+        throw Error(err);
     }
 }
 
@@ -337,7 +379,7 @@ export async function getPurchases (userEmail) {
     if (Sales.length === 0) {
         throw Error('No purchases made');
     }
-    Sales = Sales.filter(sale => sale._user._email === userEmail);
+    Sales = Sales.filter(sale => sale.user.email === userEmail);
     if (Sales.length === 0) {
         throw Error('No purchases made');
     }
@@ -349,27 +391,17 @@ export async function getPurchases (userEmail) {
  */
 
 /**
- * Create main admin
- * login:
- *      Email: admin@admin
- *      Password: admin
- */
-async function createAdmin () {
-    let admin = new Person('admin', 'admin@admin', 'admin', '', '1234-5678');
-    try {
-        await insertUser(admin);
-    } catch (err) {
-
-    }
-    Admins.push(admin);
-}
-
-/**
  * Get every admin
  * @returns Every admin
  */
 export async function getAdmins () {
-    return Admins;
+    try {
+        let admin = await fetch(link + 'admin');
+        admin = await admin.json();
+        return admin;
+    } catch (err) {
+        throw Error(err);
+    }
 }
 
 /**
@@ -377,7 +409,18 @@ export async function getAdmins () {
  * @param {User} user User that will be admin
  */
 export async function insertAdmin (user) {
-    Admins.push(user);
+    try {
+        await fetch(link + 'admin', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            // Add doublequote to key in object
+            body: JSON.stringify(user)
+        });
+    } catch (err) {
+        throw Error(err);
+    }
 }
 
 /**
@@ -385,7 +428,13 @@ export async function insertAdmin (user) {
  * @param {string} id Admin email
  */
 export async function deleteAdmin (email) {
-    Admins = Admins.filter(admin => admin._email !== email);
+    try {
+        await fetch(link + 'admin/' + email, {
+            method: 'DELETE'
+        });
+    } catch (err) {
+        throw Error(err);
+    }
 }
 
 /**
@@ -393,13 +442,14 @@ export async function deleteAdmin (email) {
  * @returns {Bool} If current user is admin
  */
 export async function isAdmin () {
+    let Admins = await getAdmins();
     let user;
     try {
         user = await getSession();
     } catch (err) {
         return false;
     }
-    return Admins.filter(admin => admin._email === user._email).length;
+    return Admins.filter(admin => admin.email === user.email).length;
 }
 
 /**
@@ -407,8 +457,9 @@ export async function isAdmin () {
  * @param {string} email Users email
  * @returns {Bool} If current user is admin
  */
-export function isAdminEmail (email) {
-    let isAdmin = Admins.filter(admin => admin._email === email).length;
+export async function isAdminEmail (email) {
+    let Admins = await getAdmins();
+    let isAdmin = Admins.filter(admin => admin.email === email).length;
     if (isAdmin > 0) {
         return true;
     } else {
@@ -425,7 +476,13 @@ export function isAdminEmail (email) {
  * @returns {Review []} Every review
  */
 export async function getReviews () {
-    return Review;
+    try {
+        let reviews = await fetch(link + 'review');
+        reviews = await reviews.json();
+        return reviews;
+    } catch (err) {
+        throw Error(err);
+    }
 }
 
 /**
@@ -433,7 +490,18 @@ export async function getReviews () {
  * @param {Review} review Review to be inserted
  */
 export async function insertReview (review) {
-    Review.push(review);
+    try {
+        await fetch(link + 'review', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            // Add doublequote to key in object
+            body: JSON.stringify(review)
+        });
+    } catch (err) {
+        throw Error(err);
+    }
 }
 
 /**
@@ -443,5 +511,5 @@ export async function insertReview (review) {
  * @param {string} text Text
  */
 export async function insertContactUs (name, email, text) {
-    Contact.push({name, email, text});
+    // Contact.push({name, email, text});
 }

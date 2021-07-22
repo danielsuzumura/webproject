@@ -9,7 +9,7 @@
                     <input type="text" name="name" v-model="name"><br><br>
 
                     <label id="product-image"> Image of the product: </label><br>
-                    <input type="file" name="file"> <br><br>
+                    <input type="file" name="file" @change='getBaseUrl()'> <br><br>
 
                     <label id="product-price"> Price: </label><br>
                     <input type="text" name="price" v-model="price"><br><br>
@@ -44,17 +44,17 @@ export default {
             this.isAdmin = true;
         }
         let size = (await DB.getProducts()).length;
-        this.id = size;
+        this.code = size;
         if (this.productIdQuery !== undefined) {
             let product = await DB.getProduct(this.productIdQuery);
-            this.name = product._name;
-            this.img = product._photo;
-            this.description = product._description;
-            this.price = product._price;
-            this.stock = product._quantityStock;
-            this.sold = product._quantitySold;
-            this.category = product._category;
-            this.id = product._id;
+            this.name = product.name;
+            this.photo = product.photo;
+            this.description = product.description;
+            this.price = product.price;
+            this.stock = product.quantityStock;
+            this.sold = product.quantitySold;
+            this.category = product.category;
+            this.code = product.code;
             this.sucessMessageContent = 'Product updated';
         } else {
             this.sucessMessageContent = 'Product created';
@@ -64,21 +64,33 @@ export default {
         return {
             isAdmin: false,
             name: '',
-            img: '',
+            photo: '',
             price: '',
             stock: '',
             sold: 0,
             category: '',
             description: '',
-            id: 0,
+            code: 0,
             sucessMessage: false,
             sucessMessageContent: '',
             productIdQuery: this.$route.query.query
         };
     },
     methods: {
+        getBaseUrl () {
+            var file = document.querySelector('input[type=file]')['files'][0];
+            var reader = new FileReader();
+            var baseString;
+            reader.onloadend = () => {
+                baseString = reader.result;
+                this.photo = baseString;
+            };
+            reader.readAsDataURL(file);
+        },
         async sendForm () {
-            let product = new Product(this.id, this.name, this.img, this.description, this.price, this.stock, this.sold, this.category);
+            console.log(this.photo);
+            let product = new Product(this.code, this.name, this.photo, this.description, this.price, this.stock, this.sold, this.category);
+            console.log(product);
             try {
                 if (this.productIdQuery) {
                     await DB.updateProduct(product);
