@@ -47,9 +47,11 @@ Tests will be made manually by trying to reproduce each funcionality and the res
 # install dependencies
 npm install
 
-# serve with hot reload at localhost:8080
-npm run dev
+# compile vue
+npm run build
 
+# run server
+npm start
 ```
 ## Problems
 * Funcionalities not working due to lack of server-side:
