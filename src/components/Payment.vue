@@ -93,10 +93,11 @@ export default {
             }
             return true;
         },
-        finishSale () {
+        async finishSale () {
             if (this.checkForm()) {
                 this.displayErroMessage = false;
-                DB.insertSale(this.cart, this.total);
+                await DB.insertSale(this.cart, this.total);
+                DB.updateFinishPurchase(this.cart);
                 this.$router.push('/');
             } else {
                 this.displayErroMessage = true;

@@ -56,6 +56,84 @@ export const put = async (req, res) => {
     }
 };
 
+/**
+ * Update product
+ * @param {*} req Requisition
+ * @param {*} res Response
+ */
+export const patch = async (req, res) => {
+    let code = req.params.code;
+    try {
+        await Product.findOneAndUpdate({code: code}, {
+            $set: {
+                name: req.body.name,
+                photo: req.body.photo,
+                description: req.body.description,
+                price: req.body.price,
+                quantityStock: req.body.quantityStock,
+                quantitySold: req.body.quantitySold,
+                category: req.body.category
+            }
+        });
+        res.status(201).send({message: 'Product updated'});
+    } catch (err) {
+        res.status(400).send(
+            {
+                message: 'Product not updated',
+                data: {err}
+            }
+        );
+    }
+};
+
+/**
+ * Change quantity stock of product
+ * @param {*} req Requisition
+ * @param {*} res Response
+ */
+export const changeStock = async (req, res) => {
+    let code = req.params.code;
+    try {
+        await Product.findOneAndUpdate({code: code}, {
+            $set: {
+                quantityStock: req.body.quantityStock
+            }
+        });
+        res.status(201).send({message: 'Product updated'});
+    } catch (err) {
+        res.status(400).send(
+            {
+                message: 'Product not updated',
+                data: {err}
+            }
+        );
+    }
+};
+
+/**
+ * Change quantity sold of product
+ * @param {*} req Requisition
+ * @param {*} res Response
+ */
+export const changeSold = async (req, res) => {
+    let code = req.params.code;
+    try {
+        await Product.findOneAndUpdate({code: code}, {
+            $set: {
+                quantitySold: req.body.quantitySold
+            }
+        });
+        res.status(201).send({message: 'Product updated'});
+    } catch (err) {
+        res.status(400).send(
+            {
+                message: 'Product not updated',
+                data: {err}
+            }
+        );
+    }
+};
+
 export const del = async (req, res) => {
     try {
         await Product.findOneAndRemove({

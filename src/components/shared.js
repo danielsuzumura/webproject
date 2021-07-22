@@ -13,6 +13,10 @@ export let ImportImage = {
         }
     }
 };
+
+/**
+ * Calculate total price from cart
+ */
 export let calculateTotalCart = {
     computed: {
         total () {
@@ -25,6 +29,9 @@ export let calculateTotalCart = {
     }
 };
 
+/**
+ * Calculate total price from product in cart
+ */
 export let calculateTotalProduct = {
     methods: {
         calculateTotal (price, amount) {

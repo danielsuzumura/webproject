@@ -1,3 +1,7 @@
+/**
+ * Review HTTP methods
+ */
+
 import express from 'express';
 import * as controller from '../controllers/review-controller.js';
 

@@ -1,3 +1,7 @@
+/**
+ * User HTTP methods
+ */
+
 import express from 'express';
 import * as controller from '../controllers/person-controller.js';
 

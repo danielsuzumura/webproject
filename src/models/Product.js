@@ -1,3 +1,7 @@
+/**
+ * MongoDB Product model
+ */
+
 import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 const schema = new Schema({

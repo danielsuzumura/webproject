@@ -99,12 +99,19 @@ export async function insertProduct (product) {
 }
 
 /**
- * Insert a product
- * @param {Product} product Product to be inserted
+ * Update a product
+ * @param {Product} product New Product values
  */
 export async function updateProduct (product) {
     try {
-        await insertProduct(product);
+        await fetch(link + 'product/' + product.code, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            // Add doublequote to key in object
+            body: JSON.stringify(product)
+        });
     } catch (err) {
         throw Error(err);
     }
@@ -118,6 +125,64 @@ export async function deleteProduct (id) {
     try {
         await fetch(link + 'product/' + id, {
             method: 'DELETE'
+        });
+    } catch (err) {
+        throw Error(err);
+    }
+}
+
+/**
+ * Change stock
+ * @param {Product} product Product sold
+ * @param {Number} amount Amount sold
+ */
+export async function changeProductStock (product, amount) {
+    try {
+        let stockLeft = parseInt(product.quantityStock) - parseInt(amount);
+        await fetch(link + 'product/stock/' + product.code, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            // Add doublequote to key in object
+            body: JSON.stringify({quantityStock: stockLeft})
+        });
+    } catch (err) {
+        throw Error(err);
+    }
+}
+
+/**
+ * Change Sold
+ * @param {Product} product Product sold
+ * @param {Number} amount Amount sold
+ */
+export async function changeProductSold (product, amount) {
+    try {
+        let totalSold = parseInt(product.quantitySold) + parseInt(amount);
+        await fetch(link + 'product/sold/' + product.code, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            // Add doublequote to key in object
+            body: JSON.stringify({quantitySold: totalSold})
+        });
+    } catch (err) {
+        throw Error(err);
+    }
+}
+
+/**
+ * Change Sold and Stock after purchase
+ * @param {Product} product Product sold
+ * @param {Number} amount Amount sold
+ */
+export async function updateFinishPurchase (cart) {
+    try {
+        cart.forEach(async item => {
+            await changeProductSold(item.product, item.amount);
+            await changeProductStock(item.product, item.amount);
         });
     } catch (err) {
         throw Error(err);
@@ -197,7 +262,6 @@ export async function getCart () {
  */
 export async function insertUser (user) {
     try {
-        console.log(JSON.stringify(user));
         await fetch(link + 'person', {
             method: 'PUT',
             headers: {
@@ -341,7 +405,6 @@ export async function insertSale (cart, price) {
     let time = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
     let user = await getSession();
     let sale = new Sale(id, cart, price, user.email, date, time);
-    console.log(sale);
     deleteCart();
     // get list of sales
     try {
@@ -463,7 +526,6 @@ export async function isAdmin () {
 export async function isAdminEmail (email) {
     let Admins = await getAdmins();
     let isAdmin = Admins.filter(admin => admin.email === email).length;
-    console.log(isAdmin > 0);
     if (isAdmin > 0) {
         return true;
     } else {

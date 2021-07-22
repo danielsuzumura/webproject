@@ -31,17 +31,21 @@
                 <table v-if="displayedKeys !== null">
                     <thead>
                         <th v-for="key in displayedKeys" :key="key">
-                            {{removeUnderscore(key)}}
+                            {{key}}
                         </th>
                         <th v-if="displayed === users">Admin</th>
                         <th v-else></th>
                         <th v-if="displayed !== admins"></th>
                     </thead>
                     <tr v-for="item in displayed" :key="item.name">
-                        <td v-for="attribute in item" :key="attribute.id">{{attribute}}</td>
+                        <td v-for="attribute in item" :key="attribute.id">{{trimAttribute(attribute)}}</td>
+                        <!-- Admin icon -->
                         <td v-if="displayed === users && getIsAdmin(item)" @click=removeAdmin(item)><i class="fa fa-unlock" style="font-size:24px;"></i></td>
+                        <!-- Not admin icon -->
                         <td v-else-if="displayed === users" @click=makeAdmin(item)><i class="fa fa-lock" style="font-size:24px;"></i></td>
+                        <!-- Edit icon -->
                         <td @click=editProduct(item) v-if="displayed === products"><i class="fa fa-pencil-square-o" style="font-size:24px;"></i></td>
+                        <!-- Remove icon -->
                         <td @click=remove(item)><i class="fa fa-times" style="font-size:24px;color:red"></i></td>
                     </tr>
                 </table>
@@ -88,9 +92,13 @@
 <script>
 import * as DB from '../dataSet/DatabaseConnector';
 import {calculateTotalProduct} from './shared';
+const MAXTRIM = 50;
 export default {
     name: 'Admin',
     mounted: async function () {
+        /**
+         * Check if current user is admin (permission verification)
+         */
         if (await DB.isAdmin()) {
             this.isAdmin = true;
         }
@@ -116,12 +124,16 @@ export default {
         };
     },
     methods: {
-        removeUnderscore (name) {
-            if (name[0] === '_') {
-                return name.substr(1);
+        trimAttribute (attribute) {
+            if (attribute.constructor.name === 'String' && attribute.length >= 100) {
+                return attribute.substring(0, MAXTRIM) + '...';
+            } else {
+                return attribute;
             }
-            return name;
         },
+        /**
+         * Display list depending on what field the admin clicked
+         */
         seeInfo (event) {
             switch (event.target.id) {
             case 'users': {
@@ -144,6 +156,7 @@ export default {
                 break;
             }
             }
+            /** Get key name from object */
             if (this.displayed.length !== 0) {
                 this.displayedKeys = Object.keys(this.displayed[0]);
             } else {
@@ -151,38 +164,64 @@ export default {
             }
             this.displayedName = event.target.id.toUpperCase();
         },
+        /**
+         * Delete item
+         */
         async remove (item) {
             if (this.displayed === this.users) {
                 await DB.deleteUser(item.email);
+
+                /** Update user list */
                 this.users = await DB.getUsers();
+                /** Update displayed list */
                 this.displayed = this.users;
             } else if (this.displayed === this.products) {
                 await DB.deleteProduct(item.id);
+
+                /** Update product list */
                 this.products = await DB.getProducts();
+                /** Update displayed list */
                 this.displayed = this.products;
             } else {
                 await DB.deleteAdmin(item.email);
+
+                /** Update admin list */
                 this.admins = await DB.getAdmins();
+                /** Update displayed list */
                 this.displayed = this.admins;
             }
         },
+        /**
+         * Redirect to product form page
+         */
         editProduct (product) {
-            this.$router.push('/ProductForm?query=' + product.id);
+            this.$router.push('/ProductForm?query=' + product.code);
         },
+        /**
+         * Verify if user is admin
+         */
         getIsAdmin (user) {
+            /** Check if user is in admin list */
             if (this.admins.filter(admin => admin.email === user.email).length > 0) {
                 return true;
             } else {
                 return false;
             }
         },
+        /**
+         * Make user admin
+         */
         async makeAdmin (item) {
-            console.log('adding admin');
             await DB.insertAdmin(item);
+            /** Update admin list */
             this.admins = await DB.getAdmins();
         },
+        /**
+         * Remode admin from admin list
+         */
         async removeAdmin (item) {
             await DB.deleteAdmin(item.email);
+            /** Update admin list */
             this.admins = await DB.getAdmins();
         }
     }

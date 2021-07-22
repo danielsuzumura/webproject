@@ -12,7 +12,6 @@
                 <label id="form-email"> Your Email: </label><br>
                 <input type="email" name="user-email" v-model="email" required><br><br>
                 <label for="form-text"> Your Message: </label><br>
-                <!--<input type="submit" name="btn-submit" value="Submit">-->
                 <textarea id="form-text" name="form-text" placeholder="Your kind words here" v-model="message" required></textarea><br>
                 <input type="submit" name="btn-submit" value="Submit">
             </form>

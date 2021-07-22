@@ -1,3 +1,7 @@
+/**
+ * Category HTTP methods
+ */
+
 import express from 'express';
 import * as controller from '../controllers/category-controller.js';
 

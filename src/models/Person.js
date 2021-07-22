@@ -1,3 +1,7 @@
+/**
+ * MongoDB Person model
+ */
+
 import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
