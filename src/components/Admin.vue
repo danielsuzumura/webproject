@@ -23,36 +23,46 @@
                     SALES
                 </button>
             </div>
+            <button id="messages" class="stat-box" @click=seeInfo($event)>
+                <!--{{messages.length}}-->
+                <br>
+                MESSAGES
+            </button>
             <div class="list-display" v-if="displayed !== null && displayed !== sales">
                 <h2>{{displayedName}}</h2>
                 <router-link :to=redirectToAdd>
-                    <i v-if="displayedKeys !== null && redirectToAdd !== ''" class="fa fa-plus" aria-hidden="true" style="font-size:46px;color:green"></i>
+                    <i v-if="displayedKeys !== null && redirectToAdd !== '' && displayed !== messages && displayed !== admins" class="fa fa-plus" aria-hidden="true" style="font-size:46px;color:green"></i>
                 </router-link>
                 <table v-if="displayedKeys !== null">
                     <thead>
                         <th v-for="key in displayedKeys" :key="key">
-                            {{removeUnderscore(key)}}
+                            {{key}}
                         </th>
                         <th v-if="displayed === users">Admin</th>
-                        <th v-else></th>
-                        <th v-if="displayed !== admins"></th>
+                        <th v-else-if="displayed !== messages"></th>
+                        <th v-if="displayed !== admins && displayed !== messages"></th>
                     </thead>
-                    <tr v-for="item in displayed" :key="item._name">
-                        <td v-for="attribute in item" :key="attribute.id">{{attribute}}</td>
+                    <tr v-for="item in displayed" :key="item._id">
+                        <td v-for="(attribute,index) in item" :key="attribute._id">{{trimAttribute(attribute,index)}}</td>
+                        <!-- Admin icon -->
                         <td v-if="displayed === users && getIsAdmin(item)" @click=removeAdmin(item)><i class="fa fa-unlock" style="font-size:24px;"></i></td>
+                        <!-- Not admin icon -->
                         <td v-else-if="displayed === users" @click=makeAdmin(item)><i class="fa fa-lock" style="font-size:24px;"></i></td>
+                        <!-- Edit icon -->
                         <td @click=editProduct(item) v-if="displayed === products"><i class="fa fa-pencil-square-o" style="font-size:24px;"></i></td>
-                        <td @click=remove(item)><i class="fa fa-times" style="font-size:24px;color:red"></i></td>
+                        <!-- Remove icon -->
+                        <td v-if="displayed !== messages " @click=remove(item)><i class="fa fa-times" style="font-size:24px;color:red"></i></td>
                     </tr>
                 </table>
             </div>
             <div class="list-display" v-else-if="displayed === sales">
                 <h2>Sales</h2>
                 <div id="history-display" v-if="sales !== null">
-                    <div v-for="sale in sales" :key="sale.price">
-                        <p><b>User</b>: {{sale._user._email}}</p>
-                        <p><b>Data</b>: {{sale._date}}, {{sale._time}}</p>
-                        <p><b>Price:</b> R${{sale._price}}</p>
+                    <div v-for="sale in sales" :key="sale.id">
+                        <p><b>Id</b>: {{sale.id}}</p>
+                        <p><b>User</b>: {{sale.user}}</p>
+                        <p><b>Data</b>: {{sale.date}}, {{sale.time}}</p>
+                        <p><b>Price:</b> R${{sale.price}}</p>
                         <table>
                             <colgroup>
                                 <col class="item">
@@ -66,11 +76,11 @@
                                 <th>Total</th>
                             </thead>
                             <tbody>
-                                <tr v-for="item in sale._cart" :key="item.product._name">
-                                    <td>{{item.product._name}}</td>
-                                    <td>{{item.product._price}}</td>
+                                <tr v-for="item in sale.cart" :key="item.product.name">
+                                    <td>{{item.product.name}}</td>
+                                    <td>{{item.product.price}}</td>
                                     <td>{{item.amount}}</td>
-                                    <td>{{calculateTotal(item.product._price, item.amount)}}</td>
+                                    <td>{{calculateTotal(item.product.price, item.amount)}}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -88,17 +98,35 @@
 <script>
 import * as DB from '../dataSet/DatabaseConnector';
 import {calculateTotalProduct} from './shared';
+const MAXTRIM = 25;
 export default {
     name: 'Admin',
     mounted: async function () {
+        /**
+         * Check if current user is admin (permission verification)
+         */
+        let t1 = performance.now();
         if (await DB.isAdmin()) {
             this.isAdmin = true;
         }
+        let t2 = performance.now();
         this.users = await DB.getUsers();
+        let t3 = performance.now();
         this.products = await DB.getProducts();
+        let t4 = performance.now();
         this.admins = await DB.getAdmins();
+        let t5 = performance.now();
         this.sales = await DB.getSales();
+        let t6 = performance.now();
+        this.messages = await DB.getContactUs();
+        let t7 = performance.now();
         this.isLoaded = true;
+        console.log('isAdmin: ' + String(t2 - t1) + 'ms');
+        console.log('getUsers: ' + String(t3 - t2) + 'ms');
+        console.log('getProducts: ' + String(t4 - t3) + 'ms');
+        console.log('getAdmins: ' + String(t5 - t4) + 'ms');
+        console.log('getSales: ' + String(t6 - t5) + 'ms');
+        console.log('getContactUs: ' + String(t7 - t6) + 'ms');
     },
     mixins: [calculateTotalProduct],
     data () {
@@ -112,16 +140,23 @@ export default {
             displayed: null,
             displayedKeys: null,
             displayedName: '',
-            redirectToAdd: ''
+            redirectToAdd: '',
+            messages: null
         };
     },
     methods: {
-        removeUnderscore (name) {
-            if (name[0] === '_') {
-                return name.substr(1);
+        trimAttribute (attribute, index) {
+            if (index === 'photo' && attribute.constructor.name === 'String' && attribute.length >= 100) {
+                return attribute.substring(0, MAXTRIM) + '...';
+            } else if (attribute.constructor.name === 'Number' && this.displayed === this.products && index === 'price') {
+                return attribute.toFixed(2);
+            } else {
+                return attribute;
             }
-            return name;
         },
+        /**
+         * Display list depending on what field the admin clicked
+         */
         seeInfo (event) {
             switch (event.target.id) {
             case 'users': {
@@ -143,7 +178,12 @@ export default {
                 this.displayed = this.sales;
                 break;
             }
+            case 'messages': {
+                this.displayed = this.messages;
+                break;
             }
+            }
+            /** Get key name from object */
             if (this.displayed.length !== 0) {
                 this.displayedKeys = Object.keys(this.displayed[0]);
             } else {
@@ -151,37 +191,64 @@ export default {
             }
             this.displayedName = event.target.id.toUpperCase();
         },
+        /**
+         * Delete item
+         */
         async remove (item) {
             if (this.displayed === this.users) {
-                await DB.deleteUser(item._email);
+                await DB.deleteUser(item.email);
+
+                /** Update user list */
                 this.users = await DB.getUsers();
+                /** Update displayed list */
                 this.displayed = this.users;
             } else if (this.displayed === this.products) {
-                await DB.deleteProduct(item._id);
+                await DB.deleteProduct(item.code);
+
+                /** Update product list */
                 this.products = await DB.getProducts();
+                /** Update displayed list */
                 this.displayed = this.products;
             } else {
-                await DB.deleteAdmin(item._email);
+                await DB.deleteAdmin(item.email);
+
+                /** Update admin list */
                 this.admins = await DB.getAdmins();
+                /** Update displayed list */
                 this.displayed = this.admins;
             }
         },
+        /**
+         * Redirect to product form page
+         */
         editProduct (product) {
-            this.$router.push('/ProductForm?query=' + product._id);
+            this.$router.push('/ProductForm?query=' + product.code);
         },
+        /**
+         * Verify if user is admin
+         */
         getIsAdmin (user) {
-            if (DB.isAdminEmail(user._email)) {
+            /** Check if user is in admin list */
+            if (this.admins.filter(admin => admin.email === user.email).length > 0) {
                 return true;
             } else {
                 return false;
             }
         },
+        /**
+         * Make user admin
+         */
         async makeAdmin (item) {
             await DB.insertAdmin(item);
+            /** Update admin list */
             this.admins = await DB.getAdmins();
         },
+        /**
+         * Remode admin from admin list
+         */
         async removeAdmin (item) {
-            await DB.deleteAdmin(item._email);
+            await DB.deleteAdmin(item.email);
+            /** Update admin list */
             this.admins = await DB.getAdmins();
         }
     }

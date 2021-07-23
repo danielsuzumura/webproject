@@ -6,7 +6,7 @@
             <div class="product-container">
                 <div class="box-product" v-for="product in filter" :key="product.name">
                     <figure >
-                        <img id="img-product" :src="getImgUrl(product.photo)">
+                        <img id="img-product" :src=product.photo>
                         <figcaption>
                             <div id="stock-test" v-if="product.quantityStock > 0">
                                 <router-link :to=getlinkToProduct(product)>{{product.name}}</router-link>
@@ -15,7 +15,7 @@
                                 <p id="out-stock"> {{product.name}} (OUT OF STOCK) </p>
                             </div>
                             <p>{{product.brand}}</p>
-                            <p>R${{product.price}}</p>
+                            <p>R${{setPrecision(product.price)}}</p>
                         </figcaption>
                     </figure>
                 </div>
@@ -26,12 +26,15 @@
 
 <script>
 import * as DB from '../dataSet/DatabaseConnector';
-import {ImportImage} from './shared';
+import {ImportImage, fixedDecimalPlaces} from './shared';
 export default {
     name: 'ListItems',
-    mixins: [ImportImage],
+    mixins: [ImportImage, fixedDecimalPlaces],
     beforeMount: async function () {
+        let t1 = performance.now();
         this.products = await DB.getProducts();
+        let t2 = performance.now();
+        console.log('db connection: ' + String(t2 - t1) + 'ms');
     },
     data () {
         return {
@@ -47,7 +50,7 @@ export default {
                 return null;
             }
             if (this.category !== undefined) {
-                return this.products.filter(product => product.category === this.category);
+                return this.products.filter(product => product.category.toLowerCase() === this.category.toLowerCase());
             } else {
                 return this.products.filter(product => product.name.toLowerCase() === this.query.toLowerCase());
             }
@@ -60,7 +63,7 @@ export default {
     },
     methods: {
         getlinkToProduct (product) {
-            return this.linkToProduct + product.id;
+            return this.linkToProduct + product.code;
         }
     }
 };
