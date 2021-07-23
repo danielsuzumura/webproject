@@ -176,7 +176,7 @@ export default {
                 /** Update displayed list */
                 this.displayed = this.users;
             } else if (this.displayed === this.products) {
-                await DB.deleteProduct(item.id);
+                await DB.deleteProduct(item.code);
 
                 /** Update product list */
                 this.products = await DB.getProducts();
