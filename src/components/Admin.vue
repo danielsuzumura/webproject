@@ -31,7 +31,7 @@
             <div class="list-display" v-if="displayed !== null && displayed !== sales">
                 <h2>{{displayedName}}</h2>
                 <router-link :to=redirectToAdd>
-                    <i v-if="displayedKeys !== null && redirectToAdd !== ''" class="fa fa-plus" aria-hidden="true" style="font-size:46px;color:green"></i>
+                    <i v-if="displayedKeys !== null && redirectToAdd !== '' && displayed !== messages && displayed !== admins" class="fa fa-plus" aria-hidden="true" style="font-size:46px;color:green"></i>
                 </router-link>
                 <table v-if="displayedKeys !== null">
                     <thead>
@@ -39,8 +39,8 @@
                             {{key}}
                         </th>
                         <th v-if="displayed === users">Admin</th>
-                        <th v-else></th>
-                        <th v-if="displayed !== admins"></th>
+                        <th v-else-if="displayed !== messages"></th>
+                        <th v-if="displayed !== admins && displayed !== messages"></th>
                     </thead>
                     <tr v-for="item in displayed" :key="item._id">
                         <td v-for="(attribute,index) in item" :key="attribute._id">{{trimAttribute(attribute,index)}}</td>
@@ -51,7 +51,7 @@
                         <!-- Edit icon -->
                         <td @click=editProduct(item) v-if="displayed === products"><i class="fa fa-pencil-square-o" style="font-size:24px;"></i></td>
                         <!-- Remove icon -->
-                        <td @click=remove(item)><i class="fa fa-times" style="font-size:24px;color:red"></i></td>
+                        <td v-if="displayed !== messages " @click=remove(item)><i class="fa fa-times" style="font-size:24px;color:red"></i></td>
                     </tr>
                 </table>
             </div>
@@ -88,10 +88,6 @@
                     </div>
                 </div>
             </div>
-            <div class="list-display" v-else-if="displayed === messages">
-                <h2>Messages</h2>
-                <!-- Inser messages here -->
-            </div>
         </div>
         <div class="container-admin denied" v-else>
             <h1>Acess denied</h1>
@@ -102,7 +98,7 @@
 <script>
 import * as DB from '../dataSet/DatabaseConnector';
 import {calculateTotalProduct} from './shared';
-const MAXTRIM = 50;
+const MAXTRIM = 25;
 export default {
     name: 'Admin',
     mounted: async function () {
@@ -116,6 +112,7 @@ export default {
         this.products = await DB.getProducts();
         this.admins = await DB.getAdmins();
         this.sales = await DB.getSales();
+        this.messages = await DB.getContactUs();
         this.isLoaded = true;
     },
     mixins: [calculateTotalProduct],
@@ -136,7 +133,7 @@ export default {
     },
     methods: {
         trimAttribute (attribute, index) {
-            if (attribute.constructor.name === 'String' && attribute.length >= 100) {
+            if (index === 'photo' && attribute.constructor.name === 'String' && attribute.length >= 100) {
                 return attribute.substring(0, MAXTRIM) + '...';
             } else if (attribute.constructor.name === 'Number' && this.displayed === this.products && index === 'price') {
                 return attribute.toFixed(2);
@@ -166,6 +163,10 @@ export default {
             }
             case 'sales': {
                 this.displayed = this.sales;
+                break;
+            }
+            case 'messages': {
+                this.displayed = this.messages;
                 break;
             }
             }
