@@ -273,6 +273,9 @@ export async function insertUser (user) {
             // Add doublequote to key in object
             body: JSON.stringify(user)
         });
+        // if(resp.status < 200 || resp.status > 300){
+        //     throw
+        // }
     } catch (err) {
         throw Error(err);
     }
@@ -327,7 +330,7 @@ export async function loginUser (email, password) {
             throw Error('Wrong password');
         }
     } catch (error) {
-        throw Error(error.message);
+        throw Error('User not found');
     }
 }
 

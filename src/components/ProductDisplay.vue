@@ -123,6 +123,8 @@ export default {
                     sum += parseInt(review.rating);
                 });
                 return parseInt(sum / this.reviews.length);
+            } else {
+                return 0;
             }
         },
         async getRating () {
