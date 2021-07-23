@@ -56,8 +56,13 @@ export async function insertCategory (category) {
  */
 export async function getProducts () {
     try {
+        let t1 = performance.now();
         let products = await fetch(link + 'product');
+        let t2 = performance.now();
         products = await products.json();
+        let t3 = performance.now();
+        console.log('fetch: ' + String(t2 - t1) + 'ms');
+        console.log('json: ' + String(t3 - t2) + 'ms');
         return products;
     } catch (err) {
         throw Error(err);
@@ -71,8 +76,13 @@ export async function getProducts () {
  */
 export async function getProduct (productId) {
     try {
+        let t1 = performance.now();
         let product = await fetch(link + 'product/' + productId);
+        let t2 = performance.now();
         product = await product.json();
+        let t3 = performance.now();
+        console.log('fetch: ' + String(t2 - t1) + 'ms');
+        console.log('json: ' + String(t3 - t2) + 'ms');
         return product;
     } catch (err) {
         throw Error(err);

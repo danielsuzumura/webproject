@@ -105,15 +105,28 @@ export default {
         /**
          * Check if current user is admin (permission verification)
          */
+        let t1 = performance.now();
         if (await DB.isAdmin()) {
             this.isAdmin = true;
         }
+        let t2 = performance.now();
         this.users = await DB.getUsers();
+        let t3 = performance.now();
         this.products = await DB.getProducts();
+        let t4 = performance.now();
         this.admins = await DB.getAdmins();
+        let t5 = performance.now();
         this.sales = await DB.getSales();
+        let t6 = performance.now();
         this.messages = await DB.getContactUs();
+        let t7 = performance.now();
         this.isLoaded = true;
+        console.log('isAdmin: ' + String(t2 - t1) + 'ms');
+        console.log('getUsers: ' + String(t3 - t2) + 'ms');
+        console.log('getProducts: ' + String(t4 - t3) + 'ms');
+        console.log('getAdmins: ' + String(t5 - t4) + 'ms');
+        console.log('getSales: ' + String(t6 - t5) + 'ms');
+        console.log('getContactUs: ' + String(t7 - t6) + 'ms');
     },
     mixins: [calculateTotalProduct],
     data () {

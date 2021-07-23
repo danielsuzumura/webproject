@@ -31,7 +31,10 @@ export default {
     name: 'ListItems',
     mixins: [ImportImage, fixedDecimalPlaces],
     beforeMount: async function () {
+        let t1 = performance.now();
         this.products = await DB.getProducts();
+        let t2 = performance.now();
+        console.log('db connection: ' + String(t2 - t1) + 'ms');
     },
     data () {
         return {

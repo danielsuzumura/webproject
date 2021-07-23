@@ -72,11 +72,14 @@ export default {
     mixins: [ImportImage, fixedDecimalPlaces],
     mounted: async function () {
         // get Product info
+        let t1 = performance.now();
         try {
             this.product = await DB.getProduct(this.productQuery);
         } catch (err) {
             this.product = 'not found';
         }
+        let t2 = performance.now();
+        console.log('db connection: ' + String(t2 - t1) + 'ms');
         await this.getRating();
         this.$root.$on('click', (reviewRating) => {
             this.reviewRating = reviewRating;
