@@ -22,12 +22,12 @@
                     <br>
                     SALES
                 </button>
-                <button id="messages" class="stat-box" @click=seeInfo($event)>
-                    <!--{{messages.length}}-->
-                    <br>
-                    MESSAGES
-                </button>
             </div>
+            <button id="messages" class="stat-box" @click=seeInfo($event)>
+                <!--{{messages.length}}-->
+                <br>
+                MESSAGES
+            </button>
             <div class="list-display" v-if="displayed !== null && displayed !== sales">
                 <h2>{{displayedName}}</h2>
                 <router-link :to=redirectToAdd>

@@ -3,6 +3,7 @@
     width: 100%;
     height: min-content;
     display: block;
+    text-align: center;
 }
 .denied {
     text-align: center;
@@ -12,7 +13,7 @@
     width: 60vw;
     height: min-content;
     display: block;
-    margin: 10vh auto;
+    margin: 3.7vw auto 0;
 }
 
 .stat-box {
@@ -23,7 +24,7 @@
     font-size: max(1em, 1.5vw);
     font-weight: bold;
     border: none;
-    margin: 5%;
+    margin: 3.7vw;
 }
 
 .stat-box:active {
@@ -33,22 +34,27 @@
 
 #user-count {
     float: left;
+    margin-left: auto;
 }
 
 #product-coadminunt {
     float: right;
+    margin-right: auto;
 }
 
 #admin-count {
     float: left;
+    margin-left: auto;
 }
 
 #sale-count {
     float: right;
+    margin-right: auto;
 }
 
 #messages {
-    width: 100%;
+    width: 52vw;
+    margin: 3.7vw auto;
 }
 
 .list-display {
