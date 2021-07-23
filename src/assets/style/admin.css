@@ -88,6 +88,7 @@ td {
     cursor: default;
     max-width: 250px;
     overflow: auto;
+    word-wrap: break-word;
 }
 tr {
     max-height: 20px;
