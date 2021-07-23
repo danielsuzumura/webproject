@@ -610,5 +610,35 @@ export async function getReviewId () {
  * @param {string} text Text
  */
 export async function insertContactUs (name, email, text) {
-    // Contact.push({name, email, text});
+    let review = {
+        name: name,
+        email: email,
+        message: text
+    };
+    try {
+        await fetch(link + 'contactus', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            // Add doublequote to key in object
+            body: JSON.stringify(review)
+        });
+    } catch (err) {
+        throw Error(err);
+    }
+}
+
+/**
+ * Get every contactus
+ * @returns {[]} Every ContactUs
+ */
+export async function getContactUs () {
+    try {
+        let category = await fetch(link + 'contactus');
+        category = await category.json();
+        return category;
+    } catch (err) {
+        throw Error(err);
+    }
 }

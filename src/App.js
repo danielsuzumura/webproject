@@ -13,6 +13,7 @@ import {review} from './models/Review.js';
 import {sale} from './models/Sale.js';
 import {category} from './models/Category.js';
 import {admin} from './models/Admin.js';
+import {contactus} from './models/ContactUs.js';
 
 /** Import router */
 import {router as RouterIndex} from './routes/index-route.js';
@@ -22,6 +23,7 @@ import {router as routerSale} from './routes/sale-route.js';
 import {router as routerReview} from './routes/review-route.js';
 import {router as routerCategory} from './routes/category-route.js';
 import {router as routerAdmin} from './routes/admin-route.js';
+import {router as routerContactUs} from './routes/contactus-route';
 
 /** Creating an express aplication */
 export const app = express();
@@ -50,3 +52,4 @@ app.use('/sale', routerSale);
 app.use('/review', routerReview);
 app.use('/category', routerCategory);
 app.use('/admin', routerAdmin);
+app.use('/contactus', routerContactUs);
