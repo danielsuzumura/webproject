@@ -38,7 +38,7 @@
                         <th v-if="displayed !== admins"></th>
                     </thead>
                     <tr v-for="item in displayed" :key="item.name">
-                        <td v-for="attribute in item" :key="attribute.id">{{trimAttribute(attribute)}}</td>
+                        <td v-for="(attribute,index) in item" :key="attribute.id">{{trimAttribute(attribute,index)}}</td>
                         <!-- Admin icon -->
                         <td v-if="displayed === users && getIsAdmin(item)" @click=removeAdmin(item)><i class="fa fa-unlock" style="font-size:24px;"></i></td>
                         <!-- Not admin icon -->
@@ -124,9 +124,11 @@ export default {
         };
     },
     methods: {
-        trimAttribute (attribute) {
+        trimAttribute (attribute, index) {
             if (attribute.constructor.name === 'String' && attribute.length >= 100) {
                 return attribute.substring(0, MAXTRIM) + '...';
+            } else if (attribute.constructor.name === 'Number' && this.displayed === this.products && index === 'price') {
+                return attribute.toFixed(2);
             } else {
                 return attribute;
             }

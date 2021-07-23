@@ -50,7 +50,8 @@ export default {
             this.name = product.name;
             this.photo = product.photo;
             this.description = product.description;
-            this.price = product.price;
+            this.price = this.price.toFixed(2);
+            console.log(this.price);
             this.stock = product.quantityStock;
             this.sold = product.quantitySold;
             this.category = product.category;

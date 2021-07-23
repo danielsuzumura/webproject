@@ -10,7 +10,7 @@
                 <span>({{ratingAmount}})</span>
             </div>
             <div id="product-price" class="box">
-                <p id="price">R${{product.price}}</p>
+                <p id="price">R${{setPrecision(product.price)}}</p>
                 <p id="sold">Left: {{product.quantityStock}}</p>
                 <p id="amount">AMOUNT:<br>
                     <select v-model="amount">
@@ -61,7 +61,7 @@
 </template>
 
 <script>
-import {ImportImage} from './shared';
+import {ImportImage, fixedDecimalPlaces} from './shared';
 import * as DB from '../dataSet/DatabaseConnector';
 import {Review} from '../dataSet/Review';
 import Rating from './Rating';
@@ -69,7 +69,7 @@ import RatingInteractive from './RatingInteractive';
 
 export default {
     name: 'ProductDisplay',
-    mixins: [ImportImage],
+    mixins: [ImportImage, fixedDecimalPlaces],
     mounted: async function () {
         // get Product info
         try {

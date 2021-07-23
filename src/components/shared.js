@@ -39,3 +39,11 @@ export let calculateTotalProduct = {
         }
     }
 };
+
+export let fixedDecimalPlaces = {
+    methods: {
+        setPrecision (price) {
+            return price.toFixed(2);
+        }
+    }
+};

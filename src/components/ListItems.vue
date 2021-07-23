@@ -15,7 +15,7 @@
                                 <p id="out-stock"> {{product.name}} (OUT OF STOCK) </p>
                             </div>
                             <p>{{product.brand}}</p>
-                            <p>R${{product.price}}</p>
+                            <p>R${{setPrecision(product.price)}}</p>
                         </figcaption>
                     </figure>
                 </div>
@@ -26,10 +26,10 @@
 
 <script>
 import * as DB from '../dataSet/DatabaseConnector';
-import {ImportImage} from './shared';
+import {ImportImage, fixedDecimalPlaces} from './shared';
 export default {
     name: 'ListItems',
-    mixins: [ImportImage],
+    mixins: [ImportImage, fixedDecimalPlaces],
     beforeMount: async function () {
         this.products = await DB.getProducts();
     },
@@ -47,7 +47,7 @@ export default {
                 return null;
             }
             if (this.category !== undefined) {
-                return this.products.filter(product => product.category === this.category);
+                return this.products.filter(product => product.category.toLowerCase() === this.category.toLowerCase());
             } else {
                 return this.products.filter(product => product.name.toLowerCase() === this.query.toLowerCase());
             }
