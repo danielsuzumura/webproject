@@ -76,6 +76,8 @@ hr {
 td {
     padding: 5px 0.5vw;
     cursor: default;
+    max-width: 250px;
+    overflow: auto;
 }
 tr {
     max-height: 20px;
