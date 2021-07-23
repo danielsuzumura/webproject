@@ -10,7 +10,7 @@
 }
 #statistics {
     width: 60vw;
-    height: 50vh;
+    height: min-content;
     display: block;
     margin: 10vh auto;
 }
@@ -45,6 +45,10 @@
 
 #sale-count {
     float: right;
+}
+
+#messages {
+    width: 100%;
 }
 
 .list-display {

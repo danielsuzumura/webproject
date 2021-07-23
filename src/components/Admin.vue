@@ -22,6 +22,11 @@
                     <br>
                     SALES
                 </button>
+                <button id="messages" class="stat-box" @click=seeInfo($event)>
+                    <!--{{messages.length}}-->
+                    <br>
+                    MESSAGES
+                </button>
             </div>
             <div class="list-display" v-if="displayed !== null && displayed !== sales">
                 <h2>{{displayedName}}</h2>
@@ -81,6 +86,10 @@
                         <hr>
                     </div>
                 </div>
+            </div>
+            <div class="list-display" v-else-if="displayed === messages">
+                <h2>Messages</h2>
+                <!-- Inser messages here -->
             </div>
         </div>
         <div class="container-admin denied" v-else>
