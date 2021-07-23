@@ -96,7 +96,7 @@ export default {
         async finishSale () {
             if (this.checkForm()) {
                 this.displayErroMessage = false;
-                await DB.insertSale(this.cart, this.total);
+                DB.insertSale(this.cart, this.total);
                 DB.updateFinishPurchase(this.cart);
                 this.$router.push('/');
             } else {

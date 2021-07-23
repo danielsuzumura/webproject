@@ -265,7 +265,7 @@ export async function getCart () {
  */
 export async function insertUser (user) {
     try {
-        await fetch(link + 'person', {
+        let resp = await fetch(link + 'person', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -273,9 +273,9 @@ export async function insertUser (user) {
             // Add doublequote to key in object
             body: JSON.stringify(user)
         });
-        // if(resp.status < 200 || resp.status > 300){
-        //     throw
-        // }
+        if (resp.status < 200 || resp.status > 300) {
+            throw Error('Email already in use');
+        }
     } catch (err) {
         throw Error(err);
     }
@@ -289,6 +289,9 @@ export async function insertUser (user) {
 export async function getUser (userEmail) {
     try {
         let user = await fetch(link + 'person/' + userEmail);
+        if (user.status < 200 || user.status > 300) {
+            throw Error('User doesn\'t exist');
+        }
         user = await user.json();
         return user;
     } catch (err) {
@@ -320,9 +323,6 @@ export async function loginUser (email, password) {
     let user;
     try {
         user = await getUser(email);
-        if (user === null) {
-            throw Error('User doesn\'t exist');
-        }
         if (password === user.password) {
             window.localStorage.setItem('currentUser', user.email);
             return user;
@@ -330,7 +330,7 @@ export async function loginUser (email, password) {
             throw Error('Wrong password');
         }
     } catch (error) {
-        throw Error('User not found');
+        throw Error(error.message);
     }
 }
 

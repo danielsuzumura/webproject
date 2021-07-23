@@ -42,8 +42,8 @@
                         <th v-else></th>
                         <th v-if="displayed !== admins"></th>
                     </thead>
-                    <tr v-for="item in displayed" :key="item.name">
-                        <td v-for="(attribute,index) in item" :key="attribute.id">{{trimAttribute(attribute,index)}}</td>
+                    <tr v-for="item in displayed" :key="item._id">
+                        <td v-for="(attribute,index) in item" :key="attribute._id">{{trimAttribute(attribute,index)}}</td>
                         <!-- Admin icon -->
                         <td v-if="displayed === users && getIsAdmin(item)" @click=removeAdmin(item)><i class="fa fa-unlock" style="font-size:24px;"></i></td>
                         <!-- Not admin icon -->
@@ -58,7 +58,8 @@
             <div class="list-display" v-else-if="displayed === sales">
                 <h2>Sales</h2>
                 <div id="history-display" v-if="sales !== null">
-                    <div v-for="sale in sales" :key="sale.price">
+                    <div v-for="sale in sales" :key="sale.id">
+                        <p><b>Id</b>: {{sale.id}}</p>
                         <p><b>User</b>: {{sale.user}}</p>
                         <p><b>Data</b>: {{sale.date}}, {{sale.time}}</p>
                         <p><b>Price:</b> R${{sale.price}}</p>
@@ -129,7 +130,8 @@ export default {
             displayed: null,
             displayedKeys: null,
             displayedName: '',
-            redirectToAdd: ''
+            redirectToAdd: '',
+            messages: null
         };
     },
     methods: {
