@@ -3,7 +3,7 @@
 ## TODO
 * Change image to store in DB
 * Input verification
-* Contact Us and Review page
+* Bug review M&M
 
 ## Members
   Name | NUSP
