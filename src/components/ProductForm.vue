@@ -1,6 +1,7 @@
 <template>
-    <div>
-        <div id="container" v-if="isAdmin === true">
+    <div id="container">
+        <div class="loading" v-if="!isLoaded"></div>
+        <div v-else-if="isAdmin === true">
             <div id="register-box">
                 <form @submit.prevent.stop="sendForm" method="POST">
                     <h1>PRODUCT REGISTER</h1>
@@ -23,7 +24,7 @@
                     <label for="product-description"> Product description: </label><br>
                     <textarea id="product-description" name="product-description" v-model="description"></textarea><br><br>
 
-                    <input type="submit" name="btn-submit" value="Submit">
+                    <input type="submit" name="btn-submit" value="Submit"><br><br>
                 </form>
                 <p id="changes-saved" v-show="sucessMessage === true">{{sucessMessageContent}}</p>
             </div>
@@ -50,8 +51,7 @@ export default {
             this.name = product.name;
             this.photo = product.photo;
             this.description = product.description;
-            this.price = this.price.toFixed(2);
-            console.log(this.price);
+            this.price = product.price.toFixed(2);
             this.stock = product.quantityStock;
             this.sold = product.quantitySold;
             this.category = product.category;
@@ -60,6 +60,7 @@ export default {
         } else {
             this.sucessMessageContent = 'Product created';
         }
+        this.isLoaded = true;
     },
     data () {
         return {
@@ -74,7 +75,8 @@ export default {
             code: 0,
             sucessMessage: false,
             sucessMessageContent: '',
-            productIdQuery: this.$route.query.query
+            productIdQuery: this.$route.query.query,
+            isLoaded: false
         };
     },
     methods: {

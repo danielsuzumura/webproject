@@ -4,9 +4,10 @@
             <h2 v-if="query === undefined">{{category}}</h2>
             <h2 class="query-display" v-if="query !== undefined">Results for product: {{query}}</h2>
             <div class="product-container">
+                <div class="loading" v-if="!isLoaded"></div>
                 <div class="box-product" v-for="product in filter" :key="product.name">
                     <figure >
-                        <img id="img-product" :src=product.photo>
+                        <img id="img-product" :src=product.photo :v-if="product.photo !== undefined">
                         <figcaption>
                             <div id="stock-test" v-if="product.quantityStock > 0">
                                 <router-link :to=getlinkToProduct(product)>{{product.name}}</router-link>
@@ -31,14 +32,17 @@ export default {
     name: 'ListItems',
     mixins: [ImportImage, fixedDecimalPlaces],
     beforeMount: async function () {
+        this.isLoaded = false;
         this.products = await DB.getProducts();
+        this.isLoaded = true;
     },
     data () {
         return {
             category: this.$route.params.category,
             products: null,
             query: this.$route.query.query,
-            linkToProduct: '/ProductDisplay/?query='
+            linkToProduct: '/ProductDisplay/?query=',
+            isLoaded: false
         };
     },
     computed: {

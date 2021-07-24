@@ -1,6 +1,7 @@
 <template>
-    <div>
-        <div id="container-admin" v-if="isLoaded && isAdmin">
+    <div id="container-admin">
+        <div class="loading" v-if="!isLoaded"></div>
+        <div v-if="isLoaded && isAdmin">
             <div id="statistics">
                 <button id="users" class="stat-box" @click=seeInfo($event)>
                     {{users.length}}
@@ -89,8 +90,8 @@
                 </div>
             </div>
         </div>
-        <div class="container-admin denied" v-else>
-            <h1>Acess denied</h1>
+        <div class="container-admin denied" v-else-if="isLoaded">
+            <h1>Access denied</h1>
         </div>
     </div>
 </template>

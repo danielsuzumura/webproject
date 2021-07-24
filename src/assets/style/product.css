@@ -183,6 +183,16 @@
     text-overflow: clip;
 }
 
+#product-write-review input[type="text"] {
+    width: 90%;
+    margin: 10px auto;
+    border-radius: 10px;
+    border-color:rgb(139, 0, 132);
+    padding: 10px;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 /* End of My Review block */
 
 /* Start of Review block */
