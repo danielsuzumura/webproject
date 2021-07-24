@@ -2,7 +2,7 @@
     <div id="container" v-if="product !== null">
         <div id="product-entry">
             <div id="product-image-div" class="box">
-                <img id="product-image" :src="product.photo" alt="Four red apples, one of them cutted in half">
+                <img id="product-image" :src="product.photo" :alt="product.name">
             </div><br>
             <div id="product-entry-description" class="box">
                 <h1 id="entry-title">{{product.name}}</h1>
@@ -31,6 +31,8 @@
             <h2>Description:</h2>
             <p id="description">{{product.description}}</p>
         </div>
+
+        <div class="loading" v-if="!isLoaded"></div>
 
         <div id="product-write-review">
             <h1>Write your own review:</h1>
@@ -81,6 +83,7 @@ export default {
         this.$root.$on('click', (reviewRating) => {
             this.reviewRating = reviewRating;
         });
+        this.isLoaded = true;
     },
     data () {
         return {
@@ -95,7 +98,8 @@ export default {
             reviewText: '',
             reviewPosted: false,
             reviewRating: null,
-            reviewRatingError: false
+            reviewRatingError: false,
+            isLoaded: false
         };
     },
     methods: {

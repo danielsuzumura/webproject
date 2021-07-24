@@ -7,6 +7,7 @@
                 <a class="page-select" @click="logout">Logout</a>
             </div>
             <div id="user-modification">
+                <div class="loading" v-if="!isLoaded"></div>
                 <h1>User information</h1>
                 <table>
                     <tr>
@@ -70,6 +71,7 @@ export default {
         } catch (err) {
             this.$router.push('/Login');
         }
+        this.isLoaded = true;
     },
     data () {
         return {
@@ -82,7 +84,8 @@ export default {
             invalidInput: false,
             errorMessageEmail: '',
             sucessMessageData: false,
-            sucessMessagePassword: false
+            sucessMessagePassword: false,
+            isLoaded: false
         };
     },
     methods: {

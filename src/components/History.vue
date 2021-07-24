@@ -7,7 +7,8 @@
                 <a class="page-select" @click="logout">Logout</a>
             </div>
             <div id="history-display" >
-                <div id="messageNoPurchase" v-if="noPurchaseError === true">
+                <div class="loading" v-if="!isLoaded"></div>
+                <div id="messageNoPurchase" v-else-if="noPurchaseError === true">
                     <p>No purchases made!</p>
                 </div>
                 <div v-else>
@@ -60,12 +61,14 @@ export default {
                 this.$router.push('/Login');
             }
         }
+        this.isLoaded = true;
     },
     data () {
         return {
             user: null,
             purchases: null,
-            noPurchaseError: false
+            noPurchaseError: false,
+            isLoaded: false
         };
     },
     methods: {

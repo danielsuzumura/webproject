@@ -5,8 +5,9 @@
                     <div id="slogan-text">
                         <h2>{{highlightCategory}}</h2>
                         <p>{{highlightText}}<br></p>
-                            <button><router-link :to="'ListItems/'+highlightCategory">Shop Now</router-link></button>
-                        </div>
+                        <div class="loading" v-if="!isLoaded"></div><br>
+                        <button><router-link :to="'ListItems/'+highlightCategory">Shop Now</router-link></button>
+                    </div>
                 </div>
                 <div class="feature-img">
                     <img v-if="pic !== ''" :src="getImgUrl(pic)" :alt="pic">
@@ -17,6 +18,7 @@
             <div class="break"></div>
             <div class="categories">
                 <h2>Categories</h2>
+                <div class="loading" v-if="!isLoaded"></div>
                 <div class="product-container">
                     <div v-for="category in Categories" :key="category.name" class="box-product">
                         <figure>
@@ -40,6 +42,7 @@ export default {
         this.pic = this.Categories[0].photo;
         this.highlightText = this.Categories[0].slogan;
         this.highlightCategory = this.Categories[0].name;
+        this.isLoaded = true;
     },
     data () {
         return {
@@ -47,7 +50,8 @@ export default {
             picIndex: 0,
             pic: '',
             highlightText: '',
-            highlightCategory: ''
+            highlightCategory: '',
+            isLoaded: false
         };
     },
     methods: {

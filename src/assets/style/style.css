@@ -222,3 +222,17 @@ a{
 .hidden {
     visibility: hidden;
 }
+
+.loading {
+    border: 16px solid transparent;
+    border-top: 16px solid black;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s ease-in-out infinite;
+    margin: auto;
+}
+
+@keyframes spin {
+    100% { transform: rotate(360deg); }
+}

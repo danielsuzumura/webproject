@@ -8,7 +8,7 @@
 /* Image category display */
 #feature-category{
     margin: 2% auto;
-    max-width: 70%;
+    width: 70%;
     text-align: center;
     position: relative;
     display: flex;
@@ -17,6 +17,7 @@
 .feature-img{
     width: 100%;
     height: 100%;
+    background-color: black;
 }
 .feature-img img{
     object-fit: cover;
@@ -87,4 +88,8 @@
 .box-product a:hover{
     color:rgb(0, 0, 112);
     text-decoration: underline;
+}
+
+.btn-change-page:hover {
+    cursor: pointer;
 }

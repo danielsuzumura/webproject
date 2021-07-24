@@ -1,6 +1,6 @@
 #container {
     width: 60vw;
-    height: 600px;
+    height: max-content;
     position:relative;
     margin: 150px auto;
     padding: 115vh auto;
@@ -16,7 +16,7 @@
 
 
 #register-box {
-    height: 500px;
+    height: max-content;
     width: 35vw;
     background-color:rgb(231, 231, 231);
 
