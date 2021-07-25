@@ -26,6 +26,7 @@
 
                     <input type="submit" name="btn-submit" value="Submit"><br><br>
                 </form>
+                <p class="error" v-for="error in errorMessage" :key="error">{{error}}</p>
                 <p id="changes-saved" v-show="sucessMessage === true">{{sucessMessageContent}}</p>
             </div>
         </div>
@@ -76,7 +77,8 @@ export default {
             sucessMessage: false,
             sucessMessageContent: '',
             productIdQuery: this.$route.query.query,
-            isLoaded: false
+            isLoaded: false,
+            errorMessage: []
         };
     },
     methods: {
@@ -91,6 +93,33 @@ export default {
             reader.readAsDataURL(file);
         },
         async sendForm () {
+            let errors = [];
+            if (!this.name) {
+                errors.push('Please write a name for the product.');
+            }
+            if (!this.photo) {
+                errors.push('Please select a photo for the product.');
+            }
+            if (!this.price) {
+                errors.push('Please define a price for the product.');
+            } else if (!/^\d+\.\d{2}$/i.test(this.price) || Number(this.price).toFixed <= 0) {
+                errors.push('Please define a valid price for the product.');
+            }
+            if (!this.stock && this.stock !== 0) {
+                errors.push('Please define a stock amount for the product.');
+            }
+            if (!this.category) {
+                errors.push('Please define the category of the product.');
+            }
+            if (!this.description) {
+                errors.push('Please define a description for the product.');
+            }
+
+            if (errors.length > 0) {
+                this.errorMessage = errors;
+                return;
+            }
+
             console.log(this.photo);
             let product = new Product(this.code, this.name, this.photo, this.description, this.price, this.stock, this.sold, this.category);
             console.log(product);
@@ -101,8 +130,9 @@ export default {
                     await DB.insertProduct(product);
                 }
                 this.sucessMessage = true;
+                this.errorMessage = '';
             } catch (err) {
-                this.errorMessage = err.message;
+                this.errorMessage = [err.message];
             }
         }
     }
@@ -122,5 +152,10 @@ export default {
         margin: 0 auto;
         text-align: center;
         color:red;
+    }
+    .error {
+        color:red;
+        font-size: large;
+        text-align: center;
     }
 </style>
