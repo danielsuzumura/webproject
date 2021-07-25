@@ -10,7 +10,7 @@
                     </div>
                 </div>
                 <div class="feature-img">
-                    <img v-if="pic !== ''" :src="getImgUrl(pic)" :alt="pic">
+                    <img v-if="pic !== ''" :src=pic :alt="pic">
                 </div>
                 <button id="right-button" class="btn-change-page" @click.prevent.stop = "changeCategory($event)"><i class="fa fa-angle-right"></i></button>
                 <button id="left-button" class="btn-change-page" @click = "changeCategory($event)"><i class="fa fa-angle-left"></i></button>
@@ -22,7 +22,7 @@
                 <div class="product-container">
                     <div v-for="category in Categories" :key="category.name" class="box-product">
                         <figure>
-                            <img :src="getImgUrl(category.photo)">
+                            <img :src=category.photo>
                             <figcaption><router-link :to="'/ListItems/'+category.name">{{category.name}}</router-link></figcaption>
                         </figure>
                     </div>
