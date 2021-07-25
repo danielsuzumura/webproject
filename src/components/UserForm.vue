@@ -1,39 +1,42 @@
 <template>
     <div id="container">
-        <div id="register-box" v-if="isAdmin === true">
-            <form @submit.prevent.stop="sendForm" method="POST">
-                <h1>USER REGISTER</h1>
-                <h2>Name</h2>
-                <div class="input-container">
-                    <input type="text" name="name" required autofocus v-model="name">
-                    <p class="error" name="name">Invalid name</p>
-                </div>
-                <h2>Email</h2>
-                <div class="input-container">
-                    <input type="email" name="email" required v-model="email">
-                    <p class="error" name="email">{{errorMessage}}</p>
-                </div>
-                <h2>Password</h2>
-                <div class="input-container">
-                    <input type="password" name="password" required v-model="password">
-                    <p class="error">Invalid password</p>
-                </div>
-                <h2>Address</h2>
-                <div class="input-container">
-                    <input type="text" name="address" required v-model="address">
-                    <p class="error">Invalid address</p>
-                </div>
-                <h2>Phone</h2>
-                <div class="input-container">
-                    <input type="tel" name="phone" required v-model="phone">
-                    <p class="error">Invalid phone</p>
-                </div>
-                <input type="submit" name="submitForm" value="Register">
-            </form>
-            <p id="changes-saved" v-show="sucessMessage === true">User created</p>
+        <div class="loading" v-if="!isLoaded"></div>
+        <div v-else-if="isAdmin === true">
+            <div id="register-box">
+                <form @submit.prevent.stop="sendForm" method="POST">
+                    <h1>USER REGISTER</h1>
+                    <h2>Name</h2>
+                    <div class="input-container">
+                        <input type="text" name="name" required autofocus v-model="name">
+                        <p class="error" name="name">Invalid name</p>
+                    </div>
+                    <h2>Email</h2>
+                    <div class="input-container">
+                        <input type="email" name="email" required v-model="email">
+                        <p class="error" name="email">{{errorMessage}}</p>
+                    </div>
+                    <h2>Password</h2>
+                    <div class="input-container">
+                        <input type="password" name="password" required v-model="password">
+                        <p class="error">Invalid password</p>
+                    </div>
+                    <h2>Address</h2>
+                    <div class="input-container">
+                        <input type="text" name="address" required v-model="address">
+                        <p class="error">Invalid address</p>
+                    </div>
+                    <h2>Phone</h2>
+                    <div class="input-container">
+                        <input type="tel" name="phone" required v-model="phone">
+                        <p class="error">Invalid phone</p>
+                    </div>
+                    <input type="submit" name="submitForm" value="Register">
+                </form>
+                <p id="changes-saved" v-show="sucessMessage === true">User created</p>
+            </div>
         </div>
         <div class="container-admin denied" v-else>
-            <h1>Acess denied</h1>
+            <h1>Access denied</h1>
         </div>
     </div>
 </template>
@@ -48,6 +51,7 @@ export default {
         if (await DB.isAdmin()) {
             this.isAdmin = true;
         }
+        this.isLoaded = true;
     },
     data () {
         return {
@@ -58,7 +62,8 @@ export default {
             address: '',
             phone: '',
             errorMessage: 'Email',
-            sucessMessage: false
+            sucessMessage: false,
+            isLoaded: false
         };
     },
     methods: {

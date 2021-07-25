@@ -13,22 +13,37 @@ export let ImportImage = {
         }
     }
 };
+
+/**
+ * Calculate total price from cart
+ */
 export let calculateTotalCart = {
     computed: {
         total () {
             let total = 0;
             this.cart.forEach(item => {
-                total += item.product._price.replace(',', '.') * item.amount;
+                total += item.product.price * item.amount;
             });
             return total.toFixed(2);
         }
     }
 };
 
+/**
+ * Calculate total price from product in cart
+ */
 export let calculateTotalProduct = {
     methods: {
         calculateTotal (price, amount) {
-            return (price.replace(',', '.') * amount).toFixed(2);
+            return (price * amount).toFixed(2);
+        }
+    }
+};
+
+export let fixedDecimalPlaces = {
+    methods: {
+        setPrecision (price) {
+            return price.toFixed(2);
         }
     }
 };
