@@ -57,6 +57,9 @@ export default {
         };
     },
     methods: {
+        /**
+         * Check if password match
+         */
         verifyInput () {
             let error = false;
             if (this.password !== this.confirm_password) {
@@ -67,6 +70,9 @@ export default {
             }
             return error;
         },
+        /**
+         * Insert user
+         */
         async sendForm () {
             if (!this.verifyInput()) {
                 let user = new Person(this.name, this.email, this.password, this.address, this.phone);
