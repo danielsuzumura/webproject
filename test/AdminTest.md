@@ -91,4 +91,4 @@
     Clicking on message button
   * Expected: Load every message sent in contact us page
   * Result: <br>
-    ![Screenshot from 2021-07-03 19-13-15](https://user-images.githubusercontent.com/51420150/124367980-c2d2c300-dc32-11eb-8ec0-df638eaf775a.png)
+    ![image](https://user-images.githubusercontent.com/51420150/126917889-571c153e-20fb-4c76-951a-49e6274cfeb2.png)
