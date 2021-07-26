@@ -9,8 +9,7 @@
                         <button><router-link :to="'ListItems/'+highlightCategory">Shop Now</router-link></button>
                     </div>
                 </div>
-                <div class="feature-img">
-                    <img v-if="pic !== ''" :src=pic :alt="pic">
+                <div class="feature-img" :style="{ backgroundImage: 'url(' + pic + ')' }">
                 </div>
                 <button id="right-button" class="btn-change-page" @click.prevent.stop = "changeCategory($event)"><i class="fa fa-angle-right"></i></button>
                 <button id="left-button" class="btn-change-page" @click = "changeCategory($event)"><i class="fa fa-angle-left"></i></button>
