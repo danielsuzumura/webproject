@@ -63,7 +63,7 @@
                         <p><b>Id</b>: {{sale.id}}</p>
                         <p><b>User</b>: {{sale.user}}</p>
                         <p><b>Data</b>: {{sale.date}}, {{sale.time}}</p>
-                        <p><b>Price:</b> R${{sale.price}}</p>
+                        <p><b>Price:</b> R${{setPrecision(sale.price)}}</p>
                         <table>
                             <colgroup>
                                 <col class="item">
@@ -79,7 +79,7 @@
                             <tbody>
                                 <tr v-for="item in sale.cart" :key="item.product.name">
                                     <td>{{item.product.name}}</td>
-                                    <td>{{item.product.price}}</td>
+                                    <td>{{setPrecision(item.product.price)}}</td>
                                     <td>{{item.amount}}</td>
                                     <td>{{calculateTotal(item.product.price, item.amount)}}</td>
                                 </tr>
@@ -98,7 +98,7 @@
 
 <script>
 import * as DB from '../dataSet/DatabaseConnector';
-import {calculateTotalProduct} from './shared';
+import {calculateTotalProduct, fixedDecimalPlaces} from './shared';
 const MAXTRIM = 25;
 export default {
     name: 'Admin',
@@ -116,7 +116,7 @@ export default {
         this.messages = await DB.getContactUs();
         this.isLoaded = true;
     },
-    mixins: [calculateTotalProduct],
+    mixins: [calculateTotalProduct, fixedDecimalPlaces],
     data () {
         return {
             isAdmin: false,
