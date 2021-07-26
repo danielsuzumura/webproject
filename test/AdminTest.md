@@ -86,3 +86,9 @@
     ![Screenshot from 2021-07-03 19-13-15](https://user-images.githubusercontent.com/51420150/124367980-c2d2c300-dc32-11eb-8ec0-df638eaf775a.png)
     ![Screenshot from 2021-07-03 19-13-36](https://user-images.githubusercontent.com/51420150/124367984-d1b97580-dc32-11eb-86ba-e0ef72a9799b.png)
 
+* Accessing Contact Us messages
+  * Input:<br>
+    Clicking on message button
+  * Expected: Load every message sent in contact us page
+  * Result: <br>
+    ![Screenshot from 2021-07-03 19-13-15](https://user-images.githubusercontent.com/51420150/124367980-c2d2c300-dc32-11eb-8ec0-df638eaf775a.png)

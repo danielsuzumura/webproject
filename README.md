@@ -1,10 +1,4 @@
 # Web Project
-
-## TODO
-* Change image to store in DB
-* Input verification
-* Bug review M&M
-
 ## Members
   Name | NUSP
   ------------ | -------------
@@ -30,7 +24,9 @@
 ## Project Description
   * The project consists of a website for an online grocery store.
   * It's made using single-page application (SPA) style, rewriting the current page dynamically according to the user interactions.
-  * We are using the Vue framework.
+  * For the frontend, we are using the Vue framework.
+  * For the backend, we are using Nodejs + Express
+  * For the Database, we are using Atlas MongoDB
   * For our specific functionality, we implemented a review functionality, where the customer can give a rating and an opinion about the product.
 
 ## Comments About the Code
@@ -54,7 +50,10 @@ npm run build
 npm start
 ```
 ## Problems
-* Funcionalities not working due to lack of server-side:
-  * Admin: Adding a product(doesn't accept image input)
-  * Information lost when page is reloaded: Admin permission if added, product created or edited.
+* Atlas MongoDB
+  * Since we are using a free server for the database, the time to
+  get the data from the server can take some time. So the time to
+  load some pages can be slow.
+  * We made a loading animation because of this issue.
 ## Comments
+  No comments to add
