@@ -50,11 +50,19 @@
     ![Screenshot from 2021-07-03 18-29-54](https://user-images.githubusercontent.com/51420150/124367346-bb102000-dc2c-11eb-98f5-9439200abd10.png)
 * Adding a product
   * Input:<br>
-    ![Screenshot from 2021-07-03 18-57-31](https://user-images.githubusercontent.com/51420150/124367772-9d44ba00-dc30-11eb-8f8e-18b9f43455b9.png)
+    ![image](https://user-images.githubusercontent.com/51420150/126919495-f703add4-f63f-4f8b-9ece-95829aa10fa9.png)
   * Expected: Product is added to products table
   * Result: <br>
-    ![Screenshot from 2021-07-03 18-58-42](https://user-images.githubusercontent.com/51420150/124367792-b9e0f200-dc30-11eb-99b2-b7512c917cf3.png)
- 
+    ![image](https://user-images.githubusercontent.com/51420150/126919462-c5a73a58-d936-44ba-ae7d-edaac38583d5.png)
+
+
+* Adding a product without inserting a image
+  * Input:<br>
+    ![image](https://user-images.githubusercontent.com/51420150/126919311-db7633fe-7eae-4293-bcf6-8e0670f8f1ff.png)
+  * Expected: Error message is displayed
+  * Result: <br>
+    ![image](https://user-images.githubusercontent.com/51420150/126918479-fcf3664b-4d6e-4b77-ab80-19df498c0753.png)
+
 * Removing a product
   * Input:<br>
     Clicking on the X in the same row as banana
