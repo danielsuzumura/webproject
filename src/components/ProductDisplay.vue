@@ -16,11 +16,7 @@
                     <p id="sold">Left: {{product.quantityStock}}</p>
                     <p id="amount">AMOUNT:<br>
                         <select v-model="amount">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
+                            <option v-for="index in Math.min(parseInt(product.quantityStock),5)" :key=index>{{index}}</option>
                         </select>
                     </p>
                     <router-link to="/Cart"><button id="button-addCart" @click='addToCart'> ADD TO CART </button></router-link >
@@ -95,7 +91,7 @@ export default {
             user: {},
             productQuery: this.$route.query.query,
             product: null,
-            amount: 1,
+            amount: null,
             ratingAmount: 0,
             reviews: null,
             reviewMean: 0,
