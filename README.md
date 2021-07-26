@@ -43,7 +43,7 @@ Tests will be made manually by trying to reproduce each funcionality and the res
 # install dependencies
 npm install
 
-# compile vue
+# compile code
 npm run build
 
 # run server
@@ -56,4 +56,4 @@ npm start
   load some pages can be slow.
   * We made a loading animation because of this issue.
 ## Comments
-  No comments to add
+After running `npm run build` the compiled code will be in `dist` folder
